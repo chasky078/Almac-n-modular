@@ -1,306 +1,484 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#071321">
-<title>Almacén Modular</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="A.P.Q.">
+
+<title>A.P.Q. · Almacén Productos Químicos</title>
 
 <style>
-*{box-sizing:border-box}
+:root{
+  --bg:#07111f;
+  --panel:#0d1b2d;
+  --panel2:#102238;
+  --border:#1e3650;
+  --text:#f4f7fb;
+  --muted:#8fa4bb;
+  --green:#27d17f;
+  --green-dark:#123e2c;
+  --red:#ff5964;
+  --red-dark:#451d24;
+  --blue:#4da3ff;
+  --gold:#f3c969;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
 body{
- margin:0;
- background:#071321;
- color:#eef5fa;
- font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
 }
-button,input{font:inherit}
-button{cursor:pointer}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
 .app{
- max-width:780px;
- margin:auto;
- min-height:100vh;
- padding:18px 14px 70px
+  width:100%;
+  max-width:700px;
+  margin:auto;
+  min-height:100vh;
+  padding:18px 14px 35px;
 }
-.header{
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:12px;
- margin-bottom:18px
-}
-.brand{font-size:20px;font-weight:850}
-.sub{color:#91a7b8;font-size:12px;margin-top:4px}
 
-.calendar{
- border:1px solid #24445c;
- background:#102438;
- color:white;
- border-radius:16px;
- padding:10px 13px;
- text-align:center
+header{
+  text-align:center;
+  padding:12px 5px 22px;
 }
-.calendar strong{display:block;font-size:13px}
-.calendar span{display:block;color:#91a7b8;font-size:11px;margin-top:3px}
 
-.calendarPanel{
- display:none;
- background:#0d1e2d;
- border:1px solid #24445c;
- border-radius:16px;
- padding:13px;
- margin-bottom:12px
+.logo{
+  font-size:32px;
+  font-weight:900;
+  letter-spacing:2px;
 }
-.calendarPanel.show{display:block}
-.calendarPanel label{
- display:block;
- color:#91a7b8;
- font-size:11px;
- margin-bottom:7px
+
+.subtitle{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:14px;
 }
-.calendarPanel input{
- width:100%;
- background:#132a3d;
- border:1px solid #31536c;
- color:white;
- border-radius:10px;
- padding:10px
+
+.screen{
+  display:none;
+}
+
+.screen.active{
+  display:block;
+}
+
+/* ---------- HOME ---------- */
+
+.home-card{
+  background:linear-gradient(145deg,#102238,#0b192a);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px 18px;
+  margin-bottom:14px;
+  min-height:120px;
+  display:flex;
+  align-items:center;
+  gap:17px;
+  transition:.15s;
+}
+
+.home-card:active{
+  transform:scale(.985);
+}
+
+.home-icon{
+  width:58px;
+  height:58px;
+  border-radius:17px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:29px;
+  background:#172d46;
+  flex-shrink:0;
+}
+
+.home-card h2{
+  margin:0;
+  font-size:20px;
+}
+
+.home-card p{
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* ---------- APQ MENU ---------- */
+
+.back{
+  border:0;
+  background:#12263d;
+  color:#dce9f6;
+  padding:10px 14px;
+  border-radius:12px;
+  margin-bottom:15px;
+}
+
+.page-title{
+  font-size:24px;
+  font-weight:800;
+  margin:5px 0 17px;
+}
+
+.section-card{
+  background:linear-gradient(145deg,#102238,#0b192a);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:19px;
+  margin-bottom:13px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.section-icon{
+  font-size:29px;
+  width:52px;
+  height:52px;
+  border-radius:15px;
+  background:#172d46;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.section-card h3{
+  margin:0;
+  font-size:18px;
+}
+
+.section-card p{
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* ---------- COMMON ---------- */
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:13px;
+}
+
+.small-btn{
+  border:0;
+  background:#12263d;
+  color:#dce9f6;
+  border-radius:11px;
+  padding:9px 11px;
+  font-size:13px;
+}
+
+.search{
+  width:100%;
+  border:1px solid var(--border);
+  background:#0b192a;
+  color:white;
+  border-radius:13px;
+  padding:12px 13px;
+  outline:none;
+  margin-bottom:12px;
+}
+
+.search:focus{
+  border-color:var(--blue);
 }
 
 .stats{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
- margin-bottom:12px
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-bottom:12px;
 }
+
 .stat{
- background:#102438;
- border-radius:17px;
- padding:14px
-}
-.number{
- font-size:28px;
- font-weight:850
-}
-.label{
- display:block;
- color:#a5b6c3;
- font-size:11px;
- margin-top:3px;
- font-weight:650
-}
-.free .number{color:#54d7a6}
-.occupied .number{color:#ff6574}
-
-.searchRow{
- display:flex;
- gap:8px;
- margin-bottom:12px
-}
-.search{
- flex:1;
- min-width:0;
- background:#0d1e2d;
- border:1px solid #24445c;
- color:white;
- border-radius:13px;
- padding:12px 14px;
- outline:none
-}
-.searchBtn{
- border:0;
- border-radius:13px;
- background:#17344b;
- color:white;
- padding:0 15px;
- font-weight:750
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px;
 }
 
-.actions{
- display:flex;
- gap:8px;
- margin-bottom:16px
+.stat-label{
+  color:var(--muted);
+  font-size:11px;
 }
-.actions button{
- flex:1;
- border:0;
- border-radius:13px;
- padding:12px 8px;
- background:#193249;
- color:#e7f0f5
+
+.stat-value{
+  font-size:23px;
+  font-weight:800;
+  margin-top:3px;
 }
-.actions .primary{
- background:#55c59a;
- color:#06150f;
- font-weight:850
+
+.green{
+  color:var(--green);
 }
+
+.red{
+  color:var(--red);
+}
+
+/* ---------- FREE BY HEIGHT ---------- */
+
+.height-box{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:13px;
+  margin-bottom:15px;
+}
+
+.height-title{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:10px;
+  font-weight:700;
+}
+
+.height-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+}
+
+.height-item{
+  text-align:center;
+  background:#091725;
+  border-radius:10px;
+  padding:8px 4px;
+}
+
+.height-name{
+  font-size:10px;
+  color:var(--muted);
+}
+
+.height-number{
+  font-size:18px;
+  font-weight:800;
+  color:var(--green);
+  margin-top:2px;
+}
+
+/* ---------- MODULES ---------- */
 
 .module{
- background:#0d1e2d;
- border:1px solid #23435a;
- border-radius:19px;
- padding:14px;
- margin-bottom:12px
-}
-.moduleHead{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin-bottom:12px
-}
-.moduleTitle{
- font-size:18px;
- font-weight:850
-}
-.moduleCount{
- color:#91a7b8;
- font-size:11px
-}
-.parts{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:9px
-}
-.part{
- width:100%;
- background:#132a3d;
- border:1px solid #2a4c64;
- border-radius:14px;
- color:white;
- text-align:left;
- padding:12px
-}
-.part:active{transform:scale(.98)}
-.partName{font-size:16px;font-weight:850}
-.partRange{
- display:block;
- color:#91a7b8;
- font-size:11px;
- margin-top:3px
-}
-.mini{
- display:flex;
- gap:2px;
- margin-top:10px
-}
-.dot{
- height:6px;
- flex:1;
- border-radius:4px
-}
-.dot.free{background:#35d39b}
-.dot.occupied{background:#ff6574}
-
-.view{display:none}
-.view.show{display:block}
-
-.back{
- border:0;
- background:transparent;
- color:#8fe2c5;
- padding:3px 0 14px;
- font-weight:800
-}
-.viewTitle{
- font-size:21px;
- font-weight:850
-}
-.legend{
- display:flex;
- flex-wrap:wrap;
- gap:12px;
- color:#91a7b8;
- font-size:11px;
- margin:9px 0 12px
-}
-.legend i{
- display:inline-block;
- width:9px;
- height:9px;
- border-radius:3px;
- margin-right:4px
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+  margin-bottom:12px;
+  overflow:hidden;
 }
 
-.gridWrap{
- background:#0d1e2d;
- border:1px solid #23435a;
- border-radius:17px;
- padding:10px
+.module-head{
+  padding:14px 15px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
+
+.module-name{
+  font-size:17px;
+  font-weight:800;
+}
+
+.module-count{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.submodules{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-top:1px solid var(--border);
+}
+
+.submodule{
+  padding:14px;
+  text-align:center;
+  background:#0b192a;
+  border:0;
+  color:white;
+  border-right:1px solid var(--border);
+}
+
+.submodule:last-child{
+  border-right:0;
+}
+
+.submodule strong{
+  display:block;
+  font-size:17px;
+}
+
+.submodule span{
+  color:var(--muted);
+  font-size:11px;
+}
+
+/* ---------- LOCATION GRID ---------- */
+
+.location-head{
+  margin-bottom:12px;
+}
+
+.location-title{
+  font-size:20px;
+  font-weight:800;
+}
+
+.location-sub{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+}
+
+.grid-wrap{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:15px;
+  overflow:hidden;
+}
+
 .grid{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:6px
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
 }
-.height{
- text-align:center;
- color:#8198a9;
- font-size:9px;
- font-weight:700;
- padding:2px 0 5px
-}
-.location{
- border:0;
- border-radius:9px;
- padding:9px 2px;
- color:white;
- min-width:0
-}
-.location.free{background:#0f624d}
-.location.occupied{background:#733541}
-.location strong{
- display:block;
- font-size:10px
-}
-.location small{
- display:block;
- font-size:8px;
- margin-top:2px;
- opacity:.78
-}
-.location:active{transform:scale(.96)}
 
-.freeList{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:8px
+.grid-head{
+  background:#12263d;
+  color:#a8bdd2;
+  font-size:10px;
+  font-weight:700;
+  text-align:center;
+  padding:9px 2px;
 }
-.freeItem{
- background:#132a3d;
- border:1px solid #2a4c64;
- border-radius:12px;
- padding:11px;
- color:white;
- text-align:left
+
+.location{
+  min-height:60px;
+  border-top:1px solid var(--border);
+  border-right:1px solid var(--border);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  background:var(--red-dark);
+  color:#fff;
+  transition:.12s;
 }
-.freeItem strong{font-size:14px}
-.freeItem span{
- display:block;
- color:#91a7b8;
- font-size:10px;
- margin-top:3px
+
+.location:nth-child(4n){
+  border-right:0;
 }
+
+.location.free{
+  background:var(--green-dark);
+}
+
+.location:active{
+  transform:scale(.96);
+}
+
+.loc-id{
+  font-size:12px;
+  font-weight:800;
+}
+
+.loc-state{
+  font-size:9px;
+  opacity:.8;
+}
+
+/* ---------- FREE LIST ---------- */
+
+.free-list{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+}
+
+.free-item{
+  background:var(--green-dark);
+  border:1px solid #1c6545;
+  color:#dffff0;
+  border-radius:10px;
+  padding:10px 4px;
+  text-align:center;
+  font-size:12px;
+  font-weight:700;
+}
+
+/* ---------- BARNICES ---------- */
+
+.info-box{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:22px 17px;
+  text-align:center;
+  color:var(--muted);
+}
+
+.info-icon{
+  font-size:38px;
+  margin-bottom:10px;
+}
+
+.info-box h3{
+  color:white;
+  margin:0 0 8px;
+}
+
+.info-box p{
+  margin:0;
+  font-size:13px;
+  line-height:1.5;
+}
+
+/* ---------- FOOTER ---------- */
 
 .footer{
- color:#8198a9;
- text-align:center;
- font-size:10px;
- margin-top:15px
+  text-align:center;
+  color:#587089;
+  font-size:10px;
+  margin-top:25px;
 }
-.toast{
- display:none;
- position:fixed;
- z-index:20;
- left:50%;
- bottom:20px;
- transform:translateX(-50%);
- background:#eef5fa;
- color:#071321;
- border-radius:22px;
- padding:9px 15px;
- font-size:12px;
- font-weight:800
+
+@media(min-width:600px){
+  .app{
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+  .home-card{
+    min-height:135px;
+  }
+
+  .location{
+    min-height:70px;
+  }
 }
 </style>
 </head>
@@ -309,708 +487,966 @@ button{cursor:pointer}
 
 <div class="app">
 
-<header class="header">
-
-<div>
-<div class="brand">📦 ALMACÉN MODULAR</div>
-<div class="sub">216 ubicaciones · 4 alturas</div>
-</div>
-
-<button class="calendar" id="calendarBtn">
-<strong>📅 <span id="today">HOY</span></strong>
-<span>Calendario</span>
-</button>
-
+<header>
+  <div class="logo">A.P.Q.</div>
+  <div class="subtitle">Almacén Productos Químicos</div>
 </header>
 
-<div class="calendarPanel" id="calendarPanel">
 
-<label>Fecha de trabajo</label>
+<!-- ================= HOME ================= -->
 
-<input type="date" id="workDate">
+<section id="homeScreen" class="screen active">
 
-</div>
+  <div class="home-card" onclick="showScreen('apqScreen')">
+    <div class="home-icon">🧪</div>
+    <div>
+      <h2>APQ</h2>
+      <p>Almacenes de productos químicos</p>
+    </div>
+  </div>
 
-<div class="stats">
-
-<div class="stat free">
-<div class="number" id="freeCount">50</div>
-<span class="label">🟢 UBICACIONES LIBRES</span>
-</div>
-
-<div class="stat occupied">
-<div class="number" id="occupiedCount">166</div>
-<span class="label">🔴 UBICACIONES OCUPADAS</span>
-</div>
-
-</div>
-
-<div class="searchRow">
-
-<input
- class="search"
- id="search"
- type="search"
- placeholder="🔎 Buscar ubicación (A001…A216)"
->
-
-<button class="searchBtn" id="searchBtn">Buscar</button>
-
-</div>
-
-<div class="actions">
-
-<button class="primary" id="freeBtn">
-🟢 Ver libres
-</button>
-
-<button id="warehouseBtn">
-↩ Ver almacén
-</button>
-
-</div>
-
-<main id="dashboard"></main>
-
-<section class="view" id="view">
-
-<button class="back" id="back">
-← Volver al almacén
-</button>
-
-<div class="viewTitle" id="viewTitle"></div>
-
-<div class="legend">
-
-<span>
-<i style="background:#35d39b"></i>
-Libre
-</span>
-
-<span>
-<i style="background:#ff6574"></i>
-Ocupada
-</span>
-
-<span>
-Toque para cambiar
-</span>
-
-</div>
-
-<div class="gridWrap">
-
-<div class="grid" id="grid"></div>
-
-</div>
+  <div class="home-card" onclick="showScreen('barnicesScreen')">
+    <div class="home-icon">🎨</div>
+    <div>
+      <h2>BARNICES</h2>
+      <p>Nombres, tipos e información importante</p>
+    </div>
+  </div>
 
 </section>
 
-<div class="footer">
 
-Guardado automático en este dispositivo ·
-Última actualización:
-<span id="lastUpdate">—</span>
+<!-- ================= APQ ================= -->
+
+<section id="apqScreen" class="screen">
+
+  <button class="back" onclick="showScreen('homeScreen')">
+    ← Volver
+  </button>
+
+  <div class="page-title">🧪 APQ</div>
+
+  <div class="section-card" onclick="showScreen('modularScreen')">
+    <div class="section-icon">📦</div>
+    <div>
+      <h3>APQ MODULAR</h3>
+      <p>Almacén modular · A001–A216</p>
+    </div>
+  </div>
+
+  <div class="section-card" onclick="showScreen('oldApqScreen')">
+    <div class="section-icon">🏭</div>
+    <div>
+      <h3>APQ VIEJA</h3>
+      <p>Zona APQ antigua</p>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ================= APQ VIEJA ================= -->
+
+<section id="oldApqScreen" class="screen">
+
+  <button class="back" onclick="showScreen('apqScreen')">
+    ← Volver a APQ
+  </button>
+
+  <div class="page-title">🏭 APQ VIEJA</div>
+
+  <div class="info-box">
+    <div class="info-icon">🏭</div>
+    <h3>APQ VIEJA</h3>
+    <p>
+      Esta sección queda preparada para configurarla
+      cuando me expliques cómo está organizada.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- ================= BARNICES ================= -->
+
+<section id="barnicesScreen" class="screen">
+
+  <button class="back" onclick="showScreen('homeScreen')">
+    ← Volver
+  </button>
+
+  <div class="page-title">🎨 BARNICES</div>
+
+  <div class="info-box">
+    <div class="info-icon">🎨</div>
+    <h3>Información de barnices</h3>
+    <p>
+      Aquí iremos añadiendo los nombres de los barnices,
+      sus tipos y los detalles importantes que me vayas dando.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- ================= APQ MODULAR ================= -->
+
+<section id="modularScreen" class="screen">
+
+  <div class="topbar">
+    <button class="small-btn" onclick="showScreen('apqScreen')">
+      ← APQ
+    </button>
+
+    <button class="small-btn" onclick="openCalendar()">
+      📅 Fecha
+    </button>
+  </div>
+
+  <div class="location-head">
+    <div class="location-title">📦 APQ MODULAR</div>
+    <div class="location-sub">
+      Estado actual del almacén
+    </div>
+  </div>
+
+  <input
+    id="searchInput"
+    class="search"
+    type="text"
+    placeholder="🔎 Buscar ubicación A001..."
+    oninput="searchLocation()"
+  >
+
+  <div class="stats">
+
+    <div class="stat">
+      <div class="stat-label">UBICACIONES LIBRES</div>
+      <div id="freeCount" class="stat-value green">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">OCUPADAS</div>
+      <div id="occupiedCount" class="stat-value red">0</div>
+    </div>
+
+  </div>
+
+
+  <!-- LIBRES POR ALTURA -->
+
+  <div class="height-box">
+
+    <div class="height-title">
+      📊 LIBRES POR ALTURA
+    </div>
+
+    <div class="height-grid">
+
+      <div class="height-item">
+        <div class="height-name">ALTURA 1</div>
+        <div id="height1" class="height-number">0</div>
+      </div>
+
+      <div class="height-item">
+        <div class="height-name">ALTURA 2</div>
+        <div id="height2" class="height-number">0</div>
+      </div>
+
+      <div class="height-item">
+        <div class="height-name">ALTURA 3</div>
+        <div id="height3" class="height-number">0</div>
+      </div>
+
+      <div class="height-item">
+        <div class="height-name">ALTURA 4</div>
+        <div id="height4" class="height-number">0</div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="topbar">
+
+    <button class="small-btn" onclick="showFree()">
+      🟢 Ver libres
+    </button>
+
+    <button class="small-btn" onclick="showModules()">
+      ↩ Ver almacén
+    </button>
+
+  </div>
+
+
+  <!-- MODULE VIEW -->
+
+  <div id="modulesView">
+
+    <div class="module">
+
+      <div class="module-head">
+        <div class="module-name">MÓDULO 1</div>
+        <div class="module-count">A001–A072</div>
+      </div>
+
+      <div class="submodules">
+
+        <button class="submodule" onclick="openSubmodule('1A')">
+          <strong>1A</strong>
+          <span>A001–A036</span>
+        </button>
+
+        <button class="submodule" onclick="openSubmodule('1B')">
+          <strong>1B</strong>
+          <span>A037–A072</span>
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="module">
+
+      <div class="module-head">
+        <div class="module-name">MÓDULO 2</div>
+        <div class="module-count">A073–A144</div>
+      </div>
+
+      <div class="submodules">
+
+        <button class="submodule" onclick="openSubmodule('2A')">
+          <strong>2A</strong>
+          <span>A073–A108</span>
+        </button>
+
+        <button class="submodule" onclick="openSubmodule('2B')">
+          <strong>2B</strong>
+          <span>A109–A144</span>
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="module">
+
+      <div class="module-head">
+        <div class="module-name">MÓDULO 3</div>
+        <div class="module-count">A145–A216</div>
+      </div>
+
+      <div class="submodules">
+
+        <button class="submodule" onclick="openSubmodule('3A')">
+          <strong>3A</strong>
+          <span>A145–A180</span>
+        </button>
+
+        <button class="submodule" onclick="openSubmodule('3B')">
+          <strong>3B</strong>
+          <span>A181–A216</span>
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- LOCATION VIEW -->
+
+  <div id="locationView" style="display:none;">
+
+    <div class="location-head">
+
+      <div id="locationTitle" class="location-title"></div>
+
+      <div id="locationSubtitle" class="location-sub"></div>
+
+    </div>
+
+    <div class="grid-wrap">
+
+      <div class="grid" id="locationGrid">
+
+        <div class="grid-head">ALTURA 1</div>
+        <div class="grid-head">ALTURA 2</div>
+        <div class="grid-head">ALTURA 3</div>
+        <div class="grid-head">ALTURA 4</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- FREE LIST -->
+
+  <div id="freeView" style="display:none;">
+
+    <div class="location-head">
+
+      <div class="location-title">🟢 Ubicaciones libres</div>
+
+      <div class="location-sub">
+        Todas las ubicaciones libres del almacén
+      </div>
+
+    </div>
+
+    <div id="freeList" class="free-list"></div>
+
+  </div>
+
+
+  <div class="footer">
+    Última actualización:
+    <span id="lastUpdate">--</span>
+  </div>
+
+</section>
 
 </div>
 
-</div>
 
-<div class="toast" id="toast"></div>
-
+<!-- ================= JAVASCRIPT ================= -->
 
 <script>
 
-const LIBRES = [
-
-"A001","A019","A044","A048","A051","A052",
-"A055","A056","A060","A064","A067","A068",
-"A072","A075","A076","A080","A084","A088",
-"A092","A096","A100","A104","A105","A107",
-"A108","A111","A112","A113","A115","A116",
-"A120","A122","A124","A128","A132","A135",
-"A136","A140","A146","A149","A152","A164",
-"A168","A172","A176","A179","A180","A200",
-"A204","A214"
-
-];
-
-const STORAGE="ALMACEN_MODULAR_2026";
-
-let estado=localStorage.getItem(STORAGE);
-
-if(estado){
-
-estado=JSON.parse(estado);
-
-}else{
-
-estado={
- ubicaciones:{},
- actualizacion:new Date().toISOString()
-};
-
-for(let i=1;i<=216;i++){
-
-let id="A"+String(i).padStart(3,"0");
-
-estado.ubicaciones[id]=
-LIBRES.includes(id) ? "free" : "occupied";
-
-}
-
-guardar();
-
-}
+/*
+=====================================================
+  A.P.Q. · APQ MODULAR
+  216 ubicaciones
+  4 alturas
+=====================================================
+*/
 
 
-function guardar(){
-
-estado.actualizacion=new Date().toISOString();
-
-localStorage.setItem(
- STORAGE,
- JSON.stringify(estado)
-);
-
-actualizarContadores();
-
-document.getElementById("lastUpdate").textContent=
-new Date(estado.actualizacion)
-.toLocaleTimeString("es-ES",{
-hour:"2-digit",
-minute:"2-digit"
-});
-
-}
+const STORAGE_KEY = "apq_modular_state_v1";
+const UPDATE_KEY = "apq_modular_update_v1";
 
 
-function actualizarContadores(){
+// --------------------------------------------------
+// UBICACIONES INICIALES LIBRES
+// --------------------------------------------------
 
-let valores=Object.values(estado.ubicaciones);
+const initialFree = [
 
-document.getElementById("freeCount").textContent=
-valores.filter(x=>x==="free").length;
+  "A001",
+  "A019",
 
-document.getElementById("occupiedCount").textContent=
-valores.filter(x=>x==="occupied").length;
+  "A044",
+  "A048",
+  "A051",
+  "A052",
+  "A055",
+  "A056",
+  "A060",
+  "A064",
+  "A067",
+  "A068",
+  "A072",
 
-}
+  "A075",
+  "A076",
+  "A080",
+  "A084",
+  "A088",
+  "A092",
+  "A096",
+  "A100",
+  "A104",
+  "A105",
+  "A107",
+  "A108",
 
+  "A111",
+  "A112",
+  "A113",
+  "A115",
+  "A116",
+  "A120",
+  "A122",
+  "A124",
+  "A128",
+  "A132",
+  "A135",
+  "A136",
+  "A140",
 
-function idNumero(n){
+  "A146",
+  "A149",
+  "A152",
+  "A164",
+  "A168",
+  "A172",
+  "A176",
+  "A179",
+  "A180",
 
-return "A"+String(n).padStart(3,"0");
-
-}
-
-
-function crearDashboard(){
-
-let dashboard=document.getElementById("dashboard");
-
-dashboard.innerHTML="";
-
-let modulos=[
-
-["MÓDULO 1","1A",1,36,"1B",37,72],
-
-["MÓDULO 2","2A",73,108,"2B",109,144],
-
-["MÓDULO 3","3A",145,180,"3B",181,216]
+  "A200",
+  "A204",
+  "A214"
 
 ];
 
 
-modulos.forEach(m=>{
+// --------------------------------------------------
+// ESTADO
+// --------------------------------------------------
 
-let section=document.createElement("section");
+let freeLocations = new Set(initialFree);
 
-section.className="module";
-
-section.innerHTML=`
-
-<div class="moduleHead">
-
-<div class="moduleTitle">${m[0]}</div>
-
-<div class="moduleCount">
-72 ubicaciones
-</div>
-
-</div>
-
-<div class="parts"></div>
-
-`;
-
-let parts=section.querySelector(".parts");
-
-parts.appendChild(
-crearParte(m[1],m[2],m[3])
-);
-
-parts.appendChild(
-crearParte(m[4],m[5],m[6])
-);
-
-dashboard.appendChild(section);
-
-});
-
-}
+let currentSubmodule = null;
 
 
-function crearParte(nombre,inicio,fin){
+// --------------------------------------------------
+// CARGAR DATOS GUARDADOS
+// --------------------------------------------------
 
-let boton=document.createElement("button");
+function loadData(){
 
-boton.className="part";
+  const saved = localStorage.getItem(STORAGE_KEY);
 
-boton.innerHTML=`
+  if(saved){
 
-<div class="partName">${nombre}</div>
+    try{
 
-<span class="partRange">
-${idNumero(inicio)}–${idNumero(fin)}
-</span>
+      const parsed = JSON.parse(saved);
 
-<div class="mini"></div>
+      if(Array.isArray(parsed)){
+        freeLocations = new Set(parsed);
+      }
 
-`;
+    }catch(e){
 
-let mini=boton.querySelector(".mini");
+      console.log("No se pudo cargar el estado guardado.");
 
-for(let i=inicio;i<=fin;i++){
+    }
 
-let d=document.createElement("i");
+  }
 
-d.className=
-"dot "+
-estado.ubicaciones[idNumero(i)];
+  updateStats();
 
-mini.appendChild(d);
-
-}
-
-boton.addEventListener("click",function(){
-
-abrirModulo(nombre,inicio,fin);
-
-});
-
-return boton;
+  updateLastUpdate();
 
 }
 
 
-function abrirModulo(nombre,inicio,fin){
+// --------------------------------------------------
+// GUARDAR DATOS
+// --------------------------------------------------
 
-document.getElementById("dashboard").style.display="none";
+function saveData(){
 
-document.getElementById("view").classList.add("show");
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify([...freeLocations])
+  );
 
-document.getElementById("viewTitle").textContent=
-nombre;
+  const now = new Date();
 
-let grid=document.getElementById("grid");
+  localStorage.setItem(
+    UPDATE_KEY,
+    now.toLocaleString("es-ES",{
+      dateStyle:"short",
+      timeStyle:"short"
+    })
+  );
 
-grid.innerHTML="";
-
-
-[
-"ALTURA 1",
-"ALTURA 2",
-"ALTURA 3",
-"ALTURA 4"
-].forEach(texto=>{
-
-let h=document.createElement("div");
-
-h.className="height";
-
-h.textContent=texto;
-
-grid.appendChild(h);
-
-});
-
-
-for(let i=inicio;i<=fin;i++){
-
-let id=idNumero(i);
-
-let boton=document.createElement("button");
-
-boton.className=
-"location "+
-estado.ubicaciones[id];
-
-boton.dataset.id=id;
-
-boton.innerHTML=`
-
-<strong>${id}</strong>
-
-<small>
-${estado.ubicaciones[id]==="free"
-?"LIBRE"
-:"OCUPADA"}
-</small>
-
-`;
-
-boton.addEventListener("click",function(){
-
-cambiarEstado(id,boton);
-
-});
-
-grid.appendChild(boton);
-
-}
-
-window.scrollTo(0,0);
+  updateStats();
+  updateLastUpdate();
 
 }
 
 
-function cambiarEstado(id,boton){
+// --------------------------------------------------
+// CAMBIAR PANTALLA
+// --------------------------------------------------
 
-if(estado.ubicaciones[id]==="free"){
+function showScreen(id){
 
-estado.ubicaciones[id]="occupied";
+  document.querySelectorAll(".screen").forEach(screen=>{
+    screen.classList.remove("active");
+  });
 
-}else{
+  document.getElementById(id).classList.add("active");
 
-estado.ubicaciones[id]="free";
-
-}
-
-boton.className=
-"location "+
-estado.ubicaciones[id];
-
-boton.querySelector("small").textContent=
-estado.ubicaciones[id]==="free"
-?"LIBRE"
-:"OCUPADA";
-
-guardar();
-
-crearDashboard();
-
-mensaje(
-id+
-" · "+
-(estado.ubicaciones[id]==="free"
-?"LIBRE"
-:"OCUPADA")
-);
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
 }
 
 
-function volver(){
+// --------------------------------------------------
+// ESTADÍSTICAS
+// --------------------------------------------------
 
-document.getElementById("view").classList.remove("show");
+function updateStats(){
 
-document.getElementById("dashboard").style.display="block";
+  const free = freeLocations.size;
 
-crearDashboard();
+  const occupied = 216 - free;
 
-window.scrollTo(0,0);
+  document.getElementById("freeCount").textContent = free;
 
-}
+  document.getElementById("occupiedCount").textContent = occupied;
 
 
-function verLibres(){
+  // -----------------------------------------------
+  // LIBRES POR ALTURA
+  //
+  // La ubicación se organiza así:
+  //
+  // A001 = altura 1
+  // A002 = altura 2
+  // A003 = altura 3
+  // A004 = altura 4
+  //
+  // -----------------------------------------------
 
-document.getElementById("view").classList.remove("show");
+  const heights = [0,0,0,0];
 
-document.getElementById("dashboard").style.display="block";
+  freeLocations.forEach(id=>{
 
-let libres=Object.keys(estado.ubicaciones)
-.filter(id=>estado.ubicaciones[id]==="free");
+    const number = parseInt(id.substring(1));
 
-let dashboard=document.getElementById("dashboard");
+    const height = (number - 1) % 4;
 
-dashboard.innerHTML="";
+    heights[height]++;
 
-let section=document.createElement("section");
+  });
 
-section.className="module";
 
-section.innerHTML=`
-
-<div class="moduleHead">
-
-<div class="moduleTitle">
-🟢 UBICACIONES LIBRES
-</div>
-
-<div class="moduleCount">
-${libres.length} disponibles
-</div>
-
-</div>
-
-<div class="freeList"></div>
-
-`;
-
-let lista=section.querySelector(".freeList");
-
-libres.forEach(id=>{
-
-let boton=document.createElement("button");
-
-boton.className="freeItem";
-
-boton.innerHTML=`
-
-<strong>${id}</strong>
-
-<span>
-Disponible para colocar material
-</span>
-
-`;
-
-boton.addEventListener("click",function(){
-
-let n=parseInt(id.substring(1));
-
-let bloque;
-
-if(n<=36)
-bloque=["1A",1,36];
-
-else if(n<=72)
-bloque=["1B",37,72];
-
-else if(n<=108)
-bloque=["2A",73,108];
-
-else if(n<=144)
-bloque=["2B",109,144];
-
-else if(n<=180)
-bloque=["3A",145,180];
-
-else
-bloque=["3B",181,216];
-
-abrirModulo(
-bloque[0],
-bloque[1],
-bloque[2]
-);
-
-setTimeout(()=>{
-
-let elemento=
-document.querySelector('[data-id="'+id+'"]');
-
-if(elemento)
-elemento.scrollIntoView({
-behavior:"smooth",
-block:"center"
-});
-
-},150);
-
-});
-
-lista.appendChild(boton);
-
-});
-
-dashboard.appendChild(section);
-
-mensaje("Mostrando ubicaciones libres");
+  document.getElementById("height1").textContent = heights[0];
+  document.getElementById("height2").textContent = heights[1];
+  document.getElementById("height3").textContent = heights[2];
+  document.getElementById("height4").textContent = heights[3];
 
 }
 
 
-function buscar(){
+// --------------------------------------------------
+// ÚLTIMA ACTUALIZACIÓN
+// --------------------------------------------------
 
-let valor=
-document.getElementById("search")
-.value
-.trim()
-.toUpperCase();
+function updateLastUpdate(){
 
-if(!valor)return;
+  const saved = localStorage.getItem(UPDATE_KEY);
 
-if(!valor.startsWith("A"))
-valor="A"+valor;
-
-if(!/^A[0-9]{3}$/.test(valor)){
-
-mensaje("Ejemplo: A001");
-
-return;
-
-}
-
-let numero=parseInt(
-valor.substring(1)
-);
-
-if(numero<1 || numero>216){
-
-mensaje("Entre A001 y A216");
-
-return;
-
-}
-
-let bloque;
-
-if(numero<=36)
-bloque=["1A",1,36];
-
-else if(numero<=72)
-bloque=["1B",37,72];
-
-else if(numero<=108)
-bloque=["2A",73,108];
-
-else if(numero<=144)
-bloque=["2B",109,144];
-
-else if(numero<=180)
-bloque=["3A",145,180];
-
-else
-bloque=["3B",181,216];
-
-abrirModulo(
-bloque[0],
-bloque[1],
-bloque[2]
-);
-
-setTimeout(()=>{
-
-let elemento=
-document.querySelector('[data-id="'+valor+'"]');
-
-if(elemento){
-
-elemento.scrollIntoView({
-behavior:"smooth",
-block:"center"
-});
-
-}
-
-},150);
+  document.getElementById("lastUpdate").textContent =
+    saved || "Sin actualizaciones";
 
 }
 
 
-function mensaje(texto){
+// --------------------------------------------------
+// ABRIR SUBMÓDULO
+// --------------------------------------------------
 
-let t=document.getElementById("toast");
+function openSubmodule(code){
 
-t.textContent=texto;
+  currentSubmodule = code;
 
-t.style.display="block";
+  document.getElementById("modulesView").style.display = "none";
 
-clearTimeout(window.tm);
+  document.getElementById("freeView").style.display = "none";
 
-window.tm=setTimeout(()=>{
+  document.getElementById("locationView").style.display = "block";
 
-t.style.display="none";
 
-},1400);
+  const ranges = {
+
+    "1A":[1,36],
+    "1B":[37,72],
+
+    "2A":[73,108],
+    "2B":[109,144],
+
+    "3A":[145,180],
+    "3B":[181,216]
+
+  };
+
+
+  const range = ranges[code];
+
+  document.getElementById("locationTitle").textContent =
+    "📦 MÓDULO " + code;
+
+  document.getElementById("locationSubtitle").textContent =
+    "Ubicaciones A" +
+    String(range[0]).padStart(3,"0") +
+    " – A" +
+    String(range[1]).padStart(3,"0");
+
+
+  renderGrid(range[0],range[1]);
 
 }
 
 
-/* CALENDARIO */
+// --------------------------------------------------
+// GENERAR CUADRÍCULA
+// --------------------------------------------------
 
-document.getElementById("calendarBtn")
-.addEventListener("click",function(){
+function renderGrid(start,end){
 
-document
-.getElementById("calendarPanel")
-.classList.toggle("show");
+  const grid = document.getElementById("locationGrid");
 
-});
+  grid.innerHTML = `
+
+    <div class="grid-head">ALTURA 1</div>
+    <div class="grid-head">ALTURA 2</div>
+    <div class="grid-head">ALTURA 3</div>
+    <div class="grid-head">ALTURA 4</div>
+
+  `;
 
 
-let ahora=new Date();
+  /*
+    Cada fila representa cuatro alturas:
 
-document.getElementById("today").textContent=
-ahora.toLocaleDateString(
-"es-ES",
-{
-day:"2-digit",
-month:"2-digit"
+    A001 A002 A003 A004
+    A005 A006 A007 A008
+    etc.
+  */
+
+  for(let n=start;n<=end;n++){
+
+    const id =
+      "A" + String(n).padStart(3,"0");
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "location " +
+      (freeLocations.has(id) ? "free" : "");
+
+    button.innerHTML = `
+
+      <div class="loc-id">${id}</div>
+
+      <div class="loc-state">
+        ${freeLocations.has(id) ? "LIBRE" : "OCUPADO"}
+      </div>
+
+    `;
+
+    button.onclick = ()=>toggleLocation(id);
+
+    grid.appendChild(button);
+
+  }
+
 }
-);
-
-document.getElementById("workDate").value=
-ahora.getFullYear()+
-"-"+
-String(ahora.getMonth()+1).padStart(2,"0")+
-"-"+
-String(ahora.getDate()).padStart(2,"0");
 
 
-document.getElementById("workDate")
-.addEventListener("change",function(){
+// --------------------------------------------------
+// CAMBIAR LIBRE / OCUPADO
+// --------------------------------------------------
 
-let fecha=new Date(
-this.value+"T12:00:00"
-);
+function toggleLocation(id){
 
-mensaje(
-"Fecha: "+
-fecha.toLocaleDateString("es-ES")
-);
+  if(freeLocations.has(id)){
 
-});
+    freeLocations.delete(id);
+
+  }else{
+
+    freeLocations.add(id);
+
+  }
+
+  saveData();
+
+  if(currentSubmodule){
+
+    const ranges = {
+
+      "1A":[1,36],
+      "1B":[37,72],
+
+      "2A":[73,108],
+      "2B":[109,144],
+
+      "3A":[145,180],
+      "3B":[181,216]
+
+    };
+
+    renderGrid(
+      ranges[currentSubmodule][0],
+      ranges[currentSubmodule][1]
+    );
+
+  }
+
+}
 
 
-/* BOTONES */
+// --------------------------------------------------
+// MOSTRAR MÓDULOS
+// --------------------------------------------------
 
-document.getElementById("freeBtn")
-.addEventListener("click",verLibres);
+function showModules(){
 
-document.getElementById("warehouseBtn")
-.addEventListener("click",function(){
+  document.getElementById("locationView").style.display =
+    "none";
 
-crearDashboard();
-volver();
+  document.getElementById("freeView").style.display =
+    "none";
 
-});
+  document.getElementById("modulesView").style.display =
+    "block";
 
-document.getElementById("back")
-.addEventListener("click",volver);
+  currentSubmodule = null;
 
-document.getElementById("searchBtn")
-.addEventListener("click",buscar);
-
-document.getElementById("search")
-.addEventListener("keydown",function(e){
-
-if(e.key==="Enter")
-buscar();
-
-});
+}
 
 
-/* INICIO */
+// --------------------------------------------------
+// MOSTRAR LIBRES
+// --------------------------------------------------
 
-crearDashboard();
+function showFree(){
 
-actualizarContadores();
+  document.getElementById("modulesView").style.display =
+    "none";
 
-guardar();
+  document.getElementById("locationView").style.display =
+    "none";
+
+  document.getElementById("freeView").style.display =
+    "block";
+
+
+  const list =
+    document.getElementById("freeList");
+
+  list.innerHTML = "";
+
+
+  const sorted =
+    [...freeLocations].sort((a,b)=>{
+
+      return parseInt(a.substring(1)) -
+             parseInt(b.substring(1));
+
+    });
+
+
+  if(sorted.length === 0){
+
+    list.innerHTML = `
+      <div style="
+        grid-column:1/-1;
+        text-align:center;
+        color:#8fa4bb;
+        padding:20px;
+      ">
+        No hay ubicaciones libres.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  sorted.forEach(id=>{
+
+    const item =
+      document.createElement("div");
+
+    item.className = "free-item";
+
+    item.textContent = id;
+
+    item.onclick = ()=>{
+
+      const number =
+        parseInt(id.substring(1));
+
+      let module;
+
+      if(number <= 36){
+        module = "1A";
+      }else if(number <= 72){
+        module = "1B";
+      }else if(number <= 108){
+        module = "2A";
+      }else if(number <= 144){
+        module = "2B";
+      }else if(number <= 180){
+        module = "3A";
+      }else{
+        module = "3B";
+      }
+
+      openSubmodule(module);
+
+    };
+
+    list.appendChild(item);
+
+  });
+
+}
+
+
+// --------------------------------------------------
+// BUSCAR UBICACIÓN
+// --------------------------------------------------
+
+function searchLocation(){
+
+  const value =
+    document.getElementById("searchInput")
+    .value
+    .trim()
+    .toUpperCase();
+
+
+  if(!value){
+
+    showModules();
+
+    return;
+
+  }
+
+
+  const match =
+    value.match(/^A?(\d{1,3})$/);
+
+  if(!match){
+
+    return;
+
+  }
+
+
+  const number =
+    parseInt(match[1]);
+
+  if(number < 1 || number > 216){
+
+    return;
+
+  }
+
+
+  let module;
+
+  if(number <= 36){
+    module = "1A";
+  }else if(number <= 72){
+    module = "1B";
+  }else if(number <= 108){
+    module = "2A";
+  }else if(number <= 144){
+    module = "2B";
+  }else if(number <= 180){
+    module = "3A";
+  }else{
+    module = "3B";
+  }
+
+
+  openSubmodule(module);
+
+
+  setTimeout(()=>{
+
+    const buttons =
+      document.querySelectorAll(".location");
+
+    buttons.forEach(button=>{
+
+      if(
+        button.querySelector(".loc-id") &&
+        button.querySelector(".loc-id").textContent ===
+        "A" + String(number).padStart(3,"0")
+      ){
+
+        button.scrollIntoView({
+          behavior:"smooth",
+          block:"center"
+        });
+
+        button.style.outline =
+          "3px solid #4da3ff";
+
+        setTimeout(()=>{
+
+          button.style.outline = "";
+
+        },1800);
+
+      }
+
+    });
+
+  },50);
+
+}
+
+
+// --------------------------------------------------
+// CALENDARIO
+// --------------------------------------------------
+
+function openCalendar(){
+
+  const input =
+    document.createElement("input");
+
+  input.type = "date";
+
+  input.style.position = "fixed";
+  input.style.opacity = "0";
+
+  document.body.appendChild(input);
+
+  input.addEventListener("change",()=>{
+
+    if(input.value){
+
+      const date =
+        new Date(input.value + "T00:00:00");
+
+      alert(
+        "Fecha seleccionada: " +
+        date.toLocaleDateString("es-ES")
+      );
+
+    }
+
+    input.remove();
+
+  });
+
+  input.click();
+
+}
+
+
+// --------------------------------------------------
+// INICIO
+// --------------------------------------------------
+
+loadData();
 
 </script>
 
