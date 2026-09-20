@@ -1,801 +1,1016 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Ubicaciones del Almacén</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071321">
+<title>Almacén Modular</title>
 
 <style>
-
-*{
-    box-sizing:border-box;
-}
-
+*{box-sizing:border-box}
 body{
-    margin:0;
-    padding:20px;
-    background:#f5f6f8;
-    font-family:Arial,Helvetica,sans-serif;
-    color:#222;
+ margin:0;
+ background:#071321;
+ color:#eef5fa;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
+button,input{font:inherit}
+button{cursor:pointer}
+.app{
+ max-width:780px;
+ margin:auto;
+ min-height:100vh;
+ padding:18px 14px 70px
+}
+.header{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:12px;
+ margin-bottom:18px
+}
+.brand{font-size:20px;font-weight:850}
+.sub{color:#91a7b8;font-size:12px;margin-top:4px}
+
+.calendar{
+ border:1px solid #24445c;
+ background:#102438;
+ color:white;
+ border-radius:16px;
+ padding:10px 13px;
+ text-align:center
+}
+.calendar strong{display:block;font-size:13px}
+.calendar span{display:block;color:#91a7b8;font-size:11px;margin-top:3px}
+
+.calendarPanel{
+ display:none;
+ background:#0d1e2d;
+ border:1px solid #24445c;
+ border-radius:16px;
+ padding:13px;
+ margin-bottom:12px
+}
+.calendarPanel.show{display:block}
+.calendarPanel label{
+ display:block;
+ color:#91a7b8;
+ font-size:11px;
+ margin-bottom:7px
+}
+.calendarPanel input{
+ width:100%;
+ background:#132a3d;
+ border:1px solid #31536c;
+ color:white;
+ border-radius:10px;
+ padding:10px
 }
 
-.contenedor{
-    max-width:1100px;
-    margin:auto;
+.stats{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+ margin-bottom:12px
+}
+.stat{
+ background:#102438;
+ border-radius:17px;
+ padding:14px
+}
+.number{
+ font-size:28px;
+ font-weight:850
+}
+.label{
+ display:block;
+ color:#a5b6c3;
+ font-size:11px;
+ margin-top:3px;
+ font-weight:650
+}
+.free .number{color:#54d7a6}
+.occupied .number{color:#ff6574}
+
+.searchRow{
+ display:flex;
+ gap:8px;
+ margin-bottom:12px
+}
+.search{
+ flex:1;
+ min-width:0;
+ background:#0d1e2d;
+ border:1px solid #24445c;
+ color:white;
+ border-radius:13px;
+ padding:12px 14px;
+ outline:none
+}
+.searchBtn{
+ border:0;
+ border-radius:13px;
+ background:#17344b;
+ color:white;
+ padding:0 15px;
+ font-weight:750
 }
 
-/* CABECERA */
-
-.cabecera{
-    margin-bottom:20px;
+.actions{
+ display:flex;
+ gap:8px;
+ margin-bottom:16px
+}
+.actions button{
+ flex:1;
+ border:0;
+ border-radius:13px;
+ padding:12px 8px;
+ background:#193249;
+ color:#e7f0f5
+}
+.actions .primary{
+ background:#55c59a;
+ color:#06150f;
+ font-weight:850
 }
 
-.cabecera h1{
-    margin:0;
-    font-size:28px;
-    color:#a7a9ad;
-    font-weight:900;
+.module{
+ background:#0d1e2d;
+ border:1px solid #23435a;
+ border-radius:19px;
+ padding:14px;
+ margin-bottom:12px
+}
+.moduleHead{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:12px
+}
+.moduleTitle{
+ font-size:18px;
+ font-weight:850
+}
+.moduleCount{
+ color:#91a7b8;
+ font-size:11px
+}
+.parts{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:9px
+}
+.part{
+ width:100%;
+ background:#132a3d;
+ border:1px solid #2a4c64;
+ border-radius:14px;
+ color:white;
+ text-align:left;
+ padding:12px
+}
+.part:active{transform:scale(.98)}
+.partName{font-size:16px;font-weight:850}
+.partRange{
+ display:block;
+ color:#91a7b8;
+ font-size:11px;
+ margin-top:3px
+}
+.mini{
+ display:flex;
+ gap:2px;
+ margin-top:10px
+}
+.dot{
+ height:6px;
+ flex:1;
+ border-radius:4px
+}
+.dot.free{background:#35d39b}
+.dot.occupied{background:#ff6574}
+
+.view{display:none}
+.view.show{display:block}
+
+.back{
+ border:0;
+ background:transparent;
+ color:#8fe2c5;
+ padding:3px 0 14px;
+ font-weight:800
+}
+.viewTitle{
+ font-size:21px;
+ font-weight:850
+}
+.legend{
+ display:flex;
+ flex-wrap:wrap;
+ gap:12px;
+ color:#91a7b8;
+ font-size:11px;
+ margin:9px 0 12px
+}
+.legend i{
+ display:inline-block;
+ width:9px;
+ height:9px;
+ border-radius:3px;
+ margin-right:4px
 }
 
-.cabecera p{
-    margin:7px 0 0;
-    font-size:17px;
-    font-weight:700;
-    color:#777b82;
+.gridWrap{
+ background:#0d1e2d;
+ border:1px solid #23435a;
+ border-radius:17px;
+ padding:10px
+}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:6px
+}
+.height{
+ text-align:center;
+ color:#8198a9;
+ font-size:9px;
+ font-weight:700;
+ padding:2px 0 5px
+}
+.location{
+ border:0;
+ border-radius:9px;
+ padding:9px 2px;
+ color:white;
+ min-width:0
+}
+.location.free{background:#0f624d}
+.location.occupied{background:#733541}
+.location strong{
+ display:block;
+ font-size:10px
+}
+.location small{
+ display:block;
+ font-size:8px;
+ margin-top:2px;
+ opacity:.78
+}
+.location:active{transform:scale(.96)}
+
+.freeList{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:8px
+}
+.freeItem{
+ background:#132a3d;
+ border:1px solid #2a4c64;
+ border-radius:12px;
+ padding:11px;
+ color:white;
+ text-align:left
+}
+.freeItem strong{font-size:14px}
+.freeItem span{
+ display:block;
+ color:#91a7b8;
+ font-size:10px;
+ margin-top:3px
 }
 
-/* ESTADISTICAS */
-
-.estadisticas{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-    margin-bottom:15px;
+.footer{
+ color:#8198a9;
+ text-align:center;
+ font-size:10px;
+ margin-top:15px
 }
-
-.estadistica{
-    background:white;
-    border-radius:18px;
-    padding:16px;
-    text-align:center;
-    box-shadow:0 2px 10px rgba(0,0,0,.06);
+.toast{
+ display:none;
+ position:fixed;
+ z-index:20;
+ left:50%;
+ bottom:20px;
+ transform:translateX(-50%);
+ background:#eef5fa;
+ color:#071321;
+ border-radius:22px;
+ padding:9px 15px;
+ font-size:12px;
+ font-weight:800
 }
-
-.estadistica .numero{
-    display:block;
-    font-size:28px;
-    font-weight:900;
-}
-
-.estadistica .texto{
-    display:block;
-    margin-top:8px;
-    font-size:12px;
-    font-weight:900;
-}
-
-.total .numero{
-    color:#222;
-}
-
-.libres .numero{
-    color:#53d96d;
-}
-
-.ocupadas .numero{
-    color:#d43b32;
-}
-
-/* BUSCADOR */
-
-.buscador{
-    display:flex;
-    gap:10px;
-    margin-bottom:20px;
-}
-
-.buscador input{
-    flex:1;
-    border:1px solid #ddd;
-    border-radius:15px;
-    padding:15px;
-    font-size:16px;
-    outline:none;
-    background:white;
-}
-
-.buscador button{
-    border:0;
-    background:white;
-    border-radius:15px;
-    padding:0 20px;
-    font-weight:900;
-    cursor:pointer;
-}
-
-/* MODULO */
-
-.modulo{
-    background:white;
-    border-radius:20px;
-    padding:15px;
-    margin-bottom:25px;
-    box-shadow:0 3px 14px rgba(0,0,0,.07);
-}
-
-.modulo-cabecera{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:12px;
-}
-
-.modulo-nombre{
-    font-size:21px;
-    font-weight:900;
-}
-
-.modulo-rango{
-    font-size:13px;
-    color:#777;
-    font-weight:700;
-}
-
-/* TITULOS ALTURAS */
-
-.alturas{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-    margin-bottom:8px;
-}
-
-.altura{
-    text-align:center;
-    padding:9px 4px;
-    background:#f0f1f3;
-    border-radius:10px;
-    font-size:11px;
-    font-weight:900;
-}
-
-.altura:first-child{
-    color:#555;
-}
-
-/* CUATRO ALTURAS */
-
-.ubicaciones{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-}
-
-/* UBICACION */
-
-.ubicacion{
-    min-height:105px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-
-    border-radius:14px;
-    border:3px solid #f2c8c5;
-
-    background:#fff5f4;
-
-    cursor:pointer;
-
-    transition:.15s;
-}
-
-.ubicacion:active{
-    transform:scale(.97);
-}
-
-/* OCUPADA */
-
-.ubicacion.ocupada{
-    border-color:#f2c8c5;
-    background:#fff4f3;
-}
-
-.ubicacion.ocupada .codigo{
-    color:#d43b32;
-}
-
-.ubicacion.ocupada .estado{
-    color:#d43b32;
-}
-
-/* LIBRE */
-
-.ubicacion.libre{
-    border-color:#bceec9;
-    background:#eefbf2;
-}
-
-.ubicacion.libre .codigo{
-    color:#4b83dc;
-}
-
-.ubicacion.libre .estado{
-    color:#459b52;
-}
-
-/* CODIGO */
-
-.codigo{
-    font-size:21px;
-    font-weight:900;
-}
-
-/* ESTADO */
-
-.estado{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    margin-top:8px;
-    font-size:12px;
-    font-weight:900;
-}
-
-.punto{
-    width:12px;
-    height:12px;
-    border-radius:50%;
-    display:inline-block;
-}
-
-.ocupada .punto{
-    background:#d43b32;
-}
-
-.libre .punto{
-    background:#43ad40;
-}
-
-/* PIE */
-
-.pie{
-    text-align:center;
-    color:#888;
-    font-size:12px;
-    margin:25px 0;
-}
-
-/* MOVIL */
-
-@media(max-width:600px){
-
-    body{
-        padding:9px;
-    }
-
-    .cabecera h1{
-        font-size:20px;
-    }
-
-    .cabecera p{
-        font-size:12px;
-    }
-
-    .estadisticas{
-        gap:5px;
-    }
-
-    .estadistica{
-        padding:10px 4px;
-        border-radius:12px;
-    }
-
-    .estadistica .numero{
-        font-size:20px;
-    }
-
-    .estadistica .texto{
-        font-size:9px;
-        margin-top:5px;
-    }
-
-    .buscador{
-        gap:5px;
-    }
-
-    .buscador input{
-        padding:11px;
-        font-size:13px;
-    }
-
-    .buscador button{
-        padding:0 11px;
-        font-size:11px;
-    }
-
-    .modulo{
-        padding:8px;
-        border-radius:15px;
-        margin-bottom:15px;
-    }
-
-    .modulo-nombre{
-        font-size:15px;
-    }
-
-    .modulo-rango{
-        font-size:9px;
-    }
-
-    .alturas{
-        gap:4px;
-    }
-
-    .altura{
-        font-size:7px;
-        padding:5px 1px;
-    }
-
-    .ubicaciones{
-        gap:4px;
-    }
-
-    .ubicacion{
-        min-height:78px;
-        border-radius:10px;
-        border-width:2px;
-    }
-
-    .codigo{
-        font-size:14px;
-    }
-
-    .estado{
-        font-size:8px;
-        margin-top:5px;
-        gap:3px;
-    }
-
-    .punto{
-        width:8px;
-        height:8px;
-    }
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="contenedor">
+<div class="app">
 
-    <div class="cabecera">
+<header class="header">
 
-        <h1>📦 UBICACIONES DEL ALMACÉN</h1>
+<div>
+<div class="brand">📦 ALMACÉN MODULAR</div>
+<div class="sub">216 ubicaciones · 4 alturas</div>
+</div>
 
-        <p>
-            216 ubicaciones · 6 módulos de 36 · 4 alturas por módulo
-        </p>
+<button class="calendar" id="calendarBtn">
+<strong>📅 <span id="today">HOY</span></strong>
+<span>Calendario</span>
+</button>
 
-    </div>
+</header>
 
+<div class="calendarPanel" id="calendarPanel">
 
-    <div class="estadisticas">
+<label>Fecha de trabajo</label>
 
-        <div class="estadistica total">
-            <span class="numero" id="total">216</span>
-            <span class="texto">TOTAL</span>
-        </div>
-
-        <div class="estadistica libres">
-            <span class="numero" id="libres">50</span>
-            <span class="texto">LIBRES</span>
-        </div>
-
-        <div class="estadistica ocupadas">
-            <span class="numero" id="ocupadas">166</span>
-            <span class="texto">OCUPADAS</span>
-        </div>
-
-    </div>
-
-
-    <div class="buscador">
-
-        <input
-            type="text"
-            id="buscar"
-            placeholder="Buscar ubicación, por ejemplo A104"
-        >
-
-        <button onclick="mostrarTodas()">
-            TODAS
-        </button>
-
-    </div>
-
-
-    <div id="contenedorModulos"></div>
-
-
-    <div class="pie">
-
-        Cada módulo tiene 36 ubicaciones:
-        9 filas × 4 alturas.<br>
-
-        ⬅️ Altura 1 = más baja · Altura 4 = más alta ➡️
-
-    </div>
+<input type="date" id="workDate">
 
 </div>
+
+<div class="stats">
+
+<div class="stat free">
+<div class="number" id="freeCount">50</div>
+<span class="label">🟢 UBICACIONES LIBRES</span>
+</div>
+
+<div class="stat occupied">
+<div class="number" id="occupiedCount">166</div>
+<span class="label">🔴 UBICACIONES OCUPADAS</span>
+</div>
+
+</div>
+
+<div class="searchRow">
+
+<input
+ class="search"
+ id="search"
+ type="search"
+ placeholder="🔎 Buscar ubicación (A001…A216)"
+>
+
+<button class="searchBtn" id="searchBtn">Buscar</button>
+
+</div>
+
+<div class="actions">
+
+<button class="primary" id="freeBtn">
+🟢 Ver libres
+</button>
+
+<button id="warehouseBtn">
+↩ Ver almacén
+</button>
+
+</div>
+
+<main id="dashboard"></main>
+
+<section class="view" id="view">
+
+<button class="back" id="back">
+← Volver al almacén
+</button>
+
+<div class="viewTitle" id="viewTitle"></div>
+
+<div class="legend">
+
+<span>
+<i style="background:#35d39b"></i>
+Libre
+</span>
+
+<span>
+<i style="background:#ff6574"></i>
+Ocupada
+</span>
+
+<span>
+Toque para cambiar
+</span>
+
+</div>
+
+<div class="gridWrap">
+
+<div class="grid" id="grid"></div>
+
+</div>
+
+</section>
+
+<div class="footer">
+
+Guardado automático en este dispositivo ·
+Última actualización:
+<span id="lastUpdate">—</span>
+
+</div>
+
+</div>
+
+<div class="toast" id="toast"></div>
 
 
 <script>
 
-/*
-====================================================
-DATOS DE OCUPACION
-true  = LIBRE
-false = OCUPADA
-====================================================
-*/
+const LIBRES = [
 
-const libres = new Set([
+"A001","A019","A044","A048","A051","A052",
+"A055","A056","A060","A064","A067","A068",
+"A072","A075","A076","A080","A084","A088",
+"A092","A096","A100","A104","A105","A107",
+"A108","A111","A112","A113","A115","A116",
+"A120","A122","A124","A128","A132","A135",
+"A136","A140","A146","A149","A152","A164",
+"A168","A172","A176","A179","A180","A200",
+"A204","A214"
 
-"A001",
-"A019",
-"A044",
-"A048",
-"A051",
-"A052",
-"A055",
-"A056",
-"A060",
-"A064",
-"A067",
-"A068",
+];
 
-"A072",
-"A075",
-"A076",
-"A080",
-"A084",
-"A088",
-"A092",
-"A096",
+const STORAGE="ALMACEN_MODULAR_2026";
 
-"A100",
-"A104",
-"A105",
-"A107",
-"A108",
-"A111",
-"A112",
-"A113",
-"A115",
-"A116",
-"A120",
-"A122",
-"A124",
-"A128",
-"A132",
-"A135",
-"A136",
-"A140",
-"A146",
-"A149",
-"A152",
-"A164",
-"A168",
-"A172",
-"A176",
-"A179",
-"A180",
-"A200",
-"A204",
-"A214"
+let estado=localStorage.getItem(STORAGE);
 
-]);
+if(estado){
 
+estado=JSON.parse(estado);
 
-/*
-====================================================
-CREAR LOS 6 MODULOS
-====================================================
-*/
+}else{
 
-function crearModulos(){
+estado={
+ ubicaciones:{},
+ actualizacion:new Date().toISOString()
+};
 
-    const contenedor =
-        document.getElementById("contenedorModulos");
+for(let i=1;i<=216;i++){
 
-    contenedor.innerHTML="";
+let id="A"+String(i).padStart(3,"0");
 
+estado.ubicaciones[id]=
+LIBRES.includes(id) ? "free" : "occupied";
 
-    for(let modulo=1; modulo<=6; modulo++){
+}
 
-        const inicio =
-            ((modulo-1)*36)+1;
-
-        const fin =
-            modulo*36;
-
-
-        const bloque =
-            document.createElement("section");
-
-        bloque.className="modulo";
-
-
-        bloque.innerHTML=`
-
-            <div class="modulo-cabecera">
-
-                <div class="modulo-nombre">
-                    MÓDULO ${modulo}
-                </div>
-
-                <div class="modulo-rango">
-                    A${String(inicio).padStart(3,"0")}
-                    –
-                    A${String(fin).padStart(3,"0")}
-                </div>
-
-            </div>
-
-
-            <div class="alturas">
-
-                <div class="altura">
-                    ALTURA 1<br>
-                    MÁS BAJA
-                </div>
-
-                <div class="altura">
-                    ALTURA 2
-                </div>
-
-                <div class="altura">
-                    ALTURA 3
-                </div>
-
-                <div class="altura">
-                    ALTURA 4<br>
-                    MÁS ALTA
-                </div>
-
-            </div>
-
-
-            <div
-                class="ubicaciones"
-                id="modulo-${modulo}">
-            </div>
-
-        `;
-
-
-        contenedor.appendChild(bloque);
-
-
-        const grid =
-            bloque.querySelector(".ubicaciones");
-
-
-        /*
-        36 ubicaciones por módulo
-
-        Cada fila tiene 4 alturas:
-
-        izquierda  = altura 1
-                    = altura 2
-                     = altura 3
-        derecha     = altura 4
-        */
-
-        for(let i=inicio; i<=fin; i++){
-
-            const codigo =
-                "A"+String(i).padStart(3,"0");
-
-            const estaLibre =
-                libres.has(codigo);
-
-
-            const tarjeta =
-                document.createElement("div");
-
-
-            tarjeta.className =
-                "ubicacion " +
-                (estaLibre ? "libre" : "ocupada");
-
-
-            tarjeta.dataset.codigo =
-                codigo;
-
-
-            tarjeta.innerHTML=`
-
-                <div class="codigo">
-                    ${codigo}
-                </div>
-
-                <div class="estado">
-
-                    <span class="punto"></span>
-
-                    <span>
-                        ${estaLibre ? "LIBRE" : "OCUPADA"}
-                    </span>
-
-                </div>
-
-            `;
-
-
-            tarjeta.onclick=function(){
-
-                cambiarEstado(this);
-
-            };
-
-
-            grid.appendChild(tarjeta);
-
-        }
-
-    }
+guardar();
 
 }
 
 
-/*
-====================================================
-CAMBIAR LIBRE / OCUPADA
-====================================================
-*/
+function guardar(){
 
-function cambiarEstado(tarjeta){
+estado.actualizacion=new Date().toISOString();
 
-    const codigo =
-        tarjeta.dataset.codigo;
+localStorage.setItem(
+ STORAGE,
+ JSON.stringify(estado)
+);
 
+actualizarContadores();
 
-    if(tarjeta.classList.contains("libre")){
-
-        tarjeta.classList.remove("libre");
-
-        tarjeta.classList.add("ocupada");
-
-        tarjeta.querySelector(".estado span:last-child")
-            .textContent="OCUPADA";
-
-        libres.delete(codigo);
-
-    }else{
-
-        tarjeta.classList.remove("ocupada");
-
-        tarjeta.classList.add("libre");
-
-        tarjeta.querySelector(".estado span:last-child")
-            .textContent="LIBRE";
-
-        libres.add(codigo);
-
-    }
-
-
-    actualizarContadores();
+document.getElementById("lastUpdate").textContent=
+new Date(estado.actualizacion)
+.toLocaleTimeString("es-ES",{
+hour:"2-digit",
+minute:"2-digit"
+});
 
 }
 
-
-/*
-====================================================
-CONTADORES
-====================================================
-*/
 
 function actualizarContadores(){
 
-    const total=216;
+let valores=Object.values(estado.ubicaciones);
 
-    const numeroLibres=
-        libres.size;
+document.getElementById("freeCount").textContent=
+valores.filter(x=>x==="free").length;
 
-    const numeroOcupadas=
-        total-numeroLibres;
-
-
-    document.getElementById("total")
-        .textContent=total;
-
-    document.getElementById("libres")
-        .textContent=numeroLibres;
-
-    document.getElementById("ocupadas")
-        .textContent=numeroOcupadas;
+document.getElementById("occupiedCount").textContent=
+valores.filter(x=>x==="occupied").length;
 
 }
 
 
-/*
-====================================================
-BUSCADOR
-====================================================
-*/
+function idNumero(n){
 
-document
-.getElementById("buscar")
-.addEventListener("input",function(){
+return "A"+String(n).padStart(3,"0");
 
-    const texto =
-        this.value.toUpperCase().trim();
+}
 
 
-    document
-    .querySelectorAll(".ubicacion")
-    .forEach(function(tarjeta){
+function crearDashboard(){
 
-        const codigo =
-            tarjeta.dataset.codigo;
+let dashboard=document.getElementById("dashboard");
+
+dashboard.innerHTML="";
+
+let modulos=[
+
+["MÓDULO 1","1A",1,36,"1B",37,72],
+
+["MÓDULO 2","2A",73,108,"2B",109,144],
+
+["MÓDULO 3","3A",145,180,"3B",181,216]
+
+];
 
 
-        if(
-            texto==="" ||
-            codigo.includes(texto)
-        ){
+modulos.forEach(m=>{
 
-            tarjeta.style.display="flex";
+let section=document.createElement("section");
 
-        }else{
+section.className="module";
 
-            tarjeta.style.display="none";
+section.innerHTML=`
 
-        }
+<div class="moduleHead">
 
-    });
+<div class="moduleTitle">${m[0]}</div>
+
+<div class="moduleCount">
+72 ubicaciones
+</div>
+
+</div>
+
+<div class="parts"></div>
+
+`;
+
+let parts=section.querySelector(".parts");
+
+parts.appendChild(
+crearParte(m[1],m[2],m[3])
+);
+
+parts.appendChild(
+crearParte(m[4],m[5],m[6])
+);
+
+dashboard.appendChild(section);
+
+});
+
+}
+
+
+function crearParte(nombre,inicio,fin){
+
+let boton=document.createElement("button");
+
+boton.className="part";
+
+boton.innerHTML=`
+
+<div class="partName">${nombre}</div>
+
+<span class="partRange">
+${idNumero(inicio)}–${idNumero(fin)}
+</span>
+
+<div class="mini"></div>
+
+`;
+
+let mini=boton.querySelector(".mini");
+
+for(let i=inicio;i<=fin;i++){
+
+let d=document.createElement("i");
+
+d.className=
+"dot "+
+estado.ubicaciones[idNumero(i)];
+
+mini.appendChild(d);
+
+}
+
+boton.addEventListener("click",function(){
+
+abrirModulo(nombre,inicio,fin);
+
+});
+
+return boton;
+
+}
+
+
+function abrirModulo(nombre,inicio,fin){
+
+document.getElementById("dashboard").style.display="none";
+
+document.getElementById("view").classList.add("show");
+
+document.getElementById("viewTitle").textContent=
+nombre;
+
+let grid=document.getElementById("grid");
+
+grid.innerHTML="";
+
+
+[
+"ALTURA 1",
+"ALTURA 2",
+"ALTURA 3",
+"ALTURA 4"
+].forEach(texto=>{
+
+let h=document.createElement("div");
+
+h.className="height";
+
+h.textContent=texto;
+
+grid.appendChild(h);
 
 });
 
 
-/*
-====================================================
-MOSTRAR TODAS
-====================================================
-*/
+for(let i=inicio;i<=fin;i++){
 
-function mostrarTodas(){
+let id=idNumero(i);
 
-    document.getElementById("buscar")
-        .value="";
+let boton=document.createElement("button");
 
+boton.className=
+"location "+
+estado.ubicaciones[id];
 
-    document
-    .querySelectorAll(".ubicacion")
-    .forEach(function(tarjeta){
+boton.dataset.id=id;
 
-        tarjeta.style.display="flex";
+boton.innerHTML=`
 
-    });
+<strong>${id}</strong>
+
+<small>
+${estado.ubicaciones[id]==="free"
+?"LIBRE"
+:"OCUPADA"}
+</small>
+
+`;
+
+boton.addEventListener("click",function(){
+
+cambiarEstado(id,boton);
+
+});
+
+grid.appendChild(boton);
+
+}
+
+window.scrollTo(0,0);
 
 }
 
 
-/*
-====================================================
-INICIAR APP
-====================================================
-*/
+function cambiarEstado(id,boton){
 
-crearModulos();
+if(estado.ubicaciones[id]==="free"){
+
+estado.ubicaciones[id]="occupied";
+
+}else{
+
+estado.ubicaciones[id]="free";
+
+}
+
+boton.className=
+"location "+
+estado.ubicaciones[id];
+
+boton.querySelector("small").textContent=
+estado.ubicaciones[id]==="free"
+?"LIBRE"
+:"OCUPADA";
+
+guardar();
+
+crearDashboard();
+
+mensaje(
+id+
+" · "+
+(estado.ubicaciones[id]==="free"
+?"LIBRE"
+:"OCUPADA")
+);
+
+}
+
+
+function volver(){
+
+document.getElementById("view").classList.remove("show");
+
+document.getElementById("dashboard").style.display="block";
+
+crearDashboard();
+
+window.scrollTo(0,0);
+
+}
+
+
+function verLibres(){
+
+document.getElementById("view").classList.remove("show");
+
+document.getElementById("dashboard").style.display="block";
+
+let libres=Object.keys(estado.ubicaciones)
+.filter(id=>estado.ubicaciones[id]==="free");
+
+let dashboard=document.getElementById("dashboard");
+
+dashboard.innerHTML="";
+
+let section=document.createElement("section");
+
+section.className="module";
+
+section.innerHTML=`
+
+<div class="moduleHead">
+
+<div class="moduleTitle">
+🟢 UBICACIONES LIBRES
+</div>
+
+<div class="moduleCount">
+${libres.length} disponibles
+</div>
+
+</div>
+
+<div class="freeList"></div>
+
+`;
+
+let lista=section.querySelector(".freeList");
+
+libres.forEach(id=>{
+
+let boton=document.createElement("button");
+
+boton.className="freeItem";
+
+boton.innerHTML=`
+
+<strong>${id}</strong>
+
+<span>
+Disponible para colocar material
+</span>
+
+`;
+
+boton.addEventListener("click",function(){
+
+let n=parseInt(id.substring(1));
+
+let bloque;
+
+if(n<=36)
+bloque=["1A",1,36];
+
+else if(n<=72)
+bloque=["1B",37,72];
+
+else if(n<=108)
+bloque=["2A",73,108];
+
+else if(n<=144)
+bloque=["2B",109,144];
+
+else if(n<=180)
+bloque=["3A",145,180];
+
+else
+bloque=["3B",181,216];
+
+abrirModulo(
+bloque[0],
+bloque[1],
+bloque[2]
+);
+
+setTimeout(()=>{
+
+let elemento=
+document.querySelector('[data-id="'+id+'"]');
+
+if(elemento)
+elemento.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+
+},150);
+
+});
+
+lista.appendChild(boton);
+
+});
+
+dashboard.appendChild(section);
+
+mensaje("Mostrando ubicaciones libres");
+
+}
+
+
+function buscar(){
+
+let valor=
+document.getElementById("search")
+.value
+.trim()
+.toUpperCase();
+
+if(!valor)return;
+
+if(!valor.startsWith("A"))
+valor="A"+valor;
+
+if(!/^A[0-9]{3}$/.test(valor)){
+
+mensaje("Ejemplo: A001");
+
+return;
+
+}
+
+let numero=parseInt(
+valor.substring(1)
+);
+
+if(numero<1 || numero>216){
+
+mensaje("Entre A001 y A216");
+
+return;
+
+}
+
+let bloque;
+
+if(numero<=36)
+bloque=["1A",1,36];
+
+else if(numero<=72)
+bloque=["1B",37,72];
+
+else if(numero<=108)
+bloque=["2A",73,108];
+
+else if(numero<=144)
+bloque=["2B",109,144];
+
+else if(numero<=180)
+bloque=["3A",145,180];
+
+else
+bloque=["3B",181,216];
+
+abrirModulo(
+bloque[0],
+bloque[1],
+bloque[2]
+);
+
+setTimeout(()=>{
+
+let elemento=
+document.querySelector('[data-id="'+valor+'"]');
+
+if(elemento){
+
+elemento.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+
+}
+
+},150);
+
+}
+
+
+function mensaje(texto){
+
+let t=document.getElementById("toast");
+
+t.textContent=texto;
+
+t.style.display="block";
+
+clearTimeout(window.tm);
+
+window.tm=setTimeout(()=>{
+
+t.style.display="none";
+
+},1400);
+
+}
+
+
+/* CALENDARIO */
+
+document.getElementById("calendarBtn")
+.addEventListener("click",function(){
+
+document
+.getElementById("calendarPanel")
+.classList.toggle("show");
+
+});
+
+
+let ahora=new Date();
+
+document.getElementById("today").textContent=
+ahora.toLocaleDateString(
+"es-ES",
+{
+day:"2-digit",
+month:"2-digit"
+}
+);
+
+document.getElementById("workDate").value=
+ahora.getFullYear()+
+"-"+
+String(ahora.getMonth()+1).padStart(2,"0")+
+"-"+
+String(ahora.getDate()).padStart(2,"0");
+
+
+document.getElementById("workDate")
+.addEventListener("change",function(){
+
+let fecha=new Date(
+this.value+"T12:00:00"
+);
+
+mensaje(
+"Fecha: "+
+fecha.toLocaleDateString("es-ES")
+);
+
+});
+
+
+/* BOTONES */
+
+document.getElementById("freeBtn")
+.addEventListener("click",verLibres);
+
+document.getElementById("warehouseBtn")
+.addEventListener("click",function(){
+
+crearDashboard();
+volver();
+
+});
+
+document.getElementById("back")
+.addEventListener("click",volver);
+
+document.getElementById("searchBtn")
+.addEventListener("click",buscar);
+
+document.getElementById("search")
+.addEventListener("keydown",function(e){
+
+if(e.key==="Enter")
+buscar();
+
+});
+
+
+/* INICIO */
+
+crearDashboard();
 
 actualizarContadores();
+
+guardar();
 
 </script>
 
