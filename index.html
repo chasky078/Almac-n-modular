@@ -80,7 +80,7 @@ header{
   display:block;
 }
 
-/* ---------- HOME ---------- */
+/* HOME */
 
 .home-card{
   background:linear-gradient(145deg,#102238,#0b192a);
@@ -122,7 +122,7 @@ header{
   font-size:13px;
 }
 
-/* ---------- APQ MENU ---------- */
+/* APQ MENU */
 
 .back{
   border:0;
@@ -172,7 +172,7 @@ header{
   font-size:13px;
 }
 
-/* ---------- COMMON ---------- */
+/* COMMON */
 
 .topbar{
   display:flex;
@@ -239,7 +239,7 @@ header{
   color:var(--red);
 }
 
-/* ---------- FREE BY HEIGHT ---------- */
+/* LIBRES POR ALTURA */
 
 .height-box{
   background:var(--panel);
@@ -281,7 +281,7 @@ header{
   margin-top:2px;
 }
 
-/* ---------- MODULES ---------- */
+/* MODULES */
 
 .module{
   background:var(--panel);
@@ -337,7 +337,7 @@ header{
   font-size:11px;
 }
 
-/* ---------- LOCATION GRID ---------- */
+/* LOCATION GRID */
 
 .location-head{
   margin-bottom:12px;
@@ -411,7 +411,7 @@ header{
   opacity:.8;
 }
 
-/* ---------- FREE LIST ---------- */
+/* FREE LIST */
 
 .free-list{
   display:grid;
@@ -430,7 +430,7 @@ header{
   font-weight:700;
 }
 
-/* ---------- BARNICES ---------- */
+/* INFO */
 
 .info-box{
   background:var(--panel);
@@ -457,7 +457,7 @@ header{
   line-height:1.5;
 }
 
-/* ---------- FOOTER ---------- */
+/* FOOTER */
 
 .footer{
   text-align:center;
@@ -466,14 +466,129 @@ header{
   margin-top:25px;
 }
 
+/* CALENDARIO */
+
+.calendar-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  z-index:9999;
+}
+
+.calendar-overlay.show{
+  display:flex;
+}
+
+.calendar-box{
+  width:100%;
+  max-width:390px;
+  background:#0d1b2d;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:16px;
+  box-shadow:0 20px 60px rgba(0,0,0,.45);
+}
+
+.calendar-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:15px;
+}
+
+.calendar-title{
+  font-size:18px;
+  font-weight:800;
+}
+
+.calendar-nav{
+  display:flex;
+  gap:6px;
+}
+
+.calendar-nav button{
+  width:38px;
+  height:38px;
+  border:0;
+  border-radius:10px;
+  background:#12263d;
+  color:white;
+  font-size:18px;
+}
+
+.calendar-week{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:4px;
+  margin-bottom:5px;
+}
+
+.calendar-week div{
+  text-align:center;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:700;
+  padding:5px 0;
+}
+
+.calendar-days{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:4px;
+}
+
+.calendar-day{
+  border:0;
+  min-height:40px;
+  border-radius:9px;
+  background:#091725;
+  color:white;
+  font-size:12px;
+}
+
+.calendar-day.empty{
+  background:transparent;
+}
+
+.calendar-day.today{
+  outline:1px solid var(--blue);
+}
+
+.calendar-day.selected{
+  background:var(--green-dark);
+  color:#dffff0;
+  font-weight:800;
+}
+
+.calendar-close{
+  width:100%;
+  margin-top:13px;
+  border:0;
+  border-radius:11px;
+  padding:11px;
+  background:#12263d;
+  color:white;
+}
+
+.selected-date{
+  display:none;
+  margin-bottom:12px;
+  padding:10px 12px;
+  background:#102238;
+  border:1px solid var(--border);
+  border-radius:11px;
+  color:#dce9f6;
+  font-size:12px;
+}
+
 @media(min-width:600px){
   .app{
     padding-left:20px;
     padding-right:20px;
-  }
-
-  .home-card{
-    min-height:135px;
   }
 
   .location{
@@ -493,7 +608,7 @@ header{
 </header>
 
 
-<!-- ================= HOME ================= -->
+<!-- ================= INICIO ================= -->
 
 <section id="homeScreen" class="screen active">
 
@@ -610,6 +725,8 @@ header{
     </div>
   </div>
 
+  <div id="selectedDate" class="selected-date"></div>
+
   <input
     id="searchInput"
     class="search"
@@ -632,8 +749,6 @@ header{
 
   </div>
 
-
-  <!-- LIBRES POR ALTURA -->
 
   <div class="height-box">
 
@@ -680,8 +795,6 @@ header{
 
   </div>
 
-
-  <!-- MODULE VIEW -->
 
   <div id="modulesView">
 
@@ -759,8 +872,6 @@ header{
   </div>
 
 
-  <!-- LOCATION VIEW -->
-
   <div id="locationView" style="display:none;">
 
     <div class="location-head">
@@ -786,8 +897,6 @@ header{
 
   </div>
 
-
-  <!-- FREE LIST -->
 
   <div id="freeView" style="display:none;">
 
@@ -816,26 +925,62 @@ header{
 </div>
 
 
-<!-- ================= JAVASCRIPT ================= -->
+<!-- ================= CALENDARIO ================= -->
+
+<div id="calendarOverlay" class="calendar-overlay">
+
+  <div class="calendar-box">
+
+    <div class="calendar-top">
+
+      <div id="calendarTitle" class="calendar-title"></div>
+
+      <div class="calendar-nav">
+
+        <button onclick="changeMonth(-1)">‹</button>
+
+        <button onclick="changeMonth(1)">›</button>
+
+      </div>
+
+    </div>
+
+
+    <div class="calendar-week">
+
+      <div>L</div>
+      <div>M</div>
+      <div>X</div>
+      <div>J</div>
+      <div>V</div>
+      <div>S</div>
+      <div>D</div>
+
+    </div>
+
+
+    <div id="calendarDays" class="calendar-days"></div>
+
+
+    <button class="calendar-close" onclick="closeCalendar()">
+      Cerrar
+    </button>
+
+  </div>
+
+</div>
+
 
 <script>
 
-/*
-=====================================================
-  A.P.Q. · APQ MODULAR
-  216 ubicaciones
-  4 alturas
-=====================================================
-*/
-
+/* =====================================================
+   A.P.Q. · APQ MODULAR
+===================================================== */
 
 const STORAGE_KEY = "apq_modular_state_v1";
 const UPDATE_KEY = "apq_modular_update_v1";
+const DATE_KEY = "apq_modular_date_v1";
 
-
-// --------------------------------------------------
-// UBICACIONES INICIALES LIBRES
-// --------------------------------------------------
 
 const initialFree = [
 
@@ -898,18 +1043,34 @@ const initialFree = [
 ];
 
 
-// --------------------------------------------------
-// ESTADO
-// --------------------------------------------------
-
 let freeLocations = new Set(initialFree);
 
 let currentSubmodule = null;
 
 
-// --------------------------------------------------
-// CARGAR DATOS GUARDADOS
-// --------------------------------------------------
+/* =====================================================
+   NAVEGACIÓN
+===================================================== */
+
+function showScreen(id){
+
+  document.querySelectorAll(".screen").forEach(screen=>{
+    screen.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =====================================================
+   CARGAR DATOS
+===================================================== */
 
 function loadData(){
 
@@ -927,22 +1088,22 @@ function loadData(){
 
     }catch(e){
 
-      console.log("No se pudo cargar el estado guardado.");
+      console.log("Error cargando datos.");
 
     }
 
   }
 
   updateStats();
-
   updateLastUpdate();
+  loadSelectedDate();
 
 }
 
 
-// --------------------------------------------------
-// GUARDAR DATOS
-// --------------------------------------------------
+/* =====================================================
+   GUARDAR DATOS
+===================================================== */
 
 function saveData(){
 
@@ -967,81 +1128,59 @@ function saveData(){
 }
 
 
-// --------------------------------------------------
-// CAMBIAR PANTALLA
-// --------------------------------------------------
-
-function showScreen(id){
-
-  document.querySelectorAll(".screen").forEach(screen=>{
-    screen.classList.remove("active");
-  });
-
-  document.getElementById(id).classList.add("active");
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
-// --------------------------------------------------
-// ESTADÍSTICAS
-// --------------------------------------------------
+/* =====================================================
+   ESTADÍSTICAS
+===================================================== */
 
 function updateStats(){
 
   const free = freeLocations.size;
 
-  const occupied = 216 - free;
+  document.getElementById("freeCount").textContent =
+    free;
 
-  document.getElementById("freeCount").textContent = free;
+  document.getElementById("occupiedCount").textContent =
+    216 - free;
 
-  document.getElementById("occupiedCount").textContent = occupied;
-
-
-  // -----------------------------------------------
-  // LIBRES POR ALTURA
-  //
-  // La ubicación se organiza así:
-  //
-  // A001 = altura 1
-  // A002 = altura 2
-  // A003 = altura 3
-  // A004 = altura 4
-  //
-  // -----------------------------------------------
 
   const heights = [0,0,0,0];
 
   freeLocations.forEach(id=>{
 
-    const number = parseInt(id.substring(1));
+    const number =
+      parseInt(id.substring(1));
 
-    const height = (number - 1) % 4;
+    const height =
+      (number - 1) % 4;
 
     heights[height]++;
 
   });
 
 
-  document.getElementById("height1").textContent = heights[0];
-  document.getElementById("height2").textContent = heights[1];
-  document.getElementById("height3").textContent = heights[2];
-  document.getElementById("height4").textContent = heights[3];
+  document.getElementById("height1").textContent =
+    heights[0];
+
+  document.getElementById("height2").textContent =
+    heights[1];
+
+  document.getElementById("height3").textContent =
+    heights[2];
+
+  document.getElementById("height4").textContent =
+    heights[3];
 
 }
 
 
-// --------------------------------------------------
-// ÚLTIMA ACTUALIZACIÓN
-// --------------------------------------------------
+/* =====================================================
+   ÚLTIMA ACTUALIZACIÓN
+===================================================== */
 
 function updateLastUpdate(){
 
-  const saved = localStorage.getItem(UPDATE_KEY);
+  const saved =
+    localStorage.getItem(UPDATE_KEY);
 
   document.getElementById("lastUpdate").textContent =
     saved || "Sin actualizaciones";
@@ -1049,19 +1188,22 @@ function updateLastUpdate(){
 }
 
 
-// --------------------------------------------------
-// ABRIR SUBMÓDULO
-// --------------------------------------------------
+/* =====================================================
+   SUBMÓDULOS
+===================================================== */
 
 function openSubmodule(code){
 
   currentSubmodule = code;
 
-  document.getElementById("modulesView").style.display = "none";
+  document.getElementById("modulesView").style.display =
+    "none";
 
-  document.getElementById("freeView").style.display = "none";
+  document.getElementById("freeView").style.display =
+    "none";
 
-  document.getElementById("locationView").style.display = "block";
+  document.getElementById("locationView").style.display =
+    "block";
 
 
   const ranges = {
@@ -1080,8 +1222,10 @@ function openSubmodule(code){
 
   const range = ranges[code];
 
+
   document.getElementById("locationTitle").textContent =
     "📦 MÓDULO " + code;
+
 
   document.getElementById("locationSubtitle").textContent =
     "Ubicaciones A" +
@@ -1095,13 +1239,14 @@ function openSubmodule(code){
 }
 
 
-// --------------------------------------------------
-// GENERAR CUADRÍCULA
-// --------------------------------------------------
+/* =====================================================
+   CUADRÍCULA
+===================================================== */
 
 function renderGrid(start,end){
 
-  const grid = document.getElementById("locationGrid");
+  const grid =
+    document.getElementById("locationGrid");
 
   grid.innerHTML = `
 
@@ -1113,14 +1258,6 @@ function renderGrid(start,end){
   `;
 
 
-  /*
-    Cada fila representa cuatro alturas:
-
-    A001 A002 A003 A004
-    A005 A006 A007 A008
-    etc.
-  */
-
   for(let n=start;n<=end;n++){
 
     const id =
@@ -1129,21 +1266,25 @@ function renderGrid(start,end){
     const button =
       document.createElement("button");
 
+    const isFree =
+      freeLocations.has(id);
+
     button.className =
       "location " +
-      (freeLocations.has(id) ? "free" : "");
+      (isFree ? "free" : "");
 
     button.innerHTML = `
 
       <div class="loc-id">${id}</div>
 
       <div class="loc-state">
-        ${freeLocations.has(id) ? "LIBRE" : "OCUPADO"}
+        ${isFree ? "LIBRE" : "OCUPADO"}
       </div>
 
     `;
 
-    button.onclick = ()=>toggleLocation(id);
+    button.onclick =
+      ()=>toggleLocation(id);
 
     grid.appendChild(button);
 
@@ -1152,9 +1293,9 @@ function renderGrid(start,end){
 }
 
 
-// --------------------------------------------------
-// CAMBIAR LIBRE / OCUPADO
-// --------------------------------------------------
+/* =====================================================
+   CAMBIAR ESTADO
+===================================================== */
 
 function toggleLocation(id){
 
@@ -1169,6 +1310,7 @@ function toggleLocation(id){
   }
 
   saveData();
+
 
   if(currentSubmodule){
 
@@ -1185,6 +1327,7 @@ function toggleLocation(id){
 
     };
 
+
     renderGrid(
       ranges[currentSubmodule][0],
       ranges[currentSubmodule][1]
@@ -1195,9 +1338,9 @@ function toggleLocation(id){
 }
 
 
-// --------------------------------------------------
-// MOSTRAR MÓDULOS
-// --------------------------------------------------
+/* =====================================================
+   VOLVER A MÓDULOS
+===================================================== */
 
 function showModules(){
 
@@ -1215,9 +1358,9 @@ function showModules(){
 }
 
 
-// --------------------------------------------------
-// MOSTRAR LIBRES
-// --------------------------------------------------
+/* =====================================================
+   VER LIBRES
+===================================================== */
 
 function showFree(){
 
@@ -1269,9 +1412,11 @@ function showFree(){
     const item =
       document.createElement("div");
 
-    item.className = "free-item";
+    item.className =
+      "free-item";
 
-    item.textContent = id;
+    item.textContent =
+      id;
 
     item.onclick = ()=>{
 
@@ -1298,6 +1443,7 @@ function showFree(){
 
     };
 
+
     list.appendChild(item);
 
   });
@@ -1305,9 +1451,9 @@ function showFree(){
 }
 
 
-// --------------------------------------------------
-// BUSCAR UBICACIÓN
-// --------------------------------------------------
+/* =====================================================
+   BUSCADOR
+===================================================== */
 
 function searchLocation(){
 
@@ -1339,6 +1485,7 @@ function searchLocation(){
 
   const number =
     parseInt(match[1]);
+
 
   if(number < 1 || number > 216){
 
@@ -1374,9 +1521,12 @@ function searchLocation(){
 
     buttons.forEach(button=>{
 
+      const idElement =
+        button.querySelector(".loc-id");
+
       if(
-        button.querySelector(".loc-id") &&
-        button.querySelector(".loc-id").textContent ===
+        idElement &&
+        idElement.textContent ===
         "A" + String(number).padStart(3,"0")
       ){
 
@@ -1403,48 +1553,308 @@ function searchLocation(){
 }
 
 
-// --------------------------------------------------
-// CALENDARIO
-// --------------------------------------------------
+/* =====================================================
+   CALENDARIO PROPIO
+===================================================== */
+
+let calendarDate = new Date();
+let selectedDate = null;
+
+
+const monthNames = [
+  "Enero",
+  "Febrero",
+  "Marzo",
+  "Abril",
+  "Mayo",
+  "Junio",
+  "Julio",
+  "Agosto",
+  "Septiembre",
+  "Octubre",
+  "Noviembre",
+  "Diciembre"
+];
+
 
 function openCalendar(){
 
-  const input =
-    document.createElement("input");
+  const saved =
+    localStorage.getItem(DATE_KEY);
 
-  input.type = "date";
+  if(saved){
 
-  input.style.position = "fixed";
-  input.style.opacity = "0";
+    const parts =
+      saved.split("-");
 
-  document.body.appendChild(input);
+    if(parts.length === 3){
 
-  input.addEventListener("change",()=>{
+      selectedDate =
+        new Date(
+          parseInt(parts[0]),
+          parseInt(parts[1])-1,
+          parseInt(parts[2])
+        );
 
-    if(input.value){
-
-      const date =
-        new Date(input.value + "T00:00:00");
-
-      alert(
-        "Fecha seleccionada: " +
-        date.toLocaleDateString("es-ES")
-      );
+      calendarDate =
+        new Date(selectedDate);
 
     }
 
-    input.remove();
+  }else{
 
-  });
+    calendarDate =
+      new Date();
 
-  input.click();
+  }
+
+
+  renderCalendar();
+
+
+  document
+    .getElementById("calendarOverlay")
+    .classList.add("show");
 
 }
 
 
-// --------------------------------------------------
-// INICIO
-// --------------------------------------------------
+function closeCalendar(){
+
+  document
+    .getElementById("calendarOverlay")
+    .classList.remove("show");
+
+}
+
+
+function changeMonth(direction){
+
+  calendarDate.setMonth(
+    calendarDate.getMonth() + direction
+  );
+
+  renderCalendar();
+
+}
+
+
+function renderCalendar(){
+
+  const year =
+    calendarDate.getFullYear();
+
+  const month =
+    calendarDate.getMonth();
+
+
+  document.getElementById("calendarTitle").textContent =
+    monthNames[month] + " " + year;
+
+
+  const days =
+    document.getElementById("calendarDays");
+
+  days.innerHTML = "";
+
+
+  /*
+    JS empieza la semana en domingo.
+    Lo convertimos a lunes = 0.
+  */
+
+  const firstDay =
+    new Date(year,month,1).getDay();
+
+  const offset =
+    firstDay === 0 ? 6 : firstDay - 1;
+
+
+  const daysInMonth =
+    new Date(year,month + 1,0).getDate();
+
+
+  for(let i=0;i<offset;i++){
+
+    const empty =
+      document.createElement("div");
+
+    empty.className =
+      "calendar-day empty";
+
+    days.appendChild(empty);
+
+  }
+
+
+  const today =
+    new Date();
+
+
+  for(let day=1;day<=daysInMonth;day++){
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "calendar-day";
+
+    button.textContent =
+      day;
+
+
+    if(
+      day === today.getDate() &&
+      month === today.getMonth() &&
+      year === today.getFullYear()
+    ){
+
+      button.classList.add("today");
+
+    }
+
+
+    if(
+      selectedDate &&
+      day === selectedDate.getDate() &&
+      month === selectedDate.getMonth() &&
+      year === selectedDate.getFullYear()
+    ){
+
+      button.classList.add("selected");
+
+    }
+
+
+    button.onclick = ()=>{
+
+      selectDate(
+        year,
+        month,
+        day
+      );
+
+    };
+
+
+    days.appendChild(button);
+
+  }
+
+}
+
+
+function selectDate(year,month,day){
+
+  selectedDate =
+    new Date(year,month,day);
+
+
+  const value =
+    year + "-" +
+    String(month + 1).padStart(2,"0") + "-" +
+    String(day).padStart(2,"0");
+
+
+  localStorage.setItem(
+    DATE_KEY,
+    value
+  );
+
+
+  const text =
+    selectedDate.toLocaleDateString(
+      "es-ES",
+      {
+        weekday:"long",
+        day:"numeric",
+        month:"long",
+        year:"numeric"
+      }
+    );
+
+
+  const selected =
+    document.getElementById("selectedDate");
+
+
+  selected.textContent =
+    "📅 Día seleccionado: " +
+    text.charAt(0).toUpperCase() +
+    text.slice(1);
+
+
+  selected.style.display =
+    "block";
+
+
+  closeCalendar();
+
+}
+
+
+function loadSelectedDate(){
+
+  const saved =
+    localStorage.getItem(DATE_KEY);
+
+  if(!saved){
+
+    return;
+
+  }
+
+
+  const parts =
+    saved.split("-");
+
+
+  if(parts.length !== 3){
+
+    return;
+
+  }
+
+
+  selectedDate =
+    new Date(
+      parseInt(parts[0]),
+      parseInt(parts[1])-1,
+      parseInt(parts[2])
+    );
+
+
+  const text =
+    selectedDate.toLocaleDateString(
+      "es-ES",
+      {
+        weekday:"long",
+        day:"numeric",
+        month:"long",
+        year:"numeric"
+      }
+    );
+
+
+  const selected =
+    document.getElementById("selectedDate");
+
+
+  selected.textContent =
+    "📅 Día seleccionado: " +
+    text.charAt(0).toUpperCase() +
+    text.slice(1);
+
+
+  selected.style.display =
+    "block";
+
+}
+
+
+/* =====================================================
+   INICIO
+===================================================== */
 
 loadData();
 
