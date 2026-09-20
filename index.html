@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ubicaciones del Almacén</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f3f4f6;
+    color: #17202a;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+/* PORTADA */
+
+.portada {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+}
+
+.portada img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.portada::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.05),
+        rgba(0,0,0,0.75)
+    );
+}
+
+.titulo {
+    position: absolute;
+    z-index: 2;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    color: white;
+}
+
+.titulo pequeño {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.titulo h1 {
+    margin: 5px 0;
+    font-size: 28px;
+    line-height: 1.1;
+}
+
+.titulo p {
+    margin: 0;
+    font-size: 14px;
+    color: #e5e7eb;
+}
+
+/* CONTENEDOR */
+
+.contenedor {
+    max-width: 1000px;
+    margin: auto;
+    padding: 14px;
+}
+
+/* CONTADORES */
+
+.contadores {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.contador {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 15px;
+    padding: 12px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.numero {
+    display: block;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.nombre {
+    display: block;
+    font-size: 10px;
+    font-weight: 800;
+    color: #6b7280;
+}
+
+.verde {
+    color: #16a34a;
+}
+
+.rojo {
+    color: #dc2626;
+}
+
+/* UBICACIONES */
+
+.ubicaciones {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.ubicacion {
+    display: block;
+    cursor: pointer;
+}
+
+.ubicacion input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tarjeta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 72px;
+
+    padding: 9px 4px;
+
+    background: #ecfdf3;
+    border: 3px solid #bbf7d0;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    transition: 0.12s;
+}
+
+.tarjeta strong {
+    font-size: 17px;
+    color: #2f80ed;
+}
+
+.tarjeta span {
+    font-size: 10px;
+    font-weight: 800;
+    margin-top: 5px;
+    color: #16a34a;
+}
+
+.estado-ocupada {
+    display: none;
+    color: #dc2626 !important;
+}
+
+/* CUANDO ESTÁ OCUPADA */
+
+.ubicacion input:checked + .tarjeta {
+    background: #fff1f2;
+    border-color: #fecaca;
+}
+
+.ubicacion input:checked + .tarjeta strong {
+    color: #dc2626;
+}
+
+.ubicacion input:checked + .tarjeta .estado-libre {
+    display: none;
+}
+
+.ubicacion input:checked + .tarjeta .estado-ocupada {
+    display: block;
+}
+
+.ubicacion:active .tarjeta {
+    transform: scale(0.96);
+}
+
+/* ORDENADOR */
+
+@media (min-width: 650px) {
+
+    .portada {
+        height: 360px;
+    }
+
+    .ubicaciones {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- PORTADA -->
+<!-- ========================= -->
+
+<div class="portada">
+
+    <img src="assets/almacen.jpg" alt="Almacén">
+
+    <div class="titulo">
+
+        <pequeño>CONTROL DE UBICACIONES</pequeño>
+
+        <h1>
+            📦 UBICACIONES DEL ALMACÉN
+        </h1>
+
+        <p>
+            Control de ubicaciones libres y ocupadas
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- CONTENIDO -->
+<!-- ========================= -->
+
+<div class="contenedor">
+
+
+    <!-- CONTADORES -->
+
+    <div class="contadores">
+
+        <div class="contador">
+
+            <span class="numero">
+                216
+            </span>
+
+            <span class="nombre">
+                TOTAL
+            </span>
+
+        </div>
+
+
+        <div class="contador">
+
+            <span
+                class="numero verde"
+                id="libres">
+                216
+            </span>
+
+            <span class="nombre">
+                LIBRES
+            </span>
+
+        </div>
+
+
+        <div class="contador">
+
+            <span
+                class="numero rojo"
+                id="ocupadas">
+                0
+            </span>
+
+            <span class="nombre">
+                OCUPADAS
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- UBICACIONES -->
+    <!-- ========================= -->
+
+    <div
+        class="ubicaciones"
+        id="ubicaciones">
+    </div>
+
+
+</div>
+
+
+<script>
+
+/* =========================================
+   CREAR LAS 216 UBICACIONES
+   ========================================= */
+
+const contenedor =
+    document.getElementById("ubicaciones");
+
+
+for (let i = 1; i <= 216; i++) {
+
+    const codigo =
+        "A" + String(i).padStart(3, "0");
+
+
+    const etiqueta =
+        document.createElement("label");
+
+    etiqueta.className =
+        "ubicacion";
+
+
+    etiqueta.innerHTML = `
+
+        <input
+            type="checkbox"
+            data-ubicacion="${codigo}"
+        >
+
+        <span class="tarjeta">
+
+            <strong>
+                ${codigo}
+            </strong>
+
+            <span class="estado-libre">
+                🟢 LIBRE
+            </span>
+
+            <span class="estado-ocupada">
+                🔴 OCUPADA
+            </span>
+
+        </span>
+
+    `;
+
+
+    contenedor.appendChild(etiqueta);
+
+}
+
+
+/* =========================================
+   CONTADORES
+   ========================================= */
+
+const casillas =
+    document.querySelectorAll(
+        'input[type="checkbox"]'
+    );
+
+
+function actualizarContadores() {
+
+    let ocupadas = 0;
+
+
+    casillas.forEach(function(casilla) {
+
+        if (casilla.checked) {
+
+            ocupadas++;
+
+        }
+
+    });
+
+
+    const libres =
+        casillas.length - ocupadas;
+
+
+    document.getElementById("ocupadas")
+        .textContent = ocupadas;
+
+
+    document.getElementById("libres")
+        .textContent = libres;
+
+}
+
+
+/* =========================================
+   GUARDAR CAMBIOS
+   ========================================= */
+
+casillas.forEach(function(casilla) {
+
+    casilla.addEventListener(
+        "change",
+        function() {
+
+            guardar();
+
+            actualizarContadores();
+
+        }
+    );
+
+});
+
+
+function guardar() {
+
+    const ocupadas = [];
+
+
+    casillas.forEach(function(casilla) {
+
+        if (casilla.checked) {
+
+            ocupadas.push(
+                casilla.dataset.ubicacion
+            );
+
+        }
+
+    });
+
+
+    localStorage.setItem(
+        "ubicacionesAlmacen",
+        JSON.stringify(ocupadas)
+    );
+
+}
+
+
+/* =========================================
+   RECUPERAR DATOS
+   ========================================= */
+
+function cargar() {
+
+    const datos =
+        localStorage.getItem(
+            "ubicacionesAlmacen"
+        );
+
+
+    if (!datos) {
+
+        actualizarContadores();
+
+        return;
+
+    }
+
+
+    const ocupadas =
+        JSON.parse(datos);
+
+
+    casillas.forEach(function(casilla) {
+
+        if (
+            ocupadas.includes(
+                casilla.dataset.ubicacion
+            )
+        ) {
+
+            casilla.checked = true;
+
+        }
+
+    });
+
+
+    actualizarContadores();
+
+}
+
+
+/* =========================================
+   INICIAR
+   ========================================= */
+
+cargar();
+
+</script>
+
+</body>
+</html>
