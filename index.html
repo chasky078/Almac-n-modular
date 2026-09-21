@@ -2,597 +2,434 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#07111f">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="A.P.Q.">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A.P.Q. · Almacén Productos Químicos</title>
 
 <style>
-:root{
-  --bg:#07111f;
-  --panel:#0d1b2d;
-  --panel2:#102238;
-  --border:#1e3650;
-  --text:#f4f7fb;
-  --muted:#8fa4bb;
-  --green:#27d17f;
-  --green-dark:#123e2c;
-  --red:#ff5964;
-  --red-dark:#451d24;
-  --blue:#4da3ff;
-  --gold:#f3c969;
-}
-
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:#071b2c;
+  color:#fff;
 }
 
-button,
-input{
+button,input{
   font:inherit;
 }
 
-button{
-  cursor:pointer;
-}
-
 .app{
-  width:100%;
-  max-width:700px;
+  max-width:900px;
   margin:auto;
   min-height:100vh;
-  padding:18px 14px 35px;
+  background:#f4f6f8;
+  color:#122333;
 }
 
 header{
+  background:#073b63;
+  color:white;
+  padding:18px 16px;
   text-align:center;
-  padding:12px 5px 22px;
 }
 
-.logo{
-  font-size:32px;
-  font-weight:900;
-  letter-spacing:2px;
+header h1{
+  margin:0;
+  font-size:28px;
+  letter-spacing:1px;
 }
 
-.subtitle{
-  margin-top:5px;
-  color:var(--muted);
+header p{
+  margin:4px 0 0;
+  opacity:.85;
   font-size:14px;
 }
 
 .screen{
   display:none;
+  padding:16px;
 }
 
 .screen.active{
   display:block;
 }
 
-/* HOME */
-
-.home-card{
-  background:linear-gradient(145deg,#102238,#0b192a);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:22px 18px;
+.card{
+  background:white;
+  border-radius:16px;
+  padding:18px;
   margin-bottom:14px;
-  min-height:120px;
-  display:flex;
-  align-items:center;
-  gap:17px;
-  transition:.15s;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
-.home-card:active{
-  transform:scale(.985);
+.card h2{
+  margin:0 0 8px;
+  font-size:21px;
 }
 
-.home-icon{
-  width:58px;
-  height:58px;
-  border-radius:17px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:29px;
-  background:#172d46;
-  flex-shrink:0;
-}
-
-.home-card h2{
+.card p{
   margin:0;
-  font-size:20px;
+  color:#667582;
 }
 
-.home-card p{
-  margin:5px 0 0;
-  color:var(--muted);
-  font-size:13px;
+.bigbtn{
+  width:100%;
+  border:0;
+  border-radius:14px;
+  padding:18px;
+  margin-top:12px;
+  color:white;
+  background:#086fc4;
+  font-weight:800;
+  font-size:17px;
+  cursor:pointer;
 }
 
-/* APQ MENU */
+.bigbtn.green{
+  background:#168a4b;
+}
+
+.bigbtn.dark{
+  background:#073b63;
+}
 
 .back{
   border:0;
-  background:#12263d;
-  color:#dce9f6;
+  background:#e7edf2;
+  color:#073b63;
   padding:10px 14px;
-  border-radius:12px;
-  margin-bottom:15px;
+  border-radius:10px;
+  font-weight:700;
+  margin-bottom:14px;
+  cursor:pointer;
 }
 
-.page-title{
-  font-size:24px;
-  font-weight:800;
-  margin:5px 0 17px;
+/* APQ MODULAR */
+
+.calendar{
+  background:white;
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:14px;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
 }
 
-.section-card{
-  background:linear-gradient(145deg,#102238,#0b192a);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:19px;
-  margin-bottom:13px;
-  display:flex;
-  align-items:center;
-  gap:15px;
-}
-
-.section-icon{
-  font-size:29px;
-  width:52px;
-  height:52px;
-  border-radius:15px;
-  background:#172d46;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.section-card h3{
-  margin:0;
-  font-size:18px;
-}
-
-.section-card p{
-  margin:5px 0 0;
-  color:var(--muted);
-  font-size:13px;
-}
-
-/* COMMON */
-
-.topbar{
+.calhead{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:8px;
-  margin-bottom:13px;
+  margin-bottom:10px;
 }
 
-.small-btn{
+.calhead button{
   border:0;
-  background:#12263d;
-  color:#dce9f6;
-  border-radius:11px;
-  padding:9px 11px;
-  font-size:13px;
+  background:#e8eef3;
+  width:38px;
+  height:38px;
+  border-radius:9px;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.month{
+  font-weight:800;
+  text-transform:capitalize;
+}
+
+.week{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:4px;
+  text-align:center;
+  font-size:11px;
+  color:#73808a;
+  margin-bottom:4px;
+}
+
+.days{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:4px;
+}
+
+.day{
+  border:0;
+  background:#f2f5f7;
+  border-radius:8px;
+  min-height:36px;
+  cursor:pointer;
+}
+
+.day.selected{
+  background:#0874cf;
+  color:white;
+  font-weight:800;
+}
+
+.selectedDate{
+  text-align:center;
+  margin-top:10px;
+  font-weight:700;
+  color:#073b63;
 }
 
 .search{
   width:100%;
-  border:1px solid var(--border);
-  background:#0b192a;
-  color:white;
-  border-radius:13px;
-  padding:12px 13px;
-  outline:none;
-  margin-bottom:12px;
-}
-
-.search:focus{
-  border-color:var(--blue);
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:9px;
-  margin-bottom:12px;
-}
-
-.stat{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:12px;
-}
-
-.stat-label{
-  color:var(--muted);
-  font-size:11px;
-}
-
-.stat-value{
-  font-size:23px;
-  font-weight:800;
-  margin-top:3px;
-}
-
-.green{
-  color:var(--green);
-}
-
-.red{
-  color:var(--red);
-}
-
-/* LIBRES POR ALTURA */
-
-.height-box{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:15px;
   padding:13px;
-  margin-bottom:15px;
+  border:1px solid #ccd6de;
+  border-radius:11px;
+  margin-bottom:12px;
+  font-size:16px;
+  background:white;
 }
-
-.height-title{
-  font-size:13px;
-  color:var(--muted);
-  margin-bottom:10px;
-  font-weight:700;
-}
-
-.height-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:7px;
-}
-
-.height-item{
-  text-align:center;
-  background:#091725;
-  border-radius:10px;
-  padding:8px 4px;
-}
-
-.height-name{
-  font-size:10px;
-  color:var(--muted);
-}
-
-.height-number{
-  font-size:18px;
-  font-weight:800;
-  color:var(--green);
-  margin-top:2px;
-}
-
-/* MODULES */
 
 .module{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:16px;
-  margin-bottom:12px;
-  overflow:hidden;
-}
-
-.module-head{
-  padding:14px 15px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.module-name{
-  font-size:17px;
-  font-weight:800;
-}
-
-.module-count{
-  color:var(--muted);
-  font-size:12px;
-}
-
-.submodules{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  border-top:1px solid var(--border);
-}
-
-.submodule{
-  padding:14px;
-  text-align:center;
-  background:#0b192a;
-  border:0;
-  color:white;
-  border-right:1px solid var(--border);
-}
-
-.submodule:last-child{
-  border-right:0;
-}
-
-.submodule strong{
-  display:block;
-  font-size:17px;
-}
-
-.submodule span{
-  color:var(--muted);
-  font-size:11px;
-}
-
-/* LOCATION GRID */
-
-.location-head{
-  margin-bottom:12px;
-}
-
-.location-title{
-  font-size:20px;
-  font-weight:800;
-}
-
-.location-sub{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:3px;
-}
-
-.grid-wrap{
-  background:var(--panel);
-  border:1px solid var(--border);
+  background:white;
   border-radius:15px;
+  margin-bottom:13px;
   overflow:hidden;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
 }
 
-.grid{
+.moduleTitle{
+  background:#073b63;
+  color:white;
+  padding:13px 15px;
+  font-weight:800;
+}
+
+.moduleSub{
+  padding:9px 15px;
+  background:#edf2f5;
+  font-weight:700;
+  color:#536472;
+}
+
+.locations{
   display:grid;
   grid-template-columns:repeat(4,1fr);
+  gap:5px;
+  padding:10px;
 }
 
-.grid-head{
-  background:#12263d;
-  color:#a8bdd2;
-  font-size:10px;
-  font-weight:700;
-  text-align:center;
-  padding:9px 2px;
-}
-
-.location{
-  min-height:60px;
-  border-top:1px solid var(--border);
-  border-right:1px solid var(--border);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:3px;
-  background:var(--red-dark);
-  color:#fff;
-  transition:.12s;
-}
-
-.location:nth-child(4n){
-  border-right:0;
-}
-
-.location.free{
-  background:var(--green-dark);
-}
-
-.location:active{
-  transform:scale(.96);
-}
-
-.loc-id{
-  font-size:12px;
+.loc{
+  min-height:50px;
+  border:0;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:11px;
   font-weight:800;
 }
 
-.loc-state{
-  font-size:9px;
-  opacity:.8;
+.loc.free{
+  background:#b9f0cf;
+  color:#075c2e;
 }
 
-/* FREE LIST */
+.loc.busy{
+  background:#f1b8b8;
+  color:#8c2020;
+}
 
-.free-list{
+.freeList{
+  background:white;
+  border-radius:15px;
+  padding:15px;
+}
+
+.freeItem{
+  display:inline-block;
+  background:#c5f1d4;
+  color:#075c2e;
+  border-radius:8px;
+  padding:8px 10px;
+  margin:3px;
+  font-weight:800;
+  font-size:12px;
+}
+
+.heights{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:7px;
+  margin-top:14px;
 }
 
-.free-item{
-  background:var(--green-dark);
-  border:1px solid #1c6545;
-  color:#dffff0;
-  border-radius:10px;
-  padding:10px 4px;
-  text-align:center;
-  font-size:12px;
-  font-weight:700;
-}
-
-/* INFO */
-
-.info-box{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:22px 17px;
-  text-align:center;
-  color:var(--muted);
-}
-
-.info-icon{
-  font-size:38px;
-  margin-bottom:10px;
-}
-
-.info-box h3{
+.heightBox{
+  background:#073b63;
   color:white;
-  margin:0 0 8px;
-}
-
-.info-box p{
-  margin:0;
-  font-size:13px;
-  line-height:1.5;
-}
-
-/* FOOTER */
-
-.footer{
+  border-radius:10px;
   text-align:center;
-  color:#587089;
-  font-size:10px;
-  margin-top:25px;
+  padding:10px 4px;
 }
 
-/* CALENDARIO */
+.heightBox b{
+  display:block;
+  font-size:19px;
+}
 
-.calendar-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.72);
-  display:none;
+/* APQ VIEJA */
+
+.oldMap{
+  background:#f7f8f9;
+  border:1px solid #cfd8df;
+  border-radius:15px;
+  padding:10px;
+}
+
+.plan{
+  border:3px solid #303c45;
+  background:#fff;
+  padding:12px;
+  max-width:700px;
+  margin:auto;
+}
+
+.planTop{
+  text-align:center;
+  font-weight:800;
+  color:#65737d;
+  font-size:12px;
+  padding:4px 0 12px;
+}
+
+.topLocations{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border:2px solid #66737d;
+}
+
+.oldLoc{
+  background:white;
+  border:1px solid #66737d;
+  padding:9px 7px;
+  text-align:center;
+}
+
+.oldWide{
+  border:2px solid #66737d;
+  border-top:0;
+  text-align:center;
+  padding:9px 7px;
+}
+
+.wcode{
+  font-size:14px;
+  font-weight:900;
+  color:#075087;
+}
+
+.material{
+  font-size:14px;
+  font-weight:800;
+  margin:3px 0 8px;
+}
+
+.stockControls{
+  display:flex;
   align-items:center;
   justify-content:center;
-  padding:18px;
-  z-index:9999;
-}
-
-.calendar-overlay.show{
-  display:flex;
-}
-
-.calendar-box{
-  width:100%;
-  max-width:390px;
-  background:#0d1b2d;
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:16px;
-  box-shadow:0 20px 60px rgba(0,0,0,.45);
-}
-
-.calendar-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:15px;
-}
-
-.calendar-title{
-  font-size:18px;
-  font-weight:800;
-}
-
-.calendar-nav{
-  display:flex;
   gap:6px;
 }
 
-.calendar-nav button{
-  width:38px;
-  height:38px;
-  border:0;
-  border-radius:10px;
-  background:#12263d;
-  color:white;
-  font-size:18px;
-}
-
-.calendar-week{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:4px;
-  margin-bottom:5px;
-}
-
-.calendar-week div{
-  text-align:center;
-  color:var(--muted);
-  font-size:10px;
+.stockBtn{
+  width:34px;
+  height:34px;
+  border:1px solid #ccd5dc;
+  border-radius:8px;
+  background:#f4f6f8;
+  font-size:21px;
   font-weight:700;
-  padding:5px 0;
+  cursor:pointer;
 }
 
-.calendar-days{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:4px;
+.stockNumber{
+  width:52px;
+  height:34px;
+  border:1px solid #ccd5dc;
+  border-radius:8px;
+  text-align:center;
+  font-size:16px;
+  font-weight:900;
+  color:#102633;
+  background:white;
 }
 
-.calendar-day{
+.confirm{
+  width:36px;
+  height:34px;
   border:0;
-  min-height:40px;
-  border-radius:9px;
-  background:#091725;
+  border-radius:8px;
+  background:#189b50;
   color:white;
+  font-weight:900;
+  font-size:18px;
+  cursor:pointer;
+}
+
+.pending{
+  background:#fff8df;
+  outline:2px solid #e4ae24;
+}
+
+.confirmed{
+  color:#168044;
+  font-size:10px;
+  min-height:13px;
+  margin-top:3px;
+}
+
+.entry{
+  text-align:center;
+  font-weight:900;
+  font-size:13px;
+  padding:13px 0 3px;
+}
+
+.oldInfo{
+  background:white;
+  border-radius:12px;
+  margin-top:10px;
+  padding:10px;
+  text-align:center;
+  color:#62717c;
   font-size:12px;
 }
 
-.calendar-day.empty{
-  background:transparent;
-}
+@media(max-width:520px){
+  header h1{font-size:24px}
 
-.calendar-day.today{
-  outline:1px solid var(--blue);
-}
-
-.calendar-day.selected{
-  background:var(--green-dark);
-  color:#dffff0;
-  font-weight:800;
-}
-
-.calendar-close{
-  width:100%;
-  margin-top:13px;
-  border:0;
-  border-radius:11px;
-  padding:11px;
-  background:#12263d;
-  color:white;
-}
-
-.selected-date{
-  display:none;
-  margin-bottom:12px;
-  padding:10px 12px;
-  background:#102238;
-  border:1px solid var(--border);
-  border-radius:11px;
-  color:#dce9f6;
-  font-size:12px;
-}
-
-@media(min-width:600px){
-  .app{
-    padding-left:20px;
-    padding-right:20px;
+  .locations{
+    gap:4px;
   }
 
-  .location{
-    min-height:70px;
+  .loc{
+    font-size:10px;
+  }
+
+  .oldLoc,.oldWide{
+    padding:8px 4px;
+  }
+
+  .wcode,.material{
+    font-size:11px;
+  }
+
+  .stockBtn{
+    width:29px;
+    height:29px;
+    font-size:18px;
+  }
+
+  .stockNumber{
+    width:40px;
+    height:29px;
+  }
+
+  .confirm{
+    width:31px;
+    height:29px;
   }
 }
 </style>
@@ -603,1260 +440,834 @@ header{
 <div class="app">
 
 <header>
-  <div class="logo">A.P.Q.</div>
-  <div class="subtitle">Almacén Productos Químicos</div>
+  <h1>A.P.Q.</h1>
+  <p>Almacén Productos Químicos</p>
 </header>
 
+<!-- INICIO -->
+<section id="home" class="screen active">
 
-<!-- ================= INICIO ================= -->
+  <div class="card">
+    <h2>🧪 APQ</h2>
+    <p>Almacén de Productos Químicos</p>
 
-<section id="homeScreen" class="screen active">
-
-  <div class="home-card" onclick="showScreen('apqScreen')">
-    <div class="home-icon">🧪</div>
-    <div>
-      <h2>APQ</h2>
-      <p>Almacenes de productos químicos</p>
-    </div>
+    <button class="bigbtn" onclick="showScreen('apq')">
+      📦 Entrar en APQ
+    </button>
   </div>
 
-  <div class="home-card" onclick="showScreen('barnicesScreen')">
-    <div class="home-icon">🎨</div>
-    <div>
-      <h2>BARNICES</h2>
-      <p>Nombres, tipos e información importante</p>
-    </div>
+  <div class="card">
+    <h2>🎨 BARNICES</h2>
+    <p>Información y fichas de barnices</p>
+
+    <button class="bigbtn dark" onclick="showScreen('barnices')">
+      🎨 Entrar en BARNICES
+    </button>
   </div>
 
 </section>
 
+<!-- APQ -->
+<section id="apq" class="screen">
 
-<!-- ================= APQ ================= -->
-
-<section id="apqScreen" class="screen">
-
-  <button class="back" onclick="showScreen('homeScreen')">
+  <button class="back" onclick="showScreen('home')">
     ← Volver
   </button>
 
-  <div class="page-title">🧪 APQ</div>
+  <div class="card">
+    <h2>🧪 APQ</h2>
 
-  <div class="section-card" onclick="showScreen('modularScreen')">
-    <div class="section-icon">📦</div>
-    <div>
-      <h3>APQ MODULAR</h3>
-      <p>Almacén modular · A001–A216</p>
-    </div>
-  </div>
+    <button class="bigbtn" onclick="showScreen('modular')">
+      📦 APQ MODULAR
+    </button>
 
-  <div class="section-card" onclick="showScreen('oldApqScreen')">
-    <div class="section-icon">🏭</div>
-    <div>
-      <h3>APQ VIEJA</h3>
-      <p>Zona APQ antigua</p>
-    </div>
+    <button class="bigbtn dark" onclick="showScreen('vieja')">
+      🏭 APQ VIEJA
+    </button>
   </div>
 
 </section>
 
+<!-- APQ MODULAR -->
+<section id="modular" class="screen">
 
-<!-- ================= APQ VIEJA ================= -->
-
-<section id="oldApqScreen" class="screen">
-
-  <button class="back" onclick="showScreen('apqScreen')">
+  <button class="back" onclick="showScreen('apq')">
     ← Volver a APQ
   </button>
 
-  <div class="page-title">🏭 APQ VIEJA</div>
+  <div class="card">
+    <h2>📦 APQ MODULAR</h2>
+    <p>216 ubicaciones · 3 módulos</p>
+  </div>
 
-  <div class="info-box">
-    <div class="info-icon">🏭</div>
-    <h3>APQ VIEJA</h3>
-    <p>
-      Esta sección queda preparada para configurarla
-      cuando me expliques cómo está organizada.
-    </p>
+  <div class="calendar">
+
+    <div class="calhead">
+      <button onclick="changeMonth(-1)">‹</button>
+      <div id="monthName" class="month"></div>
+      <button onclick="changeMonth(1)">›</button>
+    </div>
+
+    <div class="week">
+      <div>L</div><div>M</div><div>X</div>
+      <div>J</div><div>V</div><div>S</div><div>D</div>
+    </div>
+
+    <div id="calendarDays" class="days"></div>
+
+    <div id="selectedDate" class="selectedDate"></div>
+
+  </div>
+
+  <input
+    id="modSearch"
+    class="search"
+    placeholder="Buscar ubicación A001–A216..."
+    oninput="filterModular()"
+  >
+
+  <button
+    class="bigbtn green"
+    onclick="showFreeLocations()"
+  >
+    🟢 Ver libres
+  </button>
+
+  <div id="modules"></div>
+
+  <div class="card">
+    <h3>Libres por altura</h3>
+
+    <div class="heights">
+      <div class="heightBox">
+        Altura 1
+        <b id="h1">0</b>
+      </div>
+
+      <div class="heightBox">
+        Altura 2
+        <b id="h2">0</b>
+      </div>
+
+      <div class="heightBox">
+        Altura 3
+        <b id="h3">0</b>
+      </div>
+
+      <div class="heightBox">
+        Altura 4
+        <b id="h4">0</b>
+      </div>
+    </div>
+  </div>
+
+  <div id="freePanel" style="display:none"></div>
+
+</section>
+
+<!-- APQ VIEJA -->
+<section id="vieja" class="screen">
+
+  <button class="back" onclick="showScreen('apq')">
+    ← Volver a APQ
+  </button>
+
+  <div class="card">
+    <h2>🏭 APQ VIEJA</h2>
+    <p>Control de stock</p>
+  </div>
+
+  <div class="oldMap">
+
+    <div class="plan">
+
+      <div class="planTop">
+        UBICACIONES APQ VIEJA
+      </div>
+
+      <!-- PARTE SUPERIOR DEL MAPA -->
+      <div class="topLocations">
+
+        <!-- W02008 -->
+        <div class="oldLoc" data-old="W02008">
+
+          <div class="wcode">W02008</div>
+          <div class="material">814.449</div>
+
+          <div class="stockControls">
+            <button class="stockBtn" onclick="oldChange('W02008',-1)">−</button>
+            <input id="stock-W02008"
+                   class="stockNumber"
+                   value="0"
+                   inputmode="numeric"
+                   onchange="oldManual('W02008')">
+            <button class="stockBtn" onclick="oldChange('W02008',1)">+</button>
+            <button class="confirm" onclick="oldConfirm('W02008')">✓</button>
+          </div>
+
+          <div id="msg-W02008" class="confirmed"></div>
+
+        </div>
+
+        <!-- W02009 -->
+        <div class="oldLoc" data-old="W02009">
+
+          <div class="wcode">W02009</div>
+          <div class="material">MKB1113T</div>
+
+          <div class="stockControls">
+            <button class="stockBtn" onclick="oldChange('W02009',-1)">−</button>
+            <input id="stock-W02009"
+                   class="stockNumber"
+                   value="0"
+                   inputmode="numeric"
+                   onchange="oldManual('W02009')">
+            <button class="stockBtn" onclick="oldChange('W02009',1)">+</button>
+            <button class="confirm" onclick="oldConfirm('W02009')">✓</button>
+          </div>
+
+          <div id="msg-W02009" class="confirmed"></div>
+
+        </div>
+
+        <!-- W02007 -->
+        <div class="oldLoc" data-old="W02007">
+
+          <div class="wcode">W02007</div>
+          <div class="material">818.083</div>
+
+          <div class="stockControls">
+            <button class="stockBtn" onclick="oldChange('W02007',-1)">−</button>
+            <input id="stock-W02007"
+                   class="stockNumber"
+                   value="0"
+                   inputmode="numeric"
+                   onchange="oldManual('W02007')">
+            <button class="stockBtn" onclick="oldChange('W02007',1)">+</button>
+            <button class="confirm" onclick="oldConfirm('W02007')">✓</button>
+          </div>
+
+          <div id="msg-W02007" class="confirmed"></div>
+
+        </div>
+
+        <!-- W02010 -->
+        <div class="oldLoc" data-old="W02010">
+
+          <div class="wcode">W02010</div>
+          <div class="material">110.496</div>
+
+          <div class="stockControls">
+            <button class="stockBtn" onclick="oldChange('W02010',-1)">−</button>
+            <input id="stock-W02010"
+                   class="stockNumber"
+                   value="0"
+                   inputmode="numeric"
+                   onchange="oldManual('W02010')">
+            <button class="stockBtn" onclick="oldChange('W02010',1)">+</button>
+            <button class="confirm" onclick="oldConfirm('W02010')">✓</button>
+          </div>
+
+          <div id="msg-W02010" class="confirmed"></div>
+
+        </div>
+
+      </div>
+
+      <!-- W02006 -->
+      <div class="oldWide" data-old="W02006">
+
+        <div class="wcode">W02006</div>
+        <div class="material">DISOLVENTE</div>
+
+        <div class="stockControls">
+          <button class="stockBtn" onclick="oldChange('W02006',-1)">−</button>
+          <input id="stock-W02006"
+                 class="stockNumber"
+                 value="0"
+                 inputmode="numeric"
+                 onchange="oldManual('W02006')">
+          <button class="stockBtn" onclick="oldChange('W02006',1)">+</button>
+          <button class="confirm" onclick="oldConfirm('W02006')">✓</button>
+        </div>
+
+        <div id="msg-W02006" class="confirmed"></div>
+
+      </div>
+
+      <!-- W02005 -->
+      <div class="oldWide" data-old="W02005">
+
+        <div class="wcode">W02005</div>
+        <div class="material">MKW1301T</div>
+
+        <div class="stockControls">
+          <button class="stockBtn" onclick="oldChange('W02005',-1)">−</button>
+          <input id="stock-W02005"
+                 class="stockNumber"
+                 value="0"
+                 inputmode="numeric"
+                 onchange="oldManual('W02005')">
+          <button class="stockBtn" onclick="oldChange('W02005',1)">+</button>
+          <button class="confirm" onclick="oldConfirm('W02005')">✓</button>
+        </div>
+
+        <div id="msg-W02005" class="confirmed"></div>
+
+      </div>
+
+      <!-- W02004 -->
+      <div class="oldWide" data-old="W02004">
+
+        <div class="wcode">W02004</div>
+        <div class="material">450.148</div>
+
+        <div class="stockControls">
+          <button class="stockBtn" onclick="oldChange('W02004',-1)">−</button>
+          <input id="stock-W02004"
+                 class="stockNumber"
+                 value="0"
+                 inputmode="numeric"
+                 onchange="oldManual('W02004')">
+          <button class="stockBtn" onclick="oldChange('W02004',1)">+</button>
+          <button class="confirm" onclick="oldConfirm('W02004')">✓</button>
+        </div>
+
+        <div id="msg-W02004" class="confirmed"></div>
+
+      </div>
+
+      <!-- W02003 -->
+      <div class="oldWide" data-old="W02003">
+
+        <div class="wcode">W02003</div>
+        <div class="material">816.621</div>
+
+        <div class="stockControls">
+          <button class="stockBtn" onclick="oldChange('W02003',-1)">−</button>
+          <input id="stock-W02003"
+                 class="stockNumber"
+                 value="0"
+                 inputmode="numeric"
+                 onchange="oldManual('W02003')">
+          <button class="stockBtn" onclick="oldChange('W02003',1)">+</button>
+          <button class="confirm" onclick="oldConfirm('W02003')">✓</button>
+        </div>
+
+        <div id="msg-W02003" class="confirmed"></div>
+
+      </div>
+
+      <!-- W02002 -->
+      <div class="oldWide" data-old="W02002">
+
+        <div class="wcode">W02002</div>
+        <div class="material">814.509</div>
+
+        <div class="stockControls">
+          <button class="stockBtn" onclick="oldChange('W02002',-1)">−</button>
+          <input id="stock-W02002"
+                 class="stockNumber"
+                 value="0"
+                 inputmode="numeric"
+                 onchange="oldManual('W02002')">
+          <button class="stockBtn" onclick="oldChange('W02002',1)">+</button>
+          <button class="confirm" onclick="oldConfirm('W02002')">✓</button>
+        </div>
+
+        <div id="msg-W02002" class="confirmed"></div>
+
+      </div>
+
+      <div class="entry">
+        ENTRADA A.P.Q.
+      </div>
+
+    </div>
+
+    <div class="oldInfo">
+      − / + modifica el stock · ✓ confirma y guarda
+    </div>
+
   </div>
 
 </section>
 
+<!-- BARNICES -->
+<section id="barnices" class="screen">
 
-<!-- ================= BARNICES ================= -->
-
-<section id="barnicesScreen" class="screen">
-
-  <button class="back" onclick="showScreen('homeScreen')">
+  <button class="back" onclick="showScreen('home')">
     ← Volver
   </button>
 
-  <div class="page-title">🎨 BARNICES</div>
-
-  <div class="info-box">
-    <div class="info-icon">🎨</div>
-    <h3>Información de barnices</h3>
-    <p>
-      Aquí iremos añadiendo los nombres de los barnices,
-      sus tipos y los detalles importantes que me vayas dando.
-    </p>
-  </div>
-
-</section>
-
-
-<!-- ================= APQ MODULAR ================= -->
-
-<section id="modularScreen" class="screen">
-
-  <div class="topbar">
-    <button class="small-btn" onclick="showScreen('apqScreen')">
-      ← APQ
-    </button>
-
-    <button class="small-btn" onclick="openCalendar()">
-      📅 Fecha
-    </button>
-  </div>
-
-  <div class="location-head">
-    <div class="location-title">📦 APQ MODULAR</div>
-    <div class="location-sub">
-      Estado actual del almacén
-    </div>
-  </div>
-
-  <div id="selectedDate" class="selected-date"></div>
-
-  <input
-    id="searchInput"
-    class="search"
-    type="text"
-    placeholder="🔎 Buscar ubicación A001..."
-    oninput="searchLocation()"
-  >
-
-  <div class="stats">
-
-    <div class="stat">
-      <div class="stat-label">UBICACIONES LIBRES</div>
-      <div id="freeCount" class="stat-value green">0</div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-label">OCUPADAS</div>
-      <div id="occupiedCount" class="stat-value red">0</div>
-    </div>
-
-  </div>
-
-
-  <div class="height-box">
-
-    <div class="height-title">
-      📊 LIBRES POR ALTURA
-    </div>
-
-    <div class="height-grid">
-
-      <div class="height-item">
-        <div class="height-name">ALTURA 1</div>
-        <div id="height1" class="height-number">0</div>
-      </div>
-
-      <div class="height-item">
-        <div class="height-name">ALTURA 2</div>
-        <div id="height2" class="height-number">0</div>
-      </div>
-
-      <div class="height-item">
-        <div class="height-name">ALTURA 3</div>
-        <div id="height3" class="height-number">0</div>
-      </div>
-
-      <div class="height-item">
-        <div class="height-name">ALTURA 4</div>
-        <div id="height4" class="height-number">0</div>
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="topbar">
-
-    <button class="small-btn" onclick="showFree()">
-      🟢 Ver libres
-    </button>
-
-    <button class="small-btn" onclick="showModules()">
-      ↩ Ver almacén
-    </button>
-
-  </div>
-
-
-  <div id="modulesView">
-
-    <div class="module">
-
-      <div class="module-head">
-        <div class="module-name">MÓDULO 1</div>
-        <div class="module-count">A001–A072</div>
-      </div>
-
-      <div class="submodules">
-
-        <button class="submodule" onclick="openSubmodule('1A')">
-          <strong>1A</strong>
-          <span>A001–A036</span>
-        </button>
-
-        <button class="submodule" onclick="openSubmodule('1B')">
-          <strong>1B</strong>
-          <span>A037–A072</span>
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="module">
-
-      <div class="module-head">
-        <div class="module-name">MÓDULO 2</div>
-        <div class="module-count">A073–A144</div>
-      </div>
-
-      <div class="submodules">
-
-        <button class="submodule" onclick="openSubmodule('2A')">
-          <strong>2A</strong>
-          <span>A073–A108</span>
-        </button>
-
-        <button class="submodule" onclick="openSubmodule('2B')">
-          <strong>2B</strong>
-          <span>A109–A144</span>
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="module">
-
-      <div class="module-head">
-        <div class="module-name">MÓDULO 3</div>
-        <div class="module-count">A145–A216</div>
-      </div>
-
-      <div class="submodules">
-
-        <button class="submodule" onclick="openSubmodule('3A')">
-          <strong>3A</strong>
-          <span>A145–A180</span>
-        </button>
-
-        <button class="submodule" onclick="openSubmodule('3B')">
-          <strong>3B</strong>
-          <span>A181–A216</span>
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div id="locationView" style="display:none;">
-
-    <div class="location-head">
-
-      <div id="locationTitle" class="location-title"></div>
-
-      <div id="locationSubtitle" class="location-sub"></div>
-
-    </div>
-
-    <div class="grid-wrap">
-
-      <div class="grid" id="locationGrid">
-
-        <div class="grid-head">ALTURA 1</div>
-        <div class="grid-head">ALTURA 2</div>
-        <div class="grid-head">ALTURA 3</div>
-        <div class="grid-head">ALTURA 4</div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div id="freeView" style="display:none;">
-
-    <div class="location-head">
-
-      <div class="location-title">🟢 Ubicaciones libres</div>
-
-      <div class="location-sub">
-        Todas las ubicaciones libres del almacén
-      </div>
-
-    </div>
-
-    <div id="freeList" class="free-list"></div>
-
-  </div>
-
-
-  <div class="footer">
-    Última actualización:
-    <span id="lastUpdate">--</span>
+  <div class="card">
+    <h2>🎨 BARNICES</h2>
+    <p>Fichas de barnices</p>
   </div>
 
 </section>
 
 </div>
-
-
-<!-- ================= CALENDARIO ================= -->
-
-<div id="calendarOverlay" class="calendar-overlay">
-
-  <div class="calendar-box">
-
-    <div class="calendar-top">
-
-      <div id="calendarTitle" class="calendar-title"></div>
-
-      <div class="calendar-nav">
-
-        <button onclick="changeMonth(-1)">‹</button>
-
-        <button onclick="changeMonth(1)">›</button>
-
-      </div>
-
-    </div>
-
-
-    <div class="calendar-week">
-
-      <div>L</div>
-      <div>M</div>
-      <div>X</div>
-      <div>J</div>
-      <div>V</div>
-      <div>S</div>
-      <div>D</div>
-
-    </div>
-
-
-    <div id="calendarDays" class="calendar-days"></div>
-
-
-    <button class="calendar-close" onclick="closeCalendar()">
-      Cerrar
-    </button>
-
-  </div>
-
-</div>
-
 
 <script>
 
-/* =====================================================
-   A.P.Q. · APQ MODULAR
-===================================================== */
-
-const STORAGE_KEY = "apq_modular_state_v1";
-const UPDATE_KEY = "apq_modular_update_v1";
-const DATE_KEY = "apq_modular_date_v1";
-
-
-const initialFree = [
-
-  "A001",
-  "A019",
-
-  "A044",
-  "A048",
-  "A051",
-  "A052",
-  "A055",
-  "A056",
-  "A060",
-  "A064",
-  "A067",
-  "A068",
-  "A072",
-
-  "A075",
-  "A076",
-  "A080",
-  "A084",
-  "A088",
-  "A092",
-  "A096",
-  "A100",
-  "A104",
-  "A105",
-  "A107",
-  "A108",
-
-  "A111",
-  "A112",
-  "A113",
-  "A115",
-  "A116",
-  "A120",
-  "A122",
-  "A124",
-  "A128",
-  "A132",
-  "A135",
-  "A136",
-  "A140",
-
-  "A146",
-  "A149",
-  "A152",
-  "A164",
-  "A168",
-  "A172",
-  "A176",
-  "A179",
-  "A180",
-
-  "A200",
-  "A204",
-  "A214"
-
-];
-
-
-let freeLocations = new Set(initialFree);
-
-let currentSubmodule = null;
-
-
-/* =====================================================
+/* =========================
    NAVEGACIÓN
-===================================================== */
+========================= */
 
 function showScreen(id){
 
-  document.querySelectorAll(".screen").forEach(screen=>{
-    screen.classList.remove("active");
-  });
+  document.querySelectorAll(".screen")
+    .forEach(s=>s.classList.remove("active"));
 
-  document.getElementById(id).classList.add("active");
+  const screen=document.getElementById(id);
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
-/* =====================================================
-   CARGAR DATOS
-===================================================== */
-
-function loadData(){
-
-  const saved = localStorage.getItem(STORAGE_KEY);
-
-  if(saved){
-
-    try{
-
-      const parsed = JSON.parse(saved);
-
-      if(Array.isArray(parsed)){
-        freeLocations = new Set(parsed);
-      }
-
-    }catch(e){
-
-      console.log("Error cargando datos.");
-
-    }
-
+  if(screen){
+    screen.classList.add("active");
+    window.scrollTo(0,0);
   }
 
-  updateStats();
-  updateLastUpdate();
-  loadSelectedDate();
-
-}
-
-
-/* =====================================================
-   GUARDAR DATOS
-===================================================== */
-
-function saveData(){
-
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify([...freeLocations])
-  );
-
-  const now = new Date();
-
-  localStorage.setItem(
-    UPDATE_KEY,
-    now.toLocaleString("es-ES",{
-      dateStyle:"short",
-      timeStyle:"short"
-    })
-  );
-
-  updateStats();
-  updateLastUpdate();
-
-}
-
-
-/* =====================================================
-   ESTADÍSTICAS
-===================================================== */
-
-function updateStats(){
-
-  const free = freeLocations.size;
-
-  document.getElementById("freeCount").textContent =
-    free;
-
-  document.getElementById("occupiedCount").textContent =
-    216 - free;
-
-
-  const heights = [0,0,0,0];
-
-  freeLocations.forEach(id=>{
-
-    const number =
-      parseInt(id.substring(1));
-
-    const height =
-      (number - 1) % 4;
-
-    heights[height]++;
-
-  });
-
-
-  document.getElementById("height1").textContent =
-    heights[0];
-
-  document.getElementById("height2").textContent =
-    heights[1];
-
-  document.getElementById("height3").textContent =
-    heights[2];
-
-  document.getElementById("height4").textContent =
-    heights[3];
-
-}
-
-
-/* =====================================================
-   ÚLTIMA ACTUALIZACIÓN
-===================================================== */
-
-function updateLastUpdate(){
-
-  const saved =
-    localStorage.getItem(UPDATE_KEY);
-
-  document.getElementById("lastUpdate").textContent =
-    saved || "Sin actualizaciones";
-
-}
-
-
-/* =====================================================
-   SUBMÓDULOS
-===================================================== */
-
-function openSubmodule(code){
-
-  currentSubmodule = code;
-
-  document.getElementById("modulesView").style.display =
-    "none";
-
-  document.getElementById("freeView").style.display =
-    "none";
-
-  document.getElementById("locationView").style.display =
-    "block";
-
-
-  const ranges = {
-
-    "1A":[1,36],
-    "1B":[37,72],
-
-    "2A":[73,108],
-    "2B":[109,144],
-
-    "3A":[145,180],
-    "3B":[181,216]
-
-  };
-
-
-  const range = ranges[code];
-
-
-  document.getElementById("locationTitle").textContent =
-    "📦 MÓDULO " + code;
-
-
-  document.getElementById("locationSubtitle").textContent =
-    "Ubicaciones A" +
-    String(range[0]).padStart(3,"0") +
-    " – A" +
-    String(range[1]).padStart(3,"0");
-
-
-  renderGrid(range[0],range[1]);
-
-}
-
-
-/* =====================================================
-   CUADRÍCULA
-===================================================== */
-
-function renderGrid(start,end){
-
-  const grid =
-    document.getElementById("locationGrid");
-
-  grid.innerHTML = `
-
-    <div class="grid-head">ALTURA 1</div>
-    <div class="grid-head">ALTURA 2</div>
-    <div class="grid-head">ALTURA 3</div>
-    <div class="grid-head">ALTURA 4</div>
-
-  `;
-
-
-  for(let n=start;n<=end;n++){
-
-    const id =
-      "A" + String(n).padStart(3,"0");
-
-    const button =
-      document.createElement("button");
-
-    const isFree =
-      freeLocations.has(id);
-
-    button.className =
-      "location " +
-      (isFree ? "free" : "");
-
-    button.innerHTML = `
-
-      <div class="loc-id">${id}</div>
-
-      <div class="loc-state">
-        ${isFree ? "LIBRE" : "OCUPADO"}
-      </div>
-
-    `;
-
-    button.onclick =
-      ()=>toggleLocation(id);
-
-    grid.appendChild(button);
-
+  if(id==="modular"){
+    renderModules();
+    renderCalendar();
   }
 
+  if(id==="vieja"){
+    loadOldStock();
+  }
 }
 
 
-/* =====================================================
-   CAMBIAR ESTADO
-===================================================== */
-
-function toggleLocation(id){
-
-  if(freeLocations.has(id)){
-
-    freeLocations.delete(id);
-
-  }else{
-
-    freeLocations.add(id);
-
-  }
-
-  saveData();
-
-
-  if(currentSubmodule){
-
-    const ranges = {
-
-      "1A":[1,36],
-      "1B":[37,72],
-
-      "2A":[73,108],
-      "2B":[109,144],
-
-      "3A":[145,180],
-      "3B":[181,216]
-
-    };
-
-
-    renderGrid(
-      ranges[currentSubmodule][0],
-      ranges[currentSubmodule][1]
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   VOLVER A MÓDULOS
-===================================================== */
-
-function showModules(){
-
-  document.getElementById("locationView").style.display =
-    "none";
-
-  document.getElementById("freeView").style.display =
-    "none";
-
-  document.getElementById("modulesView").style.display =
-    "block";
-
-  currentSubmodule = null;
-
-}
-
-
-/* =====================================================
-   VER LIBRES
-===================================================== */
-
-function showFree(){
-
-  document.getElementById("modulesView").style.display =
-    "none";
-
-  document.getElementById("locationView").style.display =
-    "none";
-
-  document.getElementById("freeView").style.display =
-    "block";
-
-
-  const list =
-    document.getElementById("freeList");
-
-  list.innerHTML = "";
-
-
-  const sorted =
-    [...freeLocations].sort((a,b)=>{
-
-      return parseInt(a.substring(1)) -
-             parseInt(b.substring(1));
-
-    });
-
-
-  if(sorted.length === 0){
-
-    list.innerHTML = `
-      <div style="
-        grid-column:1/-1;
-        text-align:center;
-        color:#8fa4bb;
-        padding:20px;
-      ">
-        No hay ubicaciones libres.
-      </div>
-    `;
-
-    return;
-
-  }
-
-
-  sorted.forEach(id=>{
-
-    const item =
-      document.createElement("div");
-
-    item.className =
-      "free-item";
-
-    item.textContent =
-      id;
-
-    item.onclick = ()=>{
-
-      const number =
-        parseInt(id.substring(1));
-
-      let module;
-
-      if(number <= 36){
-        module = "1A";
-      }else if(number <= 72){
-        module = "1B";
-      }else if(number <= 108){
-        module = "2A";
-      }else if(number <= 144){
-        module = "2B";
-      }else if(number <= 180){
-        module = "3A";
-      }else{
-        module = "3B";
-      }
-
-      openSubmodule(module);
-
-    };
-
-
-    list.appendChild(item);
-
-  });
-
-}
-
-
-/* =====================================================
-   BUSCADOR
-===================================================== */
-
-function searchLocation(){
-
-  const value =
-    document.getElementById("searchInput")
-    .value
-    .trim()
-    .toUpperCase();
-
-
-  if(!value){
-
-    showModules();
-
-    return;
-
-  }
-
-
-  const match =
-    value.match(/^A?(\d{1,3})$/);
-
-  if(!match){
-
-    return;
-
-  }
-
-
-  const number =
-    parseInt(match[1]);
-
-
-  if(number < 1 || number > 216){
-
-    return;
-
-  }
-
-
-  let module;
-
-  if(number <= 36){
-    module = "1A";
-  }else if(number <= 72){
-    module = "1B";
-  }else if(number <= 108){
-    module = "2A";
-  }else if(number <= 144){
-    module = "2B";
-  }else if(number <= 180){
-    module = "3A";
-  }else{
-    module = "3B";
-  }
-
-
-  openSubmodule(module);
-
-
-  setTimeout(()=>{
-
-    const buttons =
-      document.querySelectorAll(".location");
-
-    buttons.forEach(button=>{
-
-      const idElement =
-        button.querySelector(".loc-id");
-
-      if(
-        idElement &&
-        idElement.textContent ===
-        "A" + String(number).padStart(3,"0")
-      ){
-
-        button.scrollIntoView({
-          behavior:"smooth",
-          block:"center"
-        });
-
-        button.style.outline =
-          "3px solid #4da3ff";
-
-        setTimeout(()=>{
-
-          button.style.outline = "";
-
-        },1800);
-
-      }
-
-    });
-
-  },50);
-
-}
-
-
-/* =====================================================
-   CALENDARIO PROPIO
-===================================================== */
-
-let calendarDate = new Date();
-let selectedDate = null;
-
-
-const monthNames = [
-  "Enero",
-  "Febrero",
-  "Marzo",
-  "Abril",
-  "Mayo",
-  "Junio",
-  "Julio",
-  "Agosto",
-  "Septiembre",
-  "Octubre",
-  "Noviembre",
-  "Diciembre"
+/* =========================
+   APQ MODULAR
+========================= */
+
+const INITIAL_FREE = [
+"A001","A019","A044","A048","A051","A052","A055","A056",
+"A060","A064","A067","A068","A072","A075","A076","A080",
+"A084","A088","A092","A096","A100","A104","A105","A107",
+"A108","A111","A112","A113","A115","A116","A120","A122",
+"A124","A128","A132","A135","A136","A140","A146","A149",
+"A152","A164","A168","A172","A176","A179","A180","A200",
+"A204","A214"
 ];
 
+let modularState =
+  JSON.parse(localStorage.getItem("apq_modular_state_v1") || "null");
 
-function openCalendar(){
+if(!modularState){
+  modularState={};
 
-  const saved =
-    localStorage.getItem(DATE_KEY);
-
-  if(saved){
-
-    const parts =
-      saved.split("-");
-
-    if(parts.length === 3){
-
-      selectedDate =
-        new Date(
-          parseInt(parts[0]),
-          parseInt(parts[1])-1,
-          parseInt(parts[2])
-        );
-
-      calendarDate =
-        new Date(selectedDate);
-
-    }
-
-  }else{
-
-    calendarDate =
-      new Date();
-
+  for(let i=1;i<=216;i++){
+    const id="A"+String(i).padStart(3,"0");
+    modularState[id]=INITIAL_FREE.includes(id) ? "free" : "busy";
   }
 
-
-  renderCalendar();
-
-
-  document
-    .getElementById("calendarOverlay")
-    .classList.add("show");
-
+  saveModular();
 }
 
-
-function closeCalendar(){
-
-  document
-    .getElementById("calendarOverlay")
-    .classList.remove("show");
-
-}
-
-
-function changeMonth(direction){
-
-  calendarDate.setMonth(
-    calendarDate.getMonth() + direction
+function saveModular(){
+  localStorage.setItem(
+    "apq_modular_state_v1",
+    JSON.stringify(modularState)
   );
 
-  renderCalendar();
-
+  localStorage.setItem(
+    "apq_modular_update_v1",
+    new Date().toLocaleString("es-ES")
+  );
 }
 
+function renderModules(){
+
+  const container=document.getElementById("modules");
+
+  if(!container)return;
+
+  container.innerHTML="";
+
+  for(let module=1;module<=3;module++){
+
+    const moduleDiv=document.createElement("div");
+    moduleDiv.className="module";
+
+    const title=document.createElement("div");
+    title.className="moduleTitle";
+    title.textContent="Módulo "+module;
+
+    moduleDiv.appendChild(title);
+
+    for(let part=0;part<2;part++){
+
+      const letter=part===0?"A":"B";
+
+      const start=
+        (module-1)*72+
+        part*36+
+        1;
+
+      const end=start+35;
+
+      const sub=document.createElement("div");
+      sub.className="moduleSub";
+      sub.textContent=
+        module+letter+" · A"+String(start).padStart(3,"0")+
+        " – A"+String(end).padStart(3,"0");
+
+      moduleDiv.appendChild(sub);
+
+      const grid=document.createElement("div");
+      grid.className="locations";
+
+      for(let i=start;i<=end;i++){
+
+        const id="A"+String(i).padStart(3,"0");
+
+        const btn=document.createElement("button");
+
+        btn.className=
+          "loc "+
+          (modularState[id]==="free" ? "free":"busy");
+
+        btn.textContent=id;
+
+        btn.dataset.id=id;
+
+        btn.onclick=()=>{
+
+          modularState[id]=
+            modularState[id]==="free"
+            ? "busy"
+            : "free";
+
+          saveModular();
+          renderModules();
+        };
+
+        grid.appendChild(btn);
+      }
+
+      moduleDiv.appendChild(grid);
+    }
+
+    container.appendChild(moduleDiv);
+  }
+
+  updateHeights();
+}
+
+function updateHeights(){
+
+  const totals=[0,0,0,0];
+
+  for(let i=1;i<=216;i++){
+
+    const id="A"+String(i).padStart(3,"0");
+
+    if(modularState[id]==="free"){
+      totals[(i-1)%4]++;
+    }
+  }
+
+  document.getElementById("h1").textContent=totals[0];
+  document.getElementById("h2").textContent=totals[1];
+  document.getElementById("h3").textContent=totals[2];
+  document.getElementById("h4").textContent=totals[3];
+}
+
+function filterModular(){
+
+  const q=
+    document.getElementById("modSearch")
+    .value.trim().toUpperCase();
+
+  document.querySelectorAll(".loc").forEach(btn=>{
+
+    btn.style.display=
+      !q || btn.dataset.id.includes(q)
+      ? ""
+      : "none";
+
+  });
+}
+
+function showFreeLocations(){
+
+  const panel=document.getElementById("freePanel");
+
+  panel.style.display="block";
+
+  const free=
+    Object.keys(modularState)
+    .filter(id=>modularState[id]==="free");
+
+  panel.innerHTML=`
+    <div class="freeList">
+      <h3>🟢 Ubicaciones libres</h3>
+      ${
+        free.length
+        ? free.map(id=>`<span class="freeItem">${id}</span>`).join("")
+        : "<p>No hay ubicaciones libres.</p>"
+      }
+    </div>
+  `;
+
+  panel.scrollIntoView({behavior:"smooth"});
+}
+
+
+/* =========================
+   CALENDARIO
+========================= */
+
+let selectedDate=
+  localStorage.getItem("apq_modular_date_v1") ||
+  new Date().toISOString().slice(0,10);
+
+let calendarMonth=
+  new Date(selectedDate+"T12:00:00");
 
 function renderCalendar(){
 
-  const year =
-    calendarDate.getFullYear();
+  const year=calendarMonth.getFullYear();
+  const month=calendarMonth.getMonth();
 
-  const month =
-    calendarDate.getMonth();
+  const names=[
+    "enero","febrero","marzo","abril","mayo","junio",
+    "julio","agosto","septiembre","octubre","noviembre","diciembre"
+  ];
 
+  document.getElementById("monthName").textContent=
+    names[month]+" "+year;
 
-  document.getElementById("calendarTitle").textContent =
-    monthNames[month] + " " + year;
+  const days=document.getElementById("calendarDays");
 
+  days.innerHTML="";
 
-  const days =
-    document.getElementById("calendarDays");
-
-  days.innerHTML = "";
-
-
-  /*
-    JS empieza la semana en domingo.
-    Lo convertimos a lunes = 0.
-  */
-
-  const firstDay =
+  let first=
     new Date(year,month,1).getDay();
 
-  const offset =
-    firstDay === 0 ? 6 : firstDay - 1;
+  first=first===0?6:first-1;
 
+  for(let i=0;i<first;i++){
 
-  const daysInMonth =
-    new Date(year,month + 1,0).getDate();
-
-
-  for(let i=0;i<offset;i++){
-
-    const empty =
-      document.createElement("div");
-
-    empty.className =
-      "calendar-day empty";
-
+    const empty=document.createElement("div");
     days.appendChild(empty);
-
   }
 
+  const count=
+    new Date(year,month+1,0).getDate();
 
-  const today =
-    new Date();
+  for(let d=1;d<=count;d++){
 
+    const btn=document.createElement("button");
 
-  for(let day=1;day<=daysInMonth;day++){
+    btn.className="day";
 
-    const button =
-      document.createElement("button");
+    const iso=
+      year+"-"+
+      String(month+1).padStart(2,"0")+"-"+
+      String(d).padStart(2,"0");
 
-    button.className =
-      "calendar-day";
+    btn.textContent=d;
 
-    button.textContent =
-      day;
-
-
-    if(
-      day === today.getDate() &&
-      month === today.getMonth() &&
-      year === today.getFullYear()
-    ){
-
-      button.classList.add("today");
-
+    if(iso===selectedDate){
+      btn.classList.add("selected");
     }
 
+    btn.onclick=()=>{
 
-    if(
-      selectedDate &&
-      day === selectedDate.getDate() &&
-      month === selectedDate.getMonth() &&
-      year === selectedDate.getFullYear()
-    ){
+      selectedDate=iso;
 
-      button.classList.add("selected");
-
-    }
-
-
-    button.onclick = ()=>{
-
-      selectDate(
-        year,
-        month,
-        day
+      localStorage.setItem(
+        "apq_modular_date_v1",
+        selectedDate
       );
 
+      renderCalendar();
     };
 
-
-    days.appendChild(button);
-
+    days.appendChild(btn);
   }
 
+  document.getElementById("selectedDate").textContent=
+    "Fecha seleccionada: "+
+    new Date(selectedDate+"T12:00:00")
+      .toLocaleDateString("es-ES");
 }
 
+function changeMonth(delta){
 
-function selectDate(year,month,day){
-
-  selectedDate =
-    new Date(year,month,day);
-
-
-  const value =
-    year + "-" +
-    String(month + 1).padStart(2,"0") + "-" +
-    String(day).padStart(2,"0");
-
-
-  localStorage.setItem(
-    DATE_KEY,
-    value
+  calendarMonth.setMonth(
+    calendarMonth.getMonth()+delta
   );
 
-
-  const text =
-    selectedDate.toLocaleDateString(
-      "es-ES",
-      {
-        weekday:"long",
-        day:"numeric",
-        month:"long",
-        year:"numeric"
-      }
-    );
-
-
-  const selected =
-    document.getElementById("selectedDate");
-
-
-  selected.textContent =
-    "📅 Día seleccionado: " +
-    text.charAt(0).toUpperCase() +
-    text.slice(1);
-
-
-  selected.style.display =
-    "block";
-
-
-  closeCalendar();
-
+  renderCalendar();
 }
 
 
-function loadSelectedDate(){
+/* =========================
+   APQ VIEJA · STOCK
+========================= */
 
-  const saved =
-    localStorage.getItem(DATE_KEY);
+const OLD_STOCK_KEY=
+  "apq_vieja_stock_v1";
 
-  if(!saved){
+const OLD_LOCATIONS=[
+  "W02008",
+  "W02009",
+  "W02007",
+  "W02010",
+  "W02006",
+  "W02005",
+  "W02004",
+  "W02003",
+  "W02002"
+];
 
-    return;
+function getOldStock(){
 
+  try{
+    return JSON.parse(
+      localStorage.getItem(OLD_STOCK_KEY)||"{}"
+    );
+  }catch(e){
+    return {};
+  }
+}
+
+function loadOldStock(){
+
+  const data=getOldStock();
+
+  OLD_LOCATIONS.forEach(w=>{
+
+    const input=
+      document.getElementById("stock-"+w);
+
+    if(input){
+      input.value=
+        Number.isFinite(Number(data[w]))
+        ? Math.max(0,Number(data[w]))
+        : 0;
+    }
+  });
+}
+
+function oldChange(w,delta){
+
+  const input=
+    document.getElementById("stock-"+w);
+
+  if(!input)return;
+
+  let value=
+    parseInt(input.value)||0;
+
+  value+=delta;
+
+  if(value<0)value=0;
+  if(value>9999)value=9999;
+
+  input.value=value;
+
+  const box=
+    input.closest(".oldLoc,.oldWide");
+
+  if(box){
+    box.classList.add("pending");
   }
 
+  const msg=
+    document.getElementById("msg-"+w);
 
-  const parts =
-    saved.split("-");
+  if(msg){
+    msg.textContent=
+      "Cambio pendiente · ✓ para confirmar";
+  }
+}
 
+function oldManual(w){
 
-  if(parts.length !== 3){
+  const input=
+    document.getElementById("stock-"+w);
 
-    return;
+  if(!input)return;
 
+  let value=
+    parseInt(input.value)||0;
+
+  value=Math.max(0,Math.min(9999,value));
+
+  input.value=value;
+
+  const box=
+    input.closest(".oldLoc,.oldWide");
+
+  if(box){
+    box.classList.add("pending");
   }
 
+  const msg=
+    document.getElementById("msg-"+w);
 
-  selectedDate =
-    new Date(
-      parseInt(parts[0]),
-      parseInt(parts[1])-1,
-      parseInt(parts[2])
-    );
+  if(msg){
+    msg.textContent=
+      "Cambio pendiente · ✓ para confirmar";
+  }
+}
 
+function oldConfirm(w){
 
-  const text =
-    selectedDate.toLocaleDateString(
-      "es-ES",
-      {
-        weekday:"long",
-        day:"numeric",
-        month:"long",
-        year:"numeric"
-      }
-    );
+  const input=
+    document.getElementById("stock-"+w);
 
+  if(!input)return;
 
-  const selected =
-    document.getElementById("selectedDate");
+  let value=
+    parseInt(input.value)||0;
 
+  value=Math.max(0,Math.min(9999,value));
 
-  selected.textContent =
-    "📅 Día seleccionado: " +
-    text.charAt(0).toUpperCase() +
-    text.slice(1);
+  input.value=value;
 
+  const data=getOldStock();
 
-  selected.style.display =
-    "block";
+  data[w]=value;
 
+  localStorage.setItem(
+    OLD_STOCK_KEY,
+    JSON.stringify(data)
+  );
+
+  const box=
+    input.closest(".oldLoc,.oldWide");
+
+  if(box){
+    box.classList.remove("pending");
+  }
+
+  const msg=
+    document.getElementById("msg-"+w);
+
+  if(msg){
+
+    msg.textContent=
+      "✓ Stock confirmado";
+
+    setTimeout(()=>{
+      msg.textContent="";
+    },1400);
+  }
 }
 
 
-/* =====================================================
+/* =========================
    INICIO
-===================================================== */
+========================= */
 
-loadData();
+renderModules();
+renderCalendar();
 
 </script>
 
