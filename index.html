@@ -945,6 +945,20 @@ button{
     padding:7px 4px 8px;
   }
 }
+
+
+/* FICHAS BARNICES */
+.varnishClickable{cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;}
+.varnishClickable:active{opacity:.7;}
+.varnishModal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:flex-end;justify-content:center;z-index:9999;padding:0;}
+.varnishModal.show{display:flex;}
+.varnishSheet{width:100%;max-width:560px;background:#0d1b2a;border:1px solid #29415a;border-bottom:0;border-radius:20px 20px 0 0;padding:20px;box-shadow:0 -10px 40px rgba(0,0,0,.4);max-height:88vh;overflow:auto;}
+.varnishSheet h2{margin:0 0 16px;font-size:22px;}
+.fichaRow{padding:12px 0;border-bottom:1px solid #26394d;}
+.fichaLabel{font-size:12px;color:#91a4b8;text-transform:uppercase;margin-bottom:4px;}
+.fichaValue{font-size:16px;color:#fff;white-space:pre-wrap;}
+.fichaClose{width:100%;margin-top:18px;padding:13px;border:0;border-radius:12px;background:#29415a;color:#fff;font-size:16px;font-weight:700;}
+
 </style>
 </head>
 
@@ -1192,7 +1206,7 @@ button{
       >
 
         <div class="oldCode">W02008</div>
-        <div class="oldMaterial">814.449</div>
+        <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('814.449')">814.449</div>
 
         <div class="oldControls">
 
@@ -1232,7 +1246,7 @@ button{
       >
 
         <div class="oldCode">W02009</div>
-        <div class="oldMaterial">MKB113T</div>
+        <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('MKB113T')">MKB113T</div>
 
         <div class="oldControls">
 
@@ -1278,7 +1292,7 @@ button{
       >
 
         <div class="oldCode">W02007</div>
-        <div class="oldMaterial">818.083</div>
+        <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('818.083')">818.083</div>
 
         <div class="oldControls">
 
@@ -1318,7 +1332,7 @@ button{
       >
 
         <div class="oldCode">W02010</div>
-        <div class="oldMaterial">110.496</div>
+        <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('110.496')">110.496</div>
 
         <div class="oldControls">
 
@@ -1362,7 +1376,7 @@ button{
     >
 
       <div class="oldCode">W02006</div>
-      <div class="oldMaterial">DISOLVENTE</div>
+      <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('DISOLVENTE')">DISOLVENTE</div>
 
       <div class="oldControls">
 
@@ -1404,7 +1418,7 @@ button{
     >
 
       <div class="oldCode">W02005</div>
-      <div class="oldMaterial">MKW1301T</div>
+      <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('MKW1301T')">MKW1301T</div>
 
       <div class="oldControls">
 
@@ -1446,7 +1460,7 @@ button{
     >
 
       <div class="oldCode">W02004</div>
-      <div class="oldMaterial">450.148</div>
+      <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('450.148')">450.148</div>
 
       <div class="oldControls">
 
@@ -1488,7 +1502,7 @@ button{
     >
 
       <div class="oldCode">W02003</div>
-      <div class="oldMaterial">816.621</div>
+      <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('816.621')">816.621</div>
 
       <div class="oldControls">
 
@@ -1530,7 +1544,7 @@ button{
     >
 
       <div class="oldCode">W02002</div>
-      <div class="oldMaterial">814.509</div>
+      <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('814.509')">814.509</div>
 
       <div class="oldControls">
 
@@ -1600,52 +1614,52 @@ button{
     <div class="varnishList">
 
       <div class="varnishItem">
-        <div class="varnishCode">814.509</div>
+        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('814.509')">814.509</div>
         <div class="varnishInfo">Referencia de barniz</div>
       </div>
 
       <div class="varnishItem">
-        <div class="varnishCode">816.621</div>
+        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('816.621')">816.621</div>
         <div class="varnishInfo">Referencia de barniz</div>
       </div>
 
       <div class="varnishItem">
-        <div class="varnishCode">450.148</div>
+        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('450.148')">450.148</div>
         <div class="varnishInfo">Termosellable · Palet de 4 bidones de 200 L</div>
       </div>
 
       <div class="varnishItem">
-        <div class="varnishCode">MKW1301T</div>
+        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('MKW1301T')">MKW1301T</div>
         <div class="varnishInfo">Referencia de barniz</div>
       </div>
 
       <div class="varnishItem">
-        <div class="varnishCode">818.083</div>
+        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('818.083')">818.083</div>
         <div class="varnishInfo">Referencia de barniz</div>
       </div>
 
       <div class="varnishItem">
-        <div class="varnishCode">814.449</div>
+        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('814.449')">814.449</div>
         <div class="varnishInfo">Referencia de barniz</div>
       </div>
 
       <div class="varnishItem">
-        <div class="varnishCode">110.496</div>
+        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('110.496')">110.496</div>
         <div class="varnishInfo">Referencia de barniz</div>
       </div>
 
       <div class="varnishItem">
-        <div class="varnishCode">MKB113T</div>
+        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('MKB113T')">MKB113T</div>
         <div class="varnishInfo">Referencia de barniz</div>
       </div>
 
       <div class="varnishItem">
-        <div class="varnishCode">MKW1301T</div>
+        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('MKW1301T')">MKW1301T</div>
         <div class="varnishInfo">Referencia de barniz</div>
       </div>
 
       <div class="varnishItem">
-        <div class="varnishCode">Disolvente</div>
+        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('Disolvente')">Disolvente</div>
         <div class="varnishInfo">Material de uso habitual</div>
       </div>
 
@@ -1655,6 +1669,20 @@ button{
 
 </section>
 
+
+
+
+<div id="varnishModal" class="varnishModal" onclick="if(event.target===this) closeVarnishFicha()">
+  <div class="varnishSheet">
+    <h2 id="fichaTitle">Ficha de barniz</h2>
+    <div class="fichaRow"><div class="fichaLabel">Número de barniz</div><div class="fichaValue" id="fichaNumero"></div></div>
+    <div class="fichaRow"><div class="fichaLabel">Nombre</div><div class="fichaValue" id="fichaNombre"></div></div>
+    <div class="fichaRow"><div class="fichaLabel">Cara</div><div class="fichaValue" id="fichaCara"></div></div>
+    <div class="fichaRow"><div class="fichaLabel">Aplicación</div><div class="fichaValue" id="fichaAplicacion"></div></div>
+    <div class="fichaRow"><div class="fichaLabel">Observaciones</div><div class="fichaValue" id="fichaObservaciones"></div></div>
+    <button class="fichaClose" onclick="closeVarnishFicha()">Cerrar</button>
+  </div>
+</div>
 
 <div id="modularModal" class="modularModal" onclick="if(event.target===this) closeModularModal()">
   <div class="modularSheet">
@@ -2519,6 +2547,44 @@ function changeDate(value){
       "es-ES"
     )
   );
+}
+
+
+
+
+/* =====================================================
+   FICHAS BARNICES
+===================================================== */
+
+const VARNISH_FICHAS = {
+  "814.509": {numero:"814.509", nombre:"", cara:"", aplicacion:"", observaciones:""},
+  "816.621": {numero:"816.621", nombre:"", cara:"", aplicacion:"", observaciones:""},
+  "450.148": {numero:"450.148", nombre:"Termosellable", cara:"", aplicacion:"", observaciones:"Palet de 4 bidones de 200 L"},
+  "MKW1301T": {numero:"MKW1301T", nombre:"", cara:"", aplicacion:"", observaciones:""},
+  "818.083": {numero:"818.083", nombre:"", cara:"", aplicacion:"", observaciones:""},
+  "814.449": {numero:"814.449", nombre:"", cara:"", aplicacion:"", observaciones:""},
+  "110.496": {numero:"110.496", nombre:"", cara:"", aplicacion:"", observaciones:""},
+  "MKB113T": {numero:"MKB113T", nombre:"", cara:"", aplicacion:"", observaciones:""},
+  "Disolvente": {numero:"Disolvente", nombre:"Disolvente", cara:"", aplicacion:"", observaciones:"Material de uso habitual"}
+};
+
+function fichaText(value){
+  return value && String(value).trim() ? value : "Pendiente de completar";
+}
+
+function openVarnishFicha(code){
+  const ficha = VARNISH_FICHAS[code] || {numero:code,nombre:"",cara:"",aplicacion:"",observaciones:""};
+  document.getElementById("fichaTitle").textContent = "Ficha de " + ficha.numero;
+  document.getElementById("fichaNumero").textContent = fichaText(ficha.numero);
+  document.getElementById("fichaNombre").textContent = fichaText(ficha.nombre);
+  document.getElementById("fichaCara").textContent = fichaText(ficha.cara);
+  document.getElementById("fichaAplicacion").textContent = fichaText(ficha.aplicacion);
+  document.getElementById("fichaObservaciones").textContent = fichaText(ficha.observaciones);
+  document.getElementById("varnishModal").classList.add("show");
+}
+
+function closeVarnishFicha(){
+  document.getElementById("varnishModal").classList.remove("show");
 }
 
 
