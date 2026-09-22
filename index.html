@@ -949,6 +949,7 @@ button{
 
 /* FICHAS BARNICES */
 .varnishClickable{cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;}
+button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transparent;border:0;color:inherit;font:inherit;text-align:left;cursor:pointer;}
 .varnishClickable:active{opacity:.7;}
 .varnishModal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:flex-end;justify-content:center;z-index:9999;padding:0;}
 .varnishModal.show{display:flex;}
@@ -1206,7 +1207,7 @@ button{
       >
 
         <div class="oldCode">W02008</div>
-        <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('814.449')">814.449</div>
+        <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('814.449')">814.449</button>
 
         <div class="oldControls">
 
@@ -1246,7 +1247,7 @@ button{
       >
 
         <div class="oldCode">W02009</div>
-        <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('MKB113T')">MKB113T</div>
+        <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('MKB113T')">MKB113T</button>
 
         <div class="oldControls">
 
@@ -1292,7 +1293,7 @@ button{
       >
 
         <div class="oldCode">W02007</div>
-        <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('818.083')">818.083</div>
+        <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('818.083')">818.083</button>
 
         <div class="oldControls">
 
@@ -1332,7 +1333,7 @@ button{
       >
 
         <div class="oldCode">W02010</div>
-        <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('110.496')">110.496</div>
+        <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('110.496')">110.496</button>
 
         <div class="oldControls">
 
@@ -1376,7 +1377,7 @@ button{
     >
 
       <div class="oldCode">W02006</div>
-      <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('DISOLVENTE')">DISOLVENTE</div>
+      <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('DISOLVENTE')">DISOLVENTE</button>
 
       <div class="oldControls">
 
@@ -1418,7 +1419,7 @@ button{
     >
 
       <div class="oldCode">W02005</div>
-      <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('MKW1301T')">MKW1301T</div>
+      <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('MKW1301T')">MKW1301T</button>
 
       <div class="oldControls">
 
@@ -1460,7 +1461,7 @@ button{
     >
 
       <div class="oldCode">W02004</div>
-      <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('450.148')">450.148</div>
+      <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('450.148')">450.148</button>
 
       <div class="oldControls">
 
@@ -1502,7 +1503,7 @@ button{
     >
 
       <div class="oldCode">W02003</div>
-      <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('816.621')">816.621</div>
+      <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('816.621')">816.621</button>
 
       <div class="oldControls">
 
@@ -1544,7 +1545,7 @@ button{
     >
 
       <div class="oldCode">W02002</div>
-      <div class="oldMaterial varnishClickable" onclick="openVarnishFicha('814.509')">814.509</div>
+      <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('814.509')">814.509</button>
 
       <div class="oldControls">
 
@@ -1677,7 +1678,8 @@ button{
     <h2 id="fichaTitle">Ficha de barniz</h2>
     <div class="fichaRow"><div class="fichaLabel">Número de barniz</div><div class="fichaValue" id="fichaNumero"></div></div>
     <div class="fichaRow"><div class="fichaLabel">Nombre</div><div class="fichaValue" id="fichaNombre"></div></div>
-    <div class="fichaRow"><div class="fichaLabel">Cara</div><div class="fichaValue" id="fichaCara"></div></div>
+    <div class="fichaRow"><div class="fichaLabel">Cara interior / exterior</div><div class="fichaValue" id="fichaCara"></div></div>
+    <div class="fichaRow"><div class="fichaLabel">Proveedor</div><div class="fichaValue" id="fichaProveedor"></div></div>
     <div class="fichaRow"><div class="fichaLabel">Aplicación</div><div class="fichaValue" id="fichaAplicacion"></div></div>
     <div class="fichaRow"><div class="fichaLabel">Observaciones</div><div class="fichaValue" id="fichaObservaciones"></div></div>
     <button class="fichaClose" onclick="closeVarnishFicha()">Cerrar</button>
@@ -2557,15 +2559,15 @@ function changeDate(value){
 ===================================================== */
 
 const VARNISH_FICHAS = {
-  "814.509": {numero:"814.509", nombre:"", cara:"", aplicacion:"", observaciones:""},
-  "816.621": {numero:"816.621", nombre:"", cara:"", aplicacion:"", observaciones:""},
-  "450.148": {numero:"450.148", nombre:"Termosellable", cara:"", aplicacion:"", observaciones:"Palet de 4 bidones de 200 L"},
-  "MKW1301T": {numero:"MKW1301T", nombre:"", cara:"", aplicacion:"", observaciones:""},
-  "818.083": {numero:"818.083", nombre:"", cara:"", aplicacion:"", observaciones:""},
-  "814.449": {numero:"814.449", nombre:"", cara:"", aplicacion:"", observaciones:""},
-  "110.496": {numero:"110.496", nombre:"", cara:"", aplicacion:"", observaciones:""},
-  "MKB113T": {numero:"MKB113T", nombre:"", cara:"", aplicacion:"", observaciones:""},
-  "Disolvente": {numero:"Disolvente", nombre:"Disolvente", cara:"", aplicacion:"", observaciones:"Material de uso habitual"}
+  "814.509": {numero:"814.509", nombre:"", cara:"", aplicacion:"", observaciones:"", proveedor:""},
+  "816.621": {numero:"816.621", nombre:"", cara:"", aplicacion:"", observaciones:"", proveedor:""},
+  "450.148": {numero:"450.148", nombre:"Termosellable", cara:"", aplicacion:"", observaciones:"Palet de 4 bidones de 200 L", proveedor:""},
+  "MKW1301T": {numero:"MKW1301T", nombre:"", cara:"", aplicacion:"", observaciones:"", proveedor:""},
+  "818.083": {numero:"818.083", nombre:"", cara:"", aplicacion:"", observaciones:"", proveedor:""},
+  "814.449": {numero:"814.449", nombre:"", cara:"", aplicacion:"", observaciones:"", proveedor:""},
+  "110.496": {numero:"110.496", nombre:"", cara:"", aplicacion:"", observaciones:"", proveedor:""},
+  "MKB113T": {numero:"MKB113T", nombre:"", cara:"", aplicacion:"", observaciones:"", proveedor:""},
+  "Disolvente": {numero:"Disolvente", nombre:"Disolvente", cara:"", aplicacion:"", observaciones:"Material de uso habitual", proveedor:""}
 };
 
 function fichaText(value){
@@ -2573,11 +2575,12 @@ function fichaText(value){
 }
 
 function openVarnishFicha(code){
-  const ficha = VARNISH_FICHAS[code] || {numero:code,nombre:"",cara:"",aplicacion:"",observaciones:""};
+  const ficha = VARNISH_FICHAS[code] || {numero:code,nombre:"",cara:"",aplicacion:"",observaciones:"", proveedor:""};
   document.getElementById("fichaTitle").textContent = "Ficha de " + ficha.numero;
   document.getElementById("fichaNumero").textContent = fichaText(ficha.numero);
   document.getElementById("fichaNombre").textContent = fichaText(ficha.nombre);
   document.getElementById("fichaCara").textContent = fichaText(ficha.cara);
+  document.getElementById("fichaProveedor").textContent = fichaText(ficha.proveedor);
   document.getElementById("fichaAplicacion").textContent = fichaText(ficha.aplicacion);
   document.getElementById("fichaObservaciones").textContent = fichaText(ficha.observaciones);
   document.getElementById("varnishModal").classList.add("show");
