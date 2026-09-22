@@ -254,7 +254,7 @@ button{
 
 .stats{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:9px;
   margin-bottom:11px;
 }
@@ -293,6 +293,64 @@ button{
   padding:11px 13px;
   outline:none;
   margin-bottom:10px;
+}
+
+
+.outSearchBox{
+  background:#0d1e2d;
+  border:1px solid #1d3b52;
+  border-radius:15px;
+  padding:11px;
+  margin-bottom:12px;
+}
+
+.outSearchTitle{
+  font-size:11px;
+  font-weight:800;
+  color:#ff9b4a;
+  margin-bottom:7px;
+}
+
+.outSearch{
+  width:100%;
+  box-sizing:border-box;
+  background:#102335;
+  border:1px solid #29485d;
+  color:white;
+  border-radius:11px;
+  padding:10px 12px;
+  outline:none;
+}
+
+.outSearchResults{
+  margin-top:8px;
+}
+
+.outSearchResult{
+  width:100%;
+  border:1px solid #28465b;
+  background:#132a3d;
+  color:white;
+  border-radius:11px;
+  padding:9px 10px;
+  margin-top:6px;
+  text-align:left;
+}
+
+.outSearchResult b{
+  color:#ff9b4a;
+}
+
+.outSearchResult small{
+  display:block;
+  color:#a9bac6;
+  margin-top:2px;
+}
+
+.outSearchEmpty{
+  color:#91a8b8;
+  font-size:11px;
+  padding:5px 2px 0;
 }
 
 .actions{
@@ -386,6 +444,10 @@ button{
   background:#ff6574;
 }
 
+.dot.x{
+  background:#ffad42;
+}
+
 .modularView{
   display:none;
 }
@@ -435,6 +497,10 @@ button{
 
 .loc.occupied{
   background:#733541;
+}
+
+.loc.out{
+  background:#8a5a20;
 }
 
 /* =========================
@@ -658,6 +724,132 @@ button{
 }
 
 /* =========================
+   MODAL ESTADO MODULAR
+========================= */
+
+.modularModal{
+  position:fixed;
+  inset:0;
+  background:#0009;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  z-index:100;
+  padding:12px;
+}
+
+.modularModal.show{
+  display:flex;
+}
+
+.modularSheet{
+  width:100%;
+  max-width:520px;
+  background:#0d1e2d;
+  border:1px solid #24465d;
+  border-radius:20px 20px 14px 14px;
+  padding:16px;
+  box-shadow:0 -10px 35px #0009;
+}
+
+.modularSheet h3{
+  margin:0 0 4px;
+  font-size:18px;
+}
+
+.modalSub{
+  color:#8fa5b7;
+  font-size:11px;
+  margin-bottom:13px;
+}
+
+.stateButtons{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:7px;
+}
+
+.stateButtons button{
+  border:1px solid #24465d;
+  border-radius:12px;
+  padding:11px 5px;
+  color:white;
+  font-weight:800;
+  background:#132a3d;
+}
+
+.stateButtons .freeState{background:#0f624d}
+.stateButtons .occState{background:#733541}
+.stateButtons .outState{background:#8a5a20}
+
+.outMaterialBox{
+  display:none;
+  margin-top:11px;
+}
+
+.outMaterialBox.show{
+  display:block;
+}
+
+.outMaterialBox label{
+  display:block;
+  color:#b9c9d4;
+  font-size:11px;
+  margin-bottom:5px;
+}
+
+.outMaterialBox select,
+.outMaterialBox input{
+  width:100%;
+  box-sizing:border-box;
+  background:#132a3d;
+  border:1px solid #35556b;
+  border-radius:10px;
+  padding:11px;
+  color:white;
+  outline:none;
+}
+
+.outCustomBox{
+  display:none;
+  margin-top:8px;
+}
+
+.outCustomBox.show{
+  display:block;
+}
+
+.modalActions{
+  display:flex;
+  gap:8px;
+  margin-top:11px;
+}
+
+.modalActions button{
+  flex:1;
+  border:0;
+  border-radius:11px;
+  padding:11px;
+  font-weight:800;
+}
+
+.cancelState{
+  background:#173047;
+  color:#dce8ef;
+}
+
+.saveOut{
+  background:#ffad42;
+  color:#201305;
+}
+
+@media(max-width:390px){
+  .stateButtons button{
+    font-size:11px;
+  }
+}
+
+/* =========================
    TOAST
 ========================= */
 
@@ -814,7 +1006,7 @@ button{
 
       <button onclick="openModular()">
         <strong>📦 APQ MODULAR</strong>
-        <span>216 ubicaciones · 4 alturas</span>
+        <span>216 ubicaciones · 3 módulos de 72 · 4 alturas</span>
       </button>
 
       <button onclick="openOldApq()">
@@ -843,7 +1035,7 @@ button{
 
     <div>
       <div class="modularBrand">📦 ALMACÉN MODULAR</div>
-      <div class="sub">216 ubicaciones · 4 alturas</div>
+      <div class="sub">216 ubicaciones · 3 módulos de 72 · 4 alturas</div>
     </div>
 
     <button class="calendar" onclick="toggleCalendar()">
@@ -876,7 +1068,12 @@ button{
 
     <div class="stat occ">
       <b id="occCount">166</b>
-      <span>🔴 UBICACIONES OCUPADAS</span>
+      <span>🔴 OCUPADAS</span>
+    </div>
+
+    <div class="stat out">
+      <b id="outCount">0</b>
+      <span>🟠 FUERA DE ZONA</span>
     </div>
 
   </div>
@@ -887,6 +1084,22 @@ button{
     placeholder="🔎 Buscar ubicación (A001…A216)"
     oninput="searchLocation(this.value)"
   >
+
+
+  <div class="outSearchBox">
+
+    <div class="outSearchTitle">🟠 BUSCAR MATERIAL FUERA DE ZONA</div>
+
+    <input
+      id="outMaterialSearch"
+      class="outSearch"
+      placeholder="🔎 Escribe el nombre del material…"
+      oninput="searchOutMaterial(this.value)"
+    >
+
+    <div id="outSearchResults" class="outSearchResults"></div>
+
+  </div>
 
   <div class="actions">
 
@@ -920,7 +1133,7 @@ button{
     >
       <span>🟢 Libre</span>
       <span>🔴 Ocupada</span>
-      <span>Toque = cambiar</span>
+      <span>🟠 Fuera de zona</span>
     </div>
 
     <div class="modularGridWrap">
@@ -1443,6 +1656,41 @@ button{
 </section>
 
 
+<div id="modularModal" class="modularModal" onclick="if(event.target===this) closeModularModal()">
+  <div class="modularSheet">
+    <h3 id="modalLocationTitle">A001</h3>
+    <div class="modalSub">Selecciona el estado de la ubicación</div>
+
+    <div class="stateButtons">
+      <button class="freeState" onclick="setModularState('free')">🟢 LIBRE</button>
+      <button class="occState" onclick="setModularState('occupied')">🔴 OCUPADA</button>
+      <button class="outState" onclick="prepareOutState()">🟠 FUERA DE ZONA</button>
+    </div>
+
+    <div id="outMaterialBox" class="outMaterialBox">
+      <label for="outMaterialType">Tipo de material fuera de zona</label>
+      <select id="outMaterialType" onchange="changeOutMaterialType(this.value)">
+        <option value="">Selecciona una opción…</option>
+        <option value="Lavado parrillas">Lavado parrillas</option>
+        <option value="Disolvente NH">Disolvente NH</option>
+        <option value="Fotomecánica">Fotomecánica</option>
+        <option value="Tinta impresión">Tinta impresión</option>
+        <option value="Otros">Otros</option>
+      </select>
+
+      <div id="outCustomBox" class="outCustomBox">
+        <label for="outMaterial">Material concreto</label>
+        <input id="outMaterial" type="text" placeholder="Escribe el nombre del material">
+      </div>
+    </div>
+
+    <div class="modalActions">
+      <button class="cancelState" onclick="closeModularModal()">Cancelar</button>
+      <button id="saveOutBtn" class="saveOut" onclick="saveOutState()" style="display:none">Guardar FUERA DE ZONA</button>
+    </div>
+  </div>
+</div>
+
 <div id="toast" class="toast"></div>
 
 </div>
@@ -1535,7 +1783,9 @@ let modularState =
 if(!modularState){
 
   modularState = {
-    locations:{}
+    locations:{},
+    materials:{},
+    outTypes:{}
   };
 
   for(let i=1;i<=216;i++){
@@ -1557,6 +1807,14 @@ if(!modularState){
     MODULAR_KEY,
     JSON.stringify(modularState)
   );
+}
+
+if(!modularState.materials){
+  modularState.materials = {};
+}
+
+if(!modularState.outTypes){
+  modularState.outTypes = {};
 }
 
 
@@ -1601,6 +1859,11 @@ function renderModularStats(){
     values.filter(
       x => x === "occupied"
     ).length;
+
+  document.getElementById("outCount").textContent =
+    values.filter(
+      x => x === "out"
+    ).length;
 }
 
 
@@ -1628,9 +1891,9 @@ function renderDashboard(){
   dashboard.innerHTML = "";
 
   const modules = [
-    ["MÓDULO 1","1A",1,36,"1B",37,72],
-    ["MÓDULO 2","2A",73,108,"2B",109,144],
-    ["MÓDULO 3","3A",145,180,"3B",181,216]
+    ["MÓDULO 1",1,72],
+    ["MÓDULO 2",73,144],
+    ["MÓDULO 3",145,216]
   ];
 
   modules.forEach(function(module){
@@ -1652,19 +1915,11 @@ function renderDashboard(){
       </div>
 
       <div class="parts">
-
         ${makePart(
+          module[0],
           module[1],
-          module[2],
-          module[3]
+          module[2]
         )}
-
-        ${makePart(
-          module[4],
-          module[5],
-          module[6]
-        )}
-
       </div>
     `;
 
@@ -1683,9 +1938,14 @@ function makePart(name,start,end){
       "A" +
       String(i).padStart(3,"0");
 
+    const currentState =
+      modularState.locations[id];
+
     const cls =
-      modularState.locations[id] === "free"
+      currentState === "free"
       ? "f"
+      : currentState === "out"
+      ? "x"
       : "o";
 
     dots +=
@@ -1723,7 +1983,6 @@ function openBlock(name,start,end){
     "block";
 
   document.getElementById("viewTitle").textContent =
-    "MÓDULO " +
     name;
 
   const grid =
@@ -1753,33 +2012,41 @@ function openBlock(name,start,end){
       "A" +
       String(i).padStart(3,"0");
 
+    const currentState =
+      modularState.locations[id];
+
     const button =
       document.createElement("button");
 
     button.className =
       "loc " +
-      modularState.locations[id];
+      currentState;
 
     button.dataset.id = id;
+
+    let label = "OCUPADA";
+
+    if(currentState === "free"){
+      label = "LIBRE";
+    }else if(currentState === "out"){
+      const material =
+        modularState.materials[id] || "";
+
+      label =
+        material
+        ? "FUERA DE ZONA · " + material
+        : "FUERA DE ZONA";
+    }
 
     button.innerHTML =
       `
       <b>${id}</b>
-      <small>
-        ${
-          modularState.locations[id] === "free"
-          ? "LIBRE"
-          : "OCUPADA"
-        }
-      </small>
+      <small>${label}</small>
       `;
 
     button.onclick = function(){
 
-      toggleModularLocation(
-        id,
-        button
-      );
+      openModularModal(id);
 
     };
 
@@ -1788,33 +2055,185 @@ function openBlock(name,start,end){
 }
 
 
-function toggleModularLocation(id,element){
+let selectedModularId = null;
 
-  modularState.locations[id] =
-    modularState.locations[id] === "free"
-    ? "occupied"
-    : "free";
+function openModularModal(id){
 
-  element.className =
-    "loc " +
-    modularState.locations[id];
+  selectedModularId = id;
 
-  element.querySelector("small").textContent =
-    modularState.locations[id] === "free"
-    ? "LIBRE"
-    : "OCUPADA";
+  document.getElementById("modalLocationTitle").textContent =
+    id;
+
+  const savedType = modularState.outTypes[id] || "";
+
+  document.getElementById("outMaterialType").value = savedType;
+  document.getElementById("outMaterial").value =
+    savedType === "Otros" ? (modularState.materials[id] || "") : "";
+
+  document.getElementById("outMaterialBox").classList.remove("show");
+  document.getElementById("outCustomBox").classList.remove("show");
+  document.getElementById("saveOutBtn").style.display = "none";
+
+  document.getElementById("modularModal").classList.add("show");
+}
+
+
+function closeModularModal(){
+
+  selectedModularId = null;
+
+  document.getElementById("modularModal").classList.remove("show");
+}
+
+
+function setModularState(newState){
+
+  if(!selectedModularId){
+    return;
+  }
+
+  const id = selectedModularId;
+
+  modularState.locations[id] = newState;
+
+  if(newState !== "out"){
+    delete modularState.materials[id];
+    delete modularState.outTypes[id];
+  }
+
+  const gridButton =
+    document.querySelector(
+      '#modularGrid [data-id="' + id + '"]'
+    );
+
+  if(gridButton){
+
+    gridButton.className =
+      "loc " + newState;
+
+    let label =
+      newState === "free"
+      ? "LIBRE"
+      : "OCUPADA";
+
+    gridButton.querySelector("small").textContent =
+      label;
+  }
+
+  if(newState === "out"){
+    modularState.locations[id] = "out";
+    prepareOutState();
+    return;
+  }
 
   saveModular();
+
+  closeModularModal();
 
   showToast(
     id +
     " · " +
     (
-      modularState.locations[id] === "free"
+      newState === "free"
       ? "LIBRE"
       : "OCUPADA"
     )
   );
+}
+
+
+function prepareOutState(){
+
+  if(!selectedModularId){
+    return;
+  }
+
+  document.getElementById("outMaterialBox").classList.add("show");
+  document.getElementById("saveOutBtn").style.display = "block";
+
+  const savedType = modularState.outTypes[selectedModularId] || "";
+  const select = document.getElementById("outMaterialType");
+
+  if(savedType){
+    select.value = savedType;
+  }else{
+    select.value = "";
+  }
+
+  changeOutMaterialType(select.value);
+
+  setTimeout(function(){
+    select.focus();
+  },50);
+}
+
+
+function changeOutMaterialType(type){
+
+  const customBox = document.getElementById("outCustomBox");
+  const input = document.getElementById("outMaterial");
+
+  if(type === "Otros"){
+    customBox.classList.add("show");
+    setTimeout(function(){ input.focus(); },50);
+  }else{
+    customBox.classList.remove("show");
+    input.value = "";
+  }
+}
+
+
+function saveOutState(){
+
+  if(!selectedModularId){
+    return;
+  }
+
+  const id = selectedModularId;
+  const type = document.getElementById("outMaterialType").value;
+  const custom = document.getElementById("outMaterial").value.trim();
+
+  if(!type){
+    showToast("Selecciona el tipo de material");
+    return;
+  }
+
+  if(type === "Otros" && !custom){
+    showToast("Escribe el nombre del material");
+    return;
+  }
+
+  modularState.locations[id] = "out";
+  modularState.outTypes[id] = type;
+  modularState.materials[id] = type === "Otros" ? custom : type;
+
+  saveModular();
+
+  closeModularModal();
+
+  renderCurrentModularGrid();
+
+  showToast(id + " · FUERA DE ZONA");
+}
+
+
+function renderCurrentModularGrid(){
+
+  const title =
+    document.getElementById("viewTitle").textContent;
+
+  let start = 1;
+  let end = 72;
+
+  if(title === "MÓDULO 2"){
+    start = 73;
+    end = 144;
+  }else if(title === "MÓDULO 3"){
+    start = 145;
+    end = 216;
+  }
+
+  openBlock(title,start,end);
 }
 
 
@@ -1916,23 +2335,14 @@ function jumpTo(id){
 
   let block;
 
-  if(number <= 36){
-    block = ["1A",1,36];
-  }
-  else if(number <= 72){
-    block = ["1B",37,72];
-  }
-  else if(number <= 108){
-    block = ["2A",73,108];
+  if(number <= 72){
+    block = ["MÓDULO 1",1,72];
   }
   else if(number <= 144){
-    block = ["2B",109,144];
-  }
-  else if(number <= 180){
-    block = ["3A",145,180];
+    block = ["MÓDULO 2",73,144];
   }
   else{
-    block = ["3B",181,216];
+    block = ["MÓDULO 3",145,216];
   }
 
   openBlock(
@@ -1960,6 +2370,87 @@ function jumpTo(id){
   },100);
 }
 
+
+
+function normalizeSearchText(value){
+
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toUpperCase()
+    .trim();
+}
+
+
+function searchOutMaterial(value){
+
+  const box =
+    document.getElementById("outSearchResults");
+
+  if(!box){
+    return;
+  }
+
+  const q =
+    normalizeSearchText(value);
+
+  if(!q){
+    box.innerHTML = "";
+    return;
+  }
+
+  const matches =
+    Object.keys(modularState.locations)
+      .filter(function(id){
+
+        if(modularState.locations[id] !== "out"){
+          return false;
+        }
+
+        const material =
+          modularState.materials[id] || "";
+
+        return normalizeSearchText(material).includes(q);
+      })
+      .sort();
+
+  if(!matches.length){
+
+    box.innerHTML =
+      '<div class="outSearchEmpty">No hay ninguna ubicación FUERA DE ZONA con ese material.</div>';
+
+    return;
+  }
+
+  box.innerHTML =
+    matches.map(function(id){
+
+      const material =
+        modularState.materials[id] || "";
+
+      return `
+        <button
+          class="outSearchResult"
+          onclick="jumpTo('${id}')"
+        >
+          <b>${id}</b>
+          <small>🟠 ${escapeHtml(material)}</small>
+        </button>
+      `;
+
+    }).join("");
+}
+
+
+function escapeHtml(value){
+
+  return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/\"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
 
 function searchLocation(value){
 
