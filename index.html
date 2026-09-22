@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
 <title>A.P.Q. · Almacén Productos Químicos</title>
 
 <style>
@@ -10,426 +11,746 @@
 
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  background:#071b2c;
-  color:#fff;
+  background:#071321;
+  color:#eaf2f8;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
 button,input{
   font:inherit;
 }
 
+button{
+  cursor:pointer;
+}
+
 .app{
-  max-width:900px;
+  width:100%;
+  max-width:760px;
   margin:auto;
   min-height:100vh;
-  background:#f4f6f8;
-  color:#122333;
+  padding:16px 12px 70px;
 }
 
-header{
-  background:#073b63;
-  color:white;
-  padding:18px 16px;
+/* =========================
+   CABECERA GENERAL
+========================= */
+
+.header{
   text-align:center;
+  margin-bottom:16px;
 }
 
-header h1{
-  margin:0;
-  font-size:28px;
-  letter-spacing:1px;
+.brand{
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:.5px;
 }
 
-header p{
-  margin:4px 0 0;
-  opacity:.85;
-  font-size:14px;
+.sub{
+  color:#8fa5b7;
+  font-size:11px;
+  margin-top:3px;
 }
+
+/* =========================
+   BOTONES GENERALES
+========================= */
+
+.backBtn{
+  width:100%;
+  border:0;
+  background:#102335;
+  color:#8ddfc3;
+  border:1px solid #1d3b52;
+  border-radius:12px;
+  padding:10px;
+  font-weight:700;
+  margin-bottom:12px;
+}
+
+.homeBtn{
+  width:100%;
+  border:0;
+  background:#173047;
+  color:#eaf2f8;
+  border-radius:13px;
+  padding:12px;
+  font-weight:700;
+  margin-bottom:12px;
+}
+
+/* =========================
+   PANTALLAS
+========================= */
 
 .screen{
   display:none;
-  padding:16px;
 }
 
 .screen.active{
   display:block;
 }
 
-.card{
-  background:white;
-  border-radius:16px;
-  padding:18px;
+/* =========================
+   INICIO
+========================= */
+
+.homeCard{
+  background:#0d1e2d;
+  border:1px solid #1b384d;
+  border-radius:18px;
+  padding:14px;
+  margin-bottom:12px;
+}
+
+.homeTitle{
+  font-size:20px;
+  font-weight:900;
+  margin-bottom:5px;
+}
+
+.homeText{
+  color:#8fa5b7;
+  font-size:12px;
+  line-height:1.45;
   margin-bottom:14px;
-  box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
-.card h2{
-  margin:0 0 8px;
-  font-size:21px;
+.mainMenu{
+  display:grid;
+  gap:10px;
 }
 
-.card p{
-  margin:0;
-  color:#667582;
-}
-
-.bigbtn{
+.mainMenu button{
   width:100%;
-  border:0;
-  border-radius:14px;
-  padding:18px;
-  margin-top:12px;
+  border:1px solid #24465d;
+  background:#132a3d;
   color:white;
-  background:#086fc4;
-  font-weight:800;
-  font-size:17px;
-  cursor:pointer;
+  border-radius:15px;
+  padding:17px 14px;
+  text-align:left;
 }
 
-.bigbtn.green{
-  background:#168a4b;
+.mainMenu button strong{
+  display:block;
+  font-size:16px;
 }
 
-.bigbtn.dark{
-  background:#073b63;
+.mainMenu button span{
+  display:block;
+  color:#91a8b8;
+  font-size:11px;
+  margin-top:4px;
 }
 
-.back{
-  border:0;
-  background:#e7edf2;
-  color:#073b63;
-  padding:10px 14px;
-  border-radius:10px;
-  font-weight:700;
-  margin-bottom:14px;
-  cursor:pointer;
+/* =========================
+   APQ MENU
+========================= */
+
+.sectionCard{
+  background:#0d1e2d;
+  border:1px solid #1b384d;
+  border-radius:18px;
+  padding:14px;
+  margin-bottom:12px;
 }
 
-/* APQ MODULAR */
+.sectionTitle{
+  font-size:20px;
+  font-weight:900;
+  margin-bottom:12px;
+}
 
-.calendar{
-  background:white;
+.sectionButtons{
+  display:grid;
+  gap:9px;
+}
+
+.sectionButtons button{
+  width:100%;
+  border:1px solid #24465d;
+  background:#132a3d;
+  color:white;
   border-radius:14px;
   padding:14px;
-  margin-bottom:14px;
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
+  text-align:left;
 }
 
-.calhead{
+.sectionButtons strong{
+  font-size:15px;
+}
+
+.sectionButtons span{
+  display:block;
+  color:#91a8b8;
+  font-size:10px;
+  margin-top:3px;
+}
+
+/* =========================
+   APQ MODULAR
+========================= */
+
+.modularHeader{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  margin-bottom:10px;
+  align-items:center;
+  gap:8px;
+  margin-bottom:14px;
 }
 
-.calhead button{
-  border:0;
-  background:#e8eef3;
-  width:38px;
-  height:38px;
-  border-radius:9px;
-  font-size:20px;
-  cursor:pointer;
+.modularBrand{
+  font-weight:900;
+  font-size:18px;
 }
 
-.month{
-  font-weight:800;
-  text-transform:capitalize;
-}
-
-.week{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:4px;
-  text-align:center;
-  font-size:11px;
-  color:#73808a;
-  margin-bottom:4px;
-}
-
-.days{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:4px;
-}
-
-.day{
-  border:0;
-  background:#f2f5f7;
-  border-radius:8px;
-  min-height:36px;
-  cursor:pointer;
-}
-
-.day.selected{
-  background:#0874cf;
+.calendar{
+  background:#102335;
+  border:1px solid #1d3b52;
+  border-radius:13px;
+  padding:8px 10px;
   color:white;
-  font-weight:800;
+  text-align:center;
 }
 
-.selectedDate{
-  text-align:center;
-  margin-top:10px;
-  font-weight:700;
-  color:#073b63;
+.calendar b{
+  display:block;
+  font-size:12px;
+}
+
+.calendar span{
+  color:#8fa5b7;
+  font-size:9px;
+}
+
+.calendarPanel{
+  display:none;
+  background:#0d1e2d;
+  border:1px solid #1b384d;
+  border-radius:16px;
+  padding:13px;
+  margin-bottom:12px;
+}
+
+.calendarPanel.show{
+  display:block;
+}
+
+.calendarPanel input{
+  width:100%;
+  background:#132a3d;
+  color:white;
+  border:1px solid #24465d;
+  border-radius:10px;
+  padding:10px;
+}
+
+.note{
+  color:#8fa5b7;
+  font-size:10px;
+  margin-top:8px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-bottom:11px;
+}
+
+.stat{
+  background:#102335;
+  border-radius:15px;
+  padding:12px;
+}
+
+.stat b{
+  font-size:24px;
+}
+
+.stat span{
+  display:block;
+  color:#9bb0bf;
+  font-size:10px;
+  margin-top:2px;
+}
+
+.stat.free b{
+  color:#35d39b;
+}
+
+.stat.occ b{
+  color:#ff6574;
 }
 
 .search{
   width:100%;
-  padding:13px;
-  border:1px solid #ccd6de;
-  border-radius:11px;
-  margin-bottom:12px;
-  font-size:16px;
-  background:white;
+  background:#0d1e2d;
+  border:1px solid #1d3b52;
+  color:white;
+  border-radius:13px;
+  padding:11px 13px;
+  outline:none;
+  margin-bottom:10px;
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  margin-bottom:14px;
+}
+
+.actions button{
+  flex:1;
+  border:0;
+  border-radius:12px;
+  padding:10px 7px;
+  background:#173047;
+  color:#dce8ef;
+}
+
+.actions .primary{
+  background:#20b985;
+  color:#04120e;
+  font-weight:800;
 }
 
 .module{
-  background:white;
-  border-radius:15px;
-  margin-bottom:13px;
-  overflow:hidden;
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
+  background:#0d1e2d;
+  border:1px solid #1b384d;
+  border-radius:18px;
+  padding:13px;
+  margin-bottom:11px;
 }
 
-.moduleTitle{
-  background:#073b63;
-  color:white;
-  padding:13px 15px;
+.module-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:11px;
+}
+
+.module-title{
   font-weight:800;
 }
 
-.moduleSub{
-  padding:9px 15px;
-  background:#edf2f5;
-  font-weight:700;
-  color:#536472;
+.module-count{
+  color:#8fa5b7;
+  font-size:10px;
 }
 
-.locations{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:5px;
-  padding:10px;
-}
-
-.loc{
-  min-height:50px;
-  border:0;
-  border-radius:8px;
-  cursor:pointer;
-  font-size:11px;
-  font-weight:800;
-}
-
-.loc.free{
-  background:#b9f0cf;
-  color:#075c2e;
-}
-
-.loc.busy{
-  background:#f1b8b8;
-  color:#8c2020;
-}
-
-.freeList{
-  background:white;
-  border-radius:15px;
-  padding:15px;
-}
-
-.freeItem{
-  display:inline-block;
-  background:#c5f1d4;
-  color:#075c2e;
-  border-radius:8px;
-  padding:8px 10px;
-  margin:3px;
-  font-weight:800;
-  font-size:12px;
-}
-
-.heights{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:7px;
-  margin-top:14px;
-}
-
-.heightBox{
-  background:#073b63;
-  color:white;
-  border-radius:10px;
-  text-align:center;
-  padding:10px 4px;
-}
-
-.heightBox b{
-  display:block;
-  font-size:19px;
-}
-
-/* APQ VIEJA */
-
-.oldMap{
-  background:#f7f8f9;
-  border:1px solid #cfd8df;
-  border-radius:15px;
-  padding:10px;
-}
-
-.plan{
-  border:3px solid #303c45;
-  background:#fff;
-  padding:12px;
-  max-width:700px;
-  margin:auto;
-}
-
-.planTop{
-  text-align:center;
-  font-weight:800;
-  color:#65737d;
-  font-size:12px;
-  padding:4px 0 12px;
-}
-
-.topLocations{
+.parts{
   display:grid;
   grid-template-columns:1fr 1fr;
-  border:2px solid #66737d;
+  gap:8px;
 }
 
-.oldLoc{
-  background:white;
-  border:1px solid #66737d;
-  padding:9px 7px;
-  text-align:center;
-}
-
-.oldWide{
-  border:2px solid #66737d;
-  border-top:0;
-  text-align:center;
-  padding:9px 7px;
-}
-
-.wcode{
-  font-size:14px;
-  font-weight:900;
-  color:#075087;
-}
-
-.material{
-  font-size:14px;
-  font-weight:800;
-  margin:3px 0 8px;
-}
-
-.stockControls{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
-}
-
-.stockBtn{
-  width:34px;
-  height:34px;
-  border:1px solid #ccd5dc;
-  border-radius:8px;
-  background:#f4f6f8;
-  font-size:21px;
-  font-weight:700;
-  cursor:pointer;
-}
-
-.stockNumber{
-  width:52px;
-  height:34px;
-  border:1px solid #ccd5dc;
-  border-radius:8px;
-  text-align:center;
-  font-size:16px;
-  font-weight:900;
-  color:#102633;
-  background:white;
-}
-
-.confirm{
-  width:36px;
-  height:34px;
-  border:0;
-  border-radius:8px;
-  background:#189b50;
+.part{
+  background:#132a3d;
+  border:1px solid #24465d;
+  border-radius:13px;
+  padding:11px 9px;
   color:white;
-  font-weight:900;
-  font-size:18px;
-  cursor:pointer;
+  text-align:left;
 }
 
-.pending{
-  background:#fff8df;
-  outline:2px solid #e4ae24;
+.part b{
+  font-size:15px;
 }
 
-.confirmed{
-  color:#168044;
+.part span{
+  display:block;
+  color:#91a8b8;
   font-size:10px;
-  min-height:13px;
   margin-top:3px;
 }
 
-.entry{
+.mini{
+  display:flex;
+  gap:2px;
+  margin-top:8px;
+}
+
+.dot{
+  height:6px;
+  flex:1;
+  border-radius:3px;
+}
+
+.dot.f{
+  background:#35d39b;
+}
+
+.dot.o{
+  background:#ff6574;
+}
+
+.modularView{
+  display:none;
+}
+
+.modularGridWrap{
+  background:#0d1e2d;
+  border:1px solid #1b384d;
+  border-radius:17px;
+  padding:9px;
+  overflow:hidden;
+}
+
+.modularGrid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:5px;
+}
+
+.hlabel{
+  font-size:9px;
   text-align:center;
+  color:#8097a8;
+  padding:2px 0 5px;
+}
+
+.loc{
+  border:0;
+  border-radius:9px;
+  padding:8px 2px;
+  min-width:0;
+  color:white;
+}
+
+.loc b{
+  font-size:10px;
+}
+
+.loc small{
+  display:block;
+  font-size:8px;
+  margin-top:2px;
+}
+
+.loc.free{
+  background:#0f624d;
+}
+
+.loc.occupied{
+  background:#733541;
+}
+
+/* =========================
+   APQ VIEJA
+========================= */
+
+.oldTop{
+  margin-bottom:10px;
+}
+
+.oldTitle{
+  text-align:center;
+  font-size:20px;
+  font-weight:900;
+  margin-bottom:3px;
+}
+
+.oldSub{
+  text-align:center;
+  color:#8fa5b7;
+  font-size:10px;
+  margin-bottom:12px;
+}
+
+/*
+   IMPORTANTE:
+   Todo el mapa utiliza 100% del ancho disponible.
+   Las dos columnas superiores nunca superan
+   el ancho de la pantalla.
+*/
+
+.oldApqCard{
+  width:100%;
+  background:#f3f5f6;
+  color:#172533;
+  border:2px solid #b9c1c7;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.oldApqHeader{
+  background:#dfe4e7;
+  color:#20303e;
+  text-align:center;
+  font-size:13px;
+  font-weight:900;
+  padding:9px 4px;
+  letter-spacing:.2px;
+  border-bottom:2px solid #aeb7bd;
+}
+
+/* FILAS DE DOS COLUMNAS */
+
+.oldTwoRow{
+  width:100%;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+}
+
+.oldCell{
+  min-width:0;
+  min-height:112px;
+  padding:8px 4px 7px;
+  text-align:center;
+  border-bottom:1px solid #b9c1c7;
+}
+
+.oldCell:first-child{
+  border-right:1px solid #b9c1c7;
+}
+
+.oldCode{
+  color:#13538b;
   font-weight:900;
   font-size:13px;
-  padding:13px 0 3px;
+  line-height:1.1;
+  white-space:nowrap;
 }
 
-.oldInfo{
-  background:white;
-  border-radius:12px;
-  margin-top:10px;
-  padding:10px;
+.oldMaterial{
+  color:#243746;
+  font-weight:800;
+  font-size:11px;
+  margin-top:3px;
+  min-height:17px;
+  line-height:1.15;
+  word-break:break-word;
+}
+
+.oldControls{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:3px;
+  margin-top:9px;
+}
+
+.oldBtn{
+  width:29px;
+  height:29px;
+  flex:0 0 29px;
+  border:1px solid #b6c0c6;
+  background:#ffffff;
+  color:#175889;
+  border-radius:7px;
+  font-size:17px;
+  font-weight:900;
+  line-height:1;
+  padding:0;
+}
+
+.oldValue{
+  width:38px;
+  height:29px;
+  flex:0 0 38px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #b6c0c6;
+  background:#ffffff;
+  color:#182b3a;
+  border-radius:7px;
+  font-size:14px;
+  font-weight:900;
+}
+
+.oldConfirm{
+  width:29px;
+  height:29px;
+  flex:0 0 29px;
+  border:0;
+  background:#20a96f;
+  color:white;
+  border-radius:7px;
+  font-size:16px;
+  font-weight:900;
+  line-height:1;
+  padding:0;
+}
+
+/* FILAS COMPLETAS */
+
+.oldFullRow{
+  width:100%;
+  min-height:98px;
+  padding:9px 5px 8px;
   text-align:center;
-  color:#62717c;
-  font-size:12px;
+  border-bottom:1px solid #b9c1c7;
 }
 
-@media(max-width:520px){
-  header h1{font-size:24px}
+.oldFullRow .oldMaterial{
+  min-height:18px;
+}
 
-  .locations{
-    gap:4px;
+.oldFullRow.pending{
+  background:#fff9df;
+}
+
+.oldPending{
+  color:#15935f;
+  font-size:9px;
+  font-weight:800;
+  margin-top:5px;
+}
+
+/* ENTRADA */
+
+.oldEntrance{
+  text-align:center;
+  padding:9px 5px 10px;
+  font-weight:900;
+  color:#273946;
+  font-size:11px;
+}
+
+.oldArrow{
+  color:#1cab72;
+  font-size:23px;
+  line-height:18px;
+}
+
+/* AYUDA */
+
+.oldHelp{
+  margin-top:9px;
+  background:#eef1f3;
+  border:1px solid #ccd3d8;
+  border-radius:9px;
+  color:#687681;
+  font-size:9px;
+  text-align:center;
+  padding:7px 4px;
+}
+
+/* =========================
+   BARNICES
+========================= */
+
+.varnishList{
+  display:grid;
+  gap:7px;
+}
+
+.varnishItem{
+  background:#132a3d;
+  border:1px solid #24465d;
+  border-radius:12px;
+  padding:11px;
+}
+
+.varnishCode{
+  color:#8ddfc3;
+  font-weight:900;
+  font-size:14px;
+}
+
+.varnishInfo{
+  color:#91a8b8;
+  font-size:10px;
+  margin-top:3px;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:20px;
+  transform:translateX(-50%);
+  background:#eaf2f8;
+  color:#071321;
+  border-radius:20px;
+  padding:9px 15px;
+  font-size:12px;
+  font-weight:800;
+  display:none;
+  z-index:50;
+  box-shadow:0 8px 25px #0008;
+}
+
+/* =========================
+   IPHONE / PANTALLAS ESTRECHAS
+========================= */
+
+@media(max-width:390px){
+
+  .app{
+    padding-left:9px;
+    padding-right:9px;
   }
 
-  .loc{
-    font-size:10px;
+  .brand{
+    font-size:23px;
   }
 
-  .oldLoc,.oldWide{
-    padding:8px 4px;
-  }
-
-  .wcode,.material{
-    font-size:11px;
-  }
-
-  .stockBtn{
-    width:29px;
-    height:29px;
+  .oldTitle{
     font-size:18px;
   }
 
-  .stockNumber{
-    width:40px;
-    height:29px;
+  .oldApqHeader{
+    font-size:12px;
+    padding:8px 2px;
   }
 
-  .confirm{
-    width:31px;
-    height:29px;
+  .oldCell{
+    min-height:101px;
+    padding:7px 2px 6px;
+  }
+
+  .oldCode{
+    font-size:11px;
+  }
+
+  .oldMaterial{
+    font-size:9px;
+  }
+
+  .oldControls{
+    gap:2px;
+    margin-top:7px;
+  }
+
+  .oldBtn{
+    width:26px;
+    height:26px;
+    flex-basis:26px;
+    font-size:15px;
+  }
+
+  .oldValue{
+    width:34px;
+    height:26px;
+    flex-basis:34px;
+    font-size:13px;
+  }
+
+  .oldConfirm{
+    width:26px;
+    height:26px;
+    flex-basis:26px;
+    font-size:15px;
+  }
+
+  .oldFullRow{
+    min-height:88px;
+    padding:7px 3px;
+  }
+
+  .oldFullRow .oldControls{
+    margin-top:6px;
+  }
+
+  .oldEntrance{
+    padding:7px 4px 8px;
   }
 }
 </style>
@@ -439,835 +760,1547 @@ header p{
 
 <div class="app">
 
-<header>
-  <h1>A.P.Q.</h1>
-  <p>Almacén Productos Químicos</p>
+<header class="header">
+  <div class="brand">A.P.Q.</div>
+  <div class="sub">Almacén Productos Químicos</div>
 </header>
 
-<!-- INICIO -->
-<section id="home" class="screen active">
 
-  <div class="card">
-    <h2>🧪 APQ</h2>
-    <p>Almacén de Productos Químicos</p>
+<!-- =====================================================
+     INICIO
+===================================================== -->
 
-    <button class="bigbtn" onclick="showScreen('apq')">
-      📦 Entrar en APQ
-    </button>
-  </div>
+<section id="screenHome" class="screen active">
 
-  <div class="card">
-    <h2>🎨 BARNICES</h2>
-    <p>Información y fichas de barnices</p>
+  <div class="homeCard">
+    <div class="homeTitle">📦 Almacén Productos Químicos</div>
+    <div class="homeText">
+      Gestión visual de ubicaciones y materiales del almacén.
+    </div>
 
-    <button class="bigbtn dark" onclick="showScreen('barnices')">
-      🎨 Entrar en BARNICES
-    </button>
+    <div class="mainMenu">
+
+      <button onclick="showScreen('screenAPQ')">
+        <strong>🧪 APQ</strong>
+        <span>APQ MODULAR · APQ VIEJA</span>
+      </button>
+
+      <button onclick="showScreen('screenBarnices')">
+        <strong>🎨 BARNICES</strong>
+        <span>Consulta de materiales y referencias</span>
+      </button>
+
+    </div>
   </div>
 
 </section>
 
-<!-- APQ -->
-<section id="apq" class="screen">
 
-  <button class="back" onclick="showScreen('home')">
-    ← Volver
+<!-- =====================================================
+     MENU APQ
+===================================================== -->
+
+<section id="screenAPQ" class="screen">
+
+  <button class="backBtn" onclick="showScreen('screenHome')">
+    ← Volver a Inicio
   </button>
 
-  <div class="card">
-    <h2>🧪 APQ</h2>
+  <div class="sectionCard">
 
-    <button class="bigbtn" onclick="showScreen('modular')">
-      📦 APQ MODULAR
-    </button>
+    <div class="sectionTitle">🧪 APQ</div>
 
-    <button class="bigbtn dark" onclick="showScreen('vieja')">
-      🏭 APQ VIEJA
-    </button>
+    <div class="sectionButtons">
+
+      <button onclick="openModular()">
+        <strong>📦 APQ MODULAR</strong>
+        <span>216 ubicaciones · 4 alturas</span>
+      </button>
+
+      <button onclick="openOldApq()">
+        <strong>🏭 APQ VIEJA</strong>
+        <span>Ubicaciones de barnices y disolvente</span>
+      </button>
+
+    </div>
+
   </div>
 
 </section>
 
-<!-- APQ MODULAR -->
-<section id="modular" class="screen">
 
-  <button class="back" onclick="showScreen('apq')">
+<!-- =====================================================
+     APQ MODULAR
+===================================================== -->
+
+<section id="screenModular" class="screen">
+
+  <button class="backBtn" onclick="showScreen('screenAPQ')">
     ← Volver a APQ
   </button>
 
-  <div class="card">
-    <h2>📦 APQ MODULAR</h2>
-    <p>216 ubicaciones · 3 módulos</p>
+  <div class="modularHeader">
+
+    <div>
+      <div class="modularBrand">📦 ALMACÉN MODULAR</div>
+      <div class="sub">216 ubicaciones · 4 alturas</div>
+    </div>
+
+    <button class="calendar" onclick="toggleCalendar()">
+      <b>📅 <span id="dateText">HOY</span></b>
+      <span>Calendario</span>
+    </button>
+
   </div>
 
-  <div class="calendar">
+  <div id="calendarPanel" class="calendarPanel">
 
-    <div class="calhead">
-      <button onclick="changeMonth(-1)">‹</button>
-      <div id="monthName" class="month"></div>
-      <button onclick="changeMonth(1)">›</button>
+    <input
+      id="datePicker"
+      type="date"
+      onchange="changeDate(this.value)"
+    >
+
+    <div class="note">
+      Calendario visual; el estado de ocupación actual se mantiene.
     </div>
 
-    <div class="week">
-      <div>L</div><div>M</div><div>X</div>
-      <div>J</div><div>V</div><div>S</div><div>D</div>
+  </div>
+
+  <div class="stats">
+
+    <div class="stat free">
+      <b id="freeCount">50</b>
+      <span>🟢 UBICACIONES LIBRES</span>
     </div>
 
-    <div id="calendarDays" class="days"></div>
-
-    <div id="selectedDate" class="selectedDate"></div>
+    <div class="stat occ">
+      <b id="occCount">166</b>
+      <span>🔴 UBICACIONES OCUPADAS</span>
+    </div>
 
   </div>
 
   <input
-    id="modSearch"
+    id="search"
     class="search"
-    placeholder="Buscar ubicación A001–A216..."
-    oninput="filterModular()"
+    placeholder="🔎 Buscar ubicación (A001…A216)"
+    oninput="searchLocation(this.value)"
   >
 
-  <button
-    class="bigbtn green"
-    onclick="showFreeLocations()"
-  >
-    🟢 Ver libres
-  </button>
+  <div class="actions">
 
-  <div id="modules"></div>
+    <button class="primary" onclick="showFree()">
+      🟢 Ver libres
+    </button>
 
-  <div class="card">
-    <h3>Libres por altura</h3>
+    <button onclick="resetModular()">
+      ↩ Ver almacén
+    </button>
 
-    <div class="heights">
-      <div class="heightBox">
-        Altura 1
-        <b id="h1">0</b>
-      </div>
-
-      <div class="heightBox">
-        Altura 2
-        <b id="h2">0</b>
-      </div>
-
-      <div class="heightBox">
-        Altura 3
-        <b id="h3">0</b>
-      </div>
-
-      <div class="heightBox">
-        Altura 4
-        <b id="h4">0</b>
-      </div>
-    </div>
   </div>
 
-  <div id="freePanel" style="display:none"></div>
+  <main id="dashboard"></main>
+
+  <section id="modularView" class="modularView">
+
+    <button class="backBtn" onclick="backModular()">
+      ← Volver al almacén
+    </button>
+
+    <div
+      class="module-title"
+      id="viewTitle"
+      style="margin-bottom:10px"
+    ></div>
+
+    <div
+      class="legend"
+      style="display:flex;gap:12px;color:#9db0bd;font-size:11px;margin:9px 0 12px"
+    >
+      <span>🟢 Libre</span>
+      <span>🔴 Ocupada</span>
+      <span>Toque = cambiar</span>
+    </div>
+
+    <div class="modularGridWrap">
+      <div class="modularGrid" id="modularGrid"></div>
+    </div>
+
+  </section>
+
+  <div class="note">
+    Guardado automático en este dispositivo · Última actualización:
+    <span id="updated">—</span>
+  </div>
 
 </section>
 
-<!-- APQ VIEJA -->
-<section id="vieja" class="screen">
 
-  <button class="back" onclick="showScreen('apq')">
+<!-- =====================================================
+     APQ VIEJA
+===================================================== -->
+
+<section id="screenOldApq" class="screen">
+
+  <button class="backBtn" onclick="showScreen('screenAPQ')">
     ← Volver a APQ
   </button>
 
-  <div class="card">
-    <h2>🏭 APQ VIEJA</h2>
-    <p>Control de stock</p>
+  <div class="oldTop">
+
+    <div class="oldTitle">
+      APQ VIEJA
+    </div>
+
+    <div class="oldSub">
+      BARNICES Y DISOLVENTE
+    </div>
+
   </div>
 
-  <div class="oldMap">
 
-    <div class="plan">
+  <!-- MAPA APQ VIEJA -->
 
-      <div class="planTop">
-        UBICACIONES APQ VIEJA
-      </div>
+  <div class="oldApqCard">
 
-      <!-- PARTE SUPERIOR DEL MAPA -->
-      <div class="topLocations">
+    <div class="oldApqHeader">
+      UBICACIONES APQ VIEJA
+    </div>
 
-        <!-- W02008 -->
-        <div class="oldLoc" data-old="W02008">
 
-          <div class="wcode">W02008</div>
-          <div class="material">814.449</div>
+    <!-- W02008 / W02009 -->
 
-          <div class="stockControls">
-            <button class="stockBtn" onclick="oldChange('W02008',-1)">−</button>
-            <input id="stock-W02008"
-                   class="stockNumber"
-                   value="0"
-                   inputmode="numeric"
-                   onchange="oldManual('W02008')">
-            <button class="stockBtn" onclick="oldChange('W02008',1)">+</button>
-            <button class="confirm" onclick="oldConfirm('W02008')">✓</button>
-          </div>
+    <div class="oldTwoRow">
 
-          <div id="msg-W02008" class="confirmed"></div>
+      <div
+        class="oldCell"
+        id="oldCellW02008"
+      >
 
-        </div>
+        <div class="oldCode">W02008</div>
+        <div class="oldMaterial">814.449</div>
 
-        <!-- W02009 -->
-        <div class="oldLoc" data-old="W02009">
+        <div class="oldControls">
 
-          <div class="wcode">W02009</div>
-          <div class="material">MKB1113T</div>
+          <button
+            class="oldBtn"
+            onclick="oldChange('W02008',-1)"
+          >−</button>
 
-          <div class="stockControls">
-            <button class="stockBtn" onclick="oldChange('W02009',-1)">−</button>
-            <input id="stock-W02009"
-                   class="stockNumber"
-                   value="0"
-                   inputmode="numeric"
-                   onchange="oldManual('W02009')">
-            <button class="stockBtn" onclick="oldChange('W02009',1)">+</button>
-            <button class="confirm" onclick="oldConfirm('W02009')">✓</button>
-          </div>
+          <div
+            class="oldValue"
+            id="oldValueW02008"
+          >0</div>
 
-          <div id="msg-W02009" class="confirmed"></div>
+          <button
+            class="oldBtn"
+            onclick="oldChange('W02008',1)"
+          >+</button>
+
+          <button
+            class="oldConfirm"
+            onclick="oldConfirm('W02008')"
+          >✓</button>
 
         </div>
 
-        <!-- W02007 -->
-        <div class="oldLoc" data-old="W02007">
-
-          <div class="wcode">W02007</div>
-          <div class="material">818.083</div>
-
-          <div class="stockControls">
-            <button class="stockBtn" onclick="oldChange('W02007',-1)">−</button>
-            <input id="stock-W02007"
-                   class="stockNumber"
-                   value="0"
-                   inputmode="numeric"
-                   onchange="oldManual('W02007')">
-            <button class="stockBtn" onclick="oldChange('W02007',1)">+</button>
-            <button class="confirm" onclick="oldConfirm('W02007')">✓</button>
-          </div>
-
-          <div id="msg-W02007" class="confirmed"></div>
-
-        </div>
-
-        <!-- W02010 -->
-        <div class="oldLoc" data-old="W02010">
-
-          <div class="wcode">W02010</div>
-          <div class="material">110.496</div>
-
-          <div class="stockControls">
-            <button class="stockBtn" onclick="oldChange('W02010',-1)">−</button>
-            <input id="stock-W02010"
-                   class="stockNumber"
-                   value="0"
-                   inputmode="numeric"
-                   onchange="oldManual('W02010')">
-            <button class="stockBtn" onclick="oldChange('W02010',1)">+</button>
-            <button class="confirm" onclick="oldConfirm('W02010')">✓</button>
-          </div>
-
-          <div id="msg-W02010" class="confirmed"></div>
-
-        </div>
+        <div
+          class="oldPending"
+          id="oldPendingW02008"
+        ></div>
 
       </div>
 
-      <!-- W02006 -->
-      <div class="oldWide" data-old="W02006">
 
-        <div class="wcode">W02006</div>
-        <div class="material">DISOLVENTE</div>
+      <div
+        class="oldCell"
+        id="oldCellW02009"
+      >
 
-        <div class="stockControls">
-          <button class="stockBtn" onclick="oldChange('W02006',-1)">−</button>
-          <input id="stock-W02006"
-                 class="stockNumber"
-                 value="0"
-                 inputmode="numeric"
-                 onchange="oldManual('W02006')">
-          <button class="stockBtn" onclick="oldChange('W02006',1)">+</button>
-          <button class="confirm" onclick="oldConfirm('W02006')">✓</button>
+        <div class="oldCode">W02009</div>
+        <div class="oldMaterial">MKB113T</div>
+
+        <div class="oldControls">
+
+          <button
+            class="oldBtn"
+            onclick="oldChange('W02009',-1)"
+          >−</button>
+
+          <div
+            class="oldValue"
+            id="oldValueW02009"
+          >0</div>
+
+          <button
+            class="oldBtn"
+            onclick="oldChange('W02009',1)"
+          >+</button>
+
+          <button
+            class="oldConfirm"
+            onclick="oldConfirm('W02009')"
+          >✓</button>
+
         </div>
 
-        <div id="msg-W02006" class="confirmed"></div>
+        <div
+          class="oldPending"
+          id="oldPendingW02009"
+        ></div>
 
-      </div>
-
-      <!-- W02005 -->
-      <div class="oldWide" data-old="W02005">
-
-        <div class="wcode">W02005</div>
-        <div class="material">MKW1301T</div>
-
-        <div class="stockControls">
-          <button class="stockBtn" onclick="oldChange('W02005',-1)">−</button>
-          <input id="stock-W02005"
-                 class="stockNumber"
-                 value="0"
-                 inputmode="numeric"
-                 onchange="oldManual('W02005')">
-          <button class="stockBtn" onclick="oldChange('W02005',1)">+</button>
-          <button class="confirm" onclick="oldConfirm('W02005')">✓</button>
-        </div>
-
-        <div id="msg-W02005" class="confirmed"></div>
-
-      </div>
-
-      <!-- W02004 -->
-      <div class="oldWide" data-old="W02004">
-
-        <div class="wcode">W02004</div>
-        <div class="material">450.148</div>
-
-        <div class="stockControls">
-          <button class="stockBtn" onclick="oldChange('W02004',-1)">−</button>
-          <input id="stock-W02004"
-                 class="stockNumber"
-                 value="0"
-                 inputmode="numeric"
-                 onchange="oldManual('W02004')">
-          <button class="stockBtn" onclick="oldChange('W02004',1)">+</button>
-          <button class="confirm" onclick="oldConfirm('W02004')">✓</button>
-        </div>
-
-        <div id="msg-W02004" class="confirmed"></div>
-
-      </div>
-
-      <!-- W02003 -->
-      <div class="oldWide" data-old="W02003">
-
-        <div class="wcode">W02003</div>
-        <div class="material">816.621</div>
-
-        <div class="stockControls">
-          <button class="stockBtn" onclick="oldChange('W02003',-1)">−</button>
-          <input id="stock-W02003"
-                 class="stockNumber"
-                 value="0"
-                 inputmode="numeric"
-                 onchange="oldManual('W02003')">
-          <button class="stockBtn" onclick="oldChange('W02003',1)">+</button>
-          <button class="confirm" onclick="oldConfirm('W02003')">✓</button>
-        </div>
-
-        <div id="msg-W02003" class="confirmed"></div>
-
-      </div>
-
-      <!-- W02002 -->
-      <div class="oldWide" data-old="W02002">
-
-        <div class="wcode">W02002</div>
-        <div class="material">814.509</div>
-
-        <div class="stockControls">
-          <button class="stockBtn" onclick="oldChange('W02002',-1)">−</button>
-          <input id="stock-W02002"
-                 class="stockNumber"
-                 value="0"
-                 inputmode="numeric"
-                 onchange="oldManual('W02002')">
-          <button class="stockBtn" onclick="oldChange('W02002',1)">+</button>
-          <button class="confirm" onclick="oldConfirm('W02002')">✓</button>
-        </div>
-
-        <div id="msg-W02002" class="confirmed"></div>
-
-      </div>
-
-      <div class="entry">
-        ENTRADA A.P.Q.
       </div>
 
     </div>
 
-    <div class="oldInfo">
-      − / + modifica el stock · ✓ confirma y guarda
+
+    <!-- W02007 / W02010 -->
+
+    <div class="oldTwoRow">
+
+      <div
+        class="oldCell"
+        id="oldCellW02007"
+      >
+
+        <div class="oldCode">W02007</div>
+        <div class="oldMaterial">818.083</div>
+
+        <div class="oldControls">
+
+          <button
+            class="oldBtn"
+            onclick="oldChange('W02007',-1)"
+          >−</button>
+
+          <div
+            class="oldValue"
+            id="oldValueW02007"
+          >0</div>
+
+          <button
+            class="oldBtn"
+            onclick="oldChange('W02007',1)"
+          >+</button>
+
+          <button
+            class="oldConfirm"
+            onclick="oldConfirm('W02007')"
+          >✓</button>
+
+        </div>
+
+        <div
+          class="oldPending"
+          id="oldPendingW02007"
+        ></div>
+
+      </div>
+
+
+      <div
+        class="oldCell"
+        id="oldCellW02010"
+      >
+
+        <div class="oldCode">W02010</div>
+        <div class="oldMaterial">110.496</div>
+
+        <div class="oldControls">
+
+          <button
+            class="oldBtn"
+            onclick="oldChange('W02010',-1)"
+          >−</button>
+
+          <div
+            class="oldValue"
+            id="oldValueW02010"
+          >0</div>
+
+          <button
+            class="oldBtn"
+            onclick="oldChange('W02010',1)"
+          >+</button>
+
+          <button
+            class="oldConfirm"
+            onclick="oldConfirm('W02010')"
+          >✓</button>
+
+        </div>
+
+        <div
+          class="oldPending"
+          id="oldPendingW02010"
+        ></div>
+
+      </div>
+
     </div>
 
+
+    <!-- W02006 -->
+
+    <div
+      class="oldFullRow"
+      id="oldCellW02006"
+    >
+
+      <div class="oldCode">W02006</div>
+      <div class="oldMaterial">DISOLVENTE</div>
+
+      <div class="oldControls">
+
+        <button
+          class="oldBtn"
+          onclick="oldChange('W02006',-1)"
+        >−</button>
+
+        <div
+          class="oldValue"
+          id="oldValueW02006"
+        >0</div>
+
+        <button
+          class="oldBtn"
+          onclick="oldChange('W02006',1)"
+        >+</button>
+
+        <button
+          class="oldConfirm"
+          onclick="oldConfirm('W02006')"
+        >✓</button>
+
+      </div>
+
+      <div
+        class="oldPending"
+        id="oldPendingW02006"
+      ></div>
+
+    </div>
+
+
+    <!-- W02005 -->
+
+    <div
+      class="oldFullRow"
+      id="oldCellW02005"
+    >
+
+      <div class="oldCode">W02005</div>
+      <div class="oldMaterial">MKW1301T</div>
+
+      <div class="oldControls">
+
+        <button
+          class="oldBtn"
+          onclick="oldChange('W02005',-1)"
+        >−</button>
+
+        <div
+          class="oldValue"
+          id="oldValueW02005"
+        >0</div>
+
+        <button
+          class="oldBtn"
+          onclick="oldChange('W02005',1)"
+        >+</button>
+
+        <button
+          class="oldConfirm"
+          onclick="oldConfirm('W02005')"
+        >✓</button>
+
+      </div>
+
+      <div
+        class="oldPending"
+        id="oldPendingW02005"
+      ></div>
+
+    </div>
+
+
+    <!-- W02004 -->
+
+    <div
+      class="oldFullRow"
+      id="oldCellW02004"
+    >
+
+      <div class="oldCode">W02004</div>
+      <div class="oldMaterial">450.148</div>
+
+      <div class="oldControls">
+
+        <button
+          class="oldBtn"
+          onclick="oldChange('W02004',-1)"
+        >−</button>
+
+        <div
+          class="oldValue"
+          id="oldValueW02004"
+        >0</div>
+
+        <button
+          class="oldBtn"
+          onclick="oldChange('W02004',1)"
+        >+</button>
+
+        <button
+          class="oldConfirm"
+          onclick="oldConfirm('W02004')"
+        >✓</button>
+
+      </div>
+
+      <div
+        class="oldPending"
+        id="oldPendingW02004"
+      ></div>
+
+    </div>
+
+
+    <!-- W02003 -->
+
+    <div
+      class="oldFullRow"
+      id="oldCellW02003"
+    >
+
+      <div class="oldCode">W02003</div>
+      <div class="oldMaterial">816.621</div>
+
+      <div class="oldControls">
+
+        <button
+          class="oldBtn"
+          onclick="oldChange('W02003',-1)"
+        >−</button>
+
+        <div
+          class="oldValue"
+          id="oldValueW02003"
+        >0</div>
+
+        <button
+          class="oldBtn"
+          onclick="oldChange('W02003',1)"
+        >+</button>
+
+        <button
+          class="oldConfirm"
+          onclick="oldConfirm('W02003')"
+        >✓</button>
+
+      </div>
+
+      <div
+        class="oldPending"
+        id="oldPendingW02003"
+      ></div>
+
+    </div>
+
+
+    <!-- W02002 -->
+
+    <div
+      class="oldFullRow"
+      id="oldCellW02002"
+    >
+
+      <div class="oldCode">W02002</div>
+      <div class="oldMaterial">814.509</div>
+
+      <div class="oldControls">
+
+        <button
+          class="oldBtn"
+          onclick="oldChange('W02002',-1)"
+        >−</button>
+
+        <div
+          class="oldValue"
+          id="oldValueW02002"
+        >0</div>
+
+        <button
+          class="oldBtn"
+          onclick="oldChange('W02002',1)"
+        >+</button>
+
+        <button
+          class="oldConfirm"
+          onclick="oldConfirm('W02002')"
+        >✓</button>
+
+      </div>
+
+      <div
+        class="oldPending"
+        id="oldPendingW02002"
+      ></div>
+
+    </div>
+
+
+    <div class="oldEntrance">
+      <div class="oldArrow">↑</div>
+      ENTRADA A.P.Q.
+    </div>
+
+  </div>
+
+
+  <div class="oldHelp">
+    − / + modifica el stock · ✓ confirma y guarda
   </div>
 
 </section>
 
-<!-- BARNICES -->
-<section id="barnices" class="screen">
 
-  <button class="back" onclick="showScreen('home')">
-    ← Volver
+<!-- =====================================================
+     BARNICES
+===================================================== -->
+
+<section id="screenBarnices" class="screen">
+
+  <button class="backBtn" onclick="showScreen('screenHome')">
+    ← Volver a Inicio
   </button>
 
-  <div class="card">
-    <h2>🎨 BARNICES</h2>
-    <p>Fichas de barnices</p>
+  <div class="sectionCard">
+
+    <div class="sectionTitle">🎨 BARNICES</div>
+
+    <div class="homeText">
+      Referencias disponibles para consulta.
+    </div>
+
+    <div class="varnishList">
+
+      <div class="varnishItem">
+        <div class="varnishCode">814.509</div>
+        <div class="varnishInfo">Referencia de barniz</div>
+      </div>
+
+      <div class="varnishItem">
+        <div class="varnishCode">816.621</div>
+        <div class="varnishInfo">Referencia de barniz</div>
+      </div>
+
+      <div class="varnishItem">
+        <div class="varnishCode">450.148</div>
+        <div class="varnishInfo">Termosellable · Palet de 4 bidones de 200 L</div>
+      </div>
+
+      <div class="varnishItem">
+        <div class="varnishCode">MKW1301T</div>
+        <div class="varnishInfo">Referencia de barniz</div>
+      </div>
+
+      <div class="varnishItem">
+        <div class="varnishCode">818.083</div>
+        <div class="varnishInfo">Referencia de barniz</div>
+      </div>
+
+      <div class="varnishItem">
+        <div class="varnishCode">814.449</div>
+        <div class="varnishInfo">Referencia de barniz</div>
+      </div>
+
+      <div class="varnishItem">
+        <div class="varnishCode">110.496</div>
+        <div class="varnishInfo">Referencia de barniz</div>
+      </div>
+
+      <div class="varnishItem">
+        <div class="varnishCode">MKB113T</div>
+        <div class="varnishInfo">Referencia de barniz</div>
+      </div>
+
+      <div class="varnishItem">
+        <div class="varnishCode">MKW1301T</div>
+        <div class="varnishInfo">Referencia de barniz</div>
+      </div>
+
+      <div class="varnishItem">
+        <div class="varnishCode">Disolvente</div>
+        <div class="varnishInfo">Material de uso habitual</div>
+      </div>
+
+    </div>
+
   </div>
 
 </section>
+
+
+<div id="toast" class="toast"></div>
 
 </div>
 
+
 <script>
 
-/* =========================
+/* =====================================================
    NAVEGACIÓN
-========================= */
+===================================================== */
 
 function showScreen(id){
 
-  document.querySelectorAll(".screen")
-    .forEach(s=>s.classList.remove("active"));
+  document.querySelectorAll(".screen").forEach(function(screen){
+    screen.classList.remove("active");
+  });
 
-  const screen=document.getElementById(id);
+  document.getElementById(id).classList.add("active");
 
-  if(screen){
-    screen.classList.add("active");
-    window.scrollTo(0,0);
-  }
-
-  if(id==="modular"){
-    renderModules();
-    renderCalendar();
-  }
-
-  if(id==="vieja"){
-    loadOldStock();
-  }
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
 
-/* =========================
+/* =====================================================
    APQ MODULAR
-========================= */
+   NO CAMBIAR ESTRUCTURA DE UBICACIONES
+===================================================== */
 
 const INITIAL_FREE = [
-"A001","A019","A044","A048","A051","A052","A055","A056",
-"A060","A064","A067","A068","A072","A075","A076","A080",
-"A084","A088","A092","A096","A100","A104","A105","A107",
-"A108","A111","A112","A113","A115","A116","A120","A122",
-"A124","A128","A132","A135","A136","A140","A146","A149",
-"A152","A164","A168","A172","A176","A179","A180","A200",
-"A204","A214"
+  "A001",
+  "A019",
+  "A044",
+  "A048",
+  "A051",
+  "A052",
+  "A055",
+  "A056",
+  "A060",
+  "A064",
+  "A067",
+  "A068",
+  "A072",
+  "A075",
+  "A076",
+  "A080",
+  "A084",
+  "A088",
+  "A092",
+  "A096",
+  "A100",
+  "A104",
+  "A105",
+  "A107",
+  "A108",
+  "A111",
+  "A112",
+  "A113",
+  "A115",
+  "A116",
+  "A120",
+  "A122",
+  "A124",
+  "A128",
+  "A132",
+  "A135",
+  "A136",
+  "A140",
+  "A146",
+  "A149",
+  "A152",
+  "A164",
+  "A168",
+  "A172",
+  "A176",
+  "A179",
+  "A180",
+  "A200",
+  "A204",
+  "A214"
 ];
 
+const MODULAR_KEY = "almacen_modular_estado_v2";
+
 let modularState =
-  JSON.parse(localStorage.getItem("apq_modular_state_v1") || "null");
+  JSON.parse(localStorage.getItem(MODULAR_KEY) || "null");
 
 if(!modularState){
-  modularState={};
+
+  modularState = {
+    locations:{}
+  };
 
   for(let i=1;i<=216;i++){
-    const id="A"+String(i).padStart(3,"0");
-    modularState[id]=INITIAL_FREE.includes(id) ? "free" : "busy";
+
+    const id =
+      "A" +
+      String(i).padStart(3,"0");
+
+    modularState.locations[id] =
+      INITIAL_FREE.includes(id)
+      ? "free"
+      : "occupied";
   }
 
-  saveModular();
+  modularState.updatedAt =
+    new Date().toISOString();
+
+  localStorage.setItem(
+    MODULAR_KEY,
+    JSON.stringify(modularState)
+  );
 }
 
+
 function saveModular(){
+
+  modularState.updatedAt =
+    new Date().toISOString();
+
   localStorage.setItem(
-    "apq_modular_state_v1",
+    MODULAR_KEY,
     JSON.stringify(modularState)
   );
 
-  localStorage.setItem(
-    "apq_modular_update_v1",
-    new Date().toLocaleString("es-ES")
-  );
-}
+  renderModularStats();
 
-function renderModules(){
-
-  const container=document.getElementById("modules");
-
-  if(!container)return;
-
-  container.innerHTML="";
-
-  for(let module=1;module<=3;module++){
-
-    const moduleDiv=document.createElement("div");
-    moduleDiv.className="module";
-
-    const title=document.createElement("div");
-    title.className="moduleTitle";
-    title.textContent="Módulo "+module;
-
-    moduleDiv.appendChild(title);
-
-    for(let part=0;part<2;part++){
-
-      const letter=part===0?"A":"B";
-
-      const start=
-        (module-1)*72+
-        part*36+
-        1;
-
-      const end=start+35;
-
-      const sub=document.createElement("div");
-      sub.className="moduleSub";
-      sub.textContent=
-        module+letter+" · A"+String(start).padStart(3,"0")+
-        " – A"+String(end).padStart(3,"0");
-
-      moduleDiv.appendChild(sub);
-
-      const grid=document.createElement("div");
-      grid.className="locations";
-
-      for(let i=start;i<=end;i++){
-
-        const id="A"+String(i).padStart(3,"0");
-
-        const btn=document.createElement("button");
-
-        btn.className=
-          "loc "+
-          (modularState[id]==="free" ? "free":"busy");
-
-        btn.textContent=id;
-
-        btn.dataset.id=id;
-
-        btn.onclick=()=>{
-
-          modularState[id]=
-            modularState[id]==="free"
-            ? "busy"
-            : "free";
-
-          saveModular();
-          renderModules();
-        };
-
-        grid.appendChild(btn);
+  document.getElementById("updated").textContent =
+    new Date(
+      modularState.updatedAt
+    ).toLocaleTimeString(
+      "es-ES",
+      {
+        hour:"2-digit",
+        minute:"2-digit"
       }
-
-      moduleDiv.appendChild(grid);
-    }
-
-    container.appendChild(moduleDiv);
-  }
-
-  updateHeights();
-}
-
-function updateHeights(){
-
-  const totals=[0,0,0,0];
-
-  for(let i=1;i<=216;i++){
-
-    const id="A"+String(i).padStart(3,"0");
-
-    if(modularState[id]==="free"){
-      totals[(i-1)%4]++;
-    }
-  }
-
-  document.getElementById("h1").textContent=totals[0];
-  document.getElementById("h2").textContent=totals[1];
-  document.getElementById("h3").textContent=totals[2];
-  document.getElementById("h4").textContent=totals[3];
-}
-
-function filterModular(){
-
-  const q=
-    document.getElementById("modSearch")
-    .value.trim().toUpperCase();
-
-  document.querySelectorAll(".loc").forEach(btn=>{
-
-    btn.style.display=
-      !q || btn.dataset.id.includes(q)
-      ? ""
-      : "none";
-
-  });
-}
-
-function showFreeLocations(){
-
-  const panel=document.getElementById("freePanel");
-
-  panel.style.display="block";
-
-  const free=
-    Object.keys(modularState)
-    .filter(id=>modularState[id]==="free");
-
-  panel.innerHTML=`
-    <div class="freeList">
-      <h3>🟢 Ubicaciones libres</h3>
-      ${
-        free.length
-        ? free.map(id=>`<span class="freeItem">${id}</span>`).join("")
-        : "<p>No hay ubicaciones libres.</p>"
-      }
-    </div>
-  `;
-
-  panel.scrollIntoView({behavior:"smooth"});
+    );
 }
 
 
-/* =========================
-   CALENDARIO
-========================= */
+function renderModularStats(){
 
-let selectedDate=
-  localStorage.getItem("apq_modular_date_v1") ||
-  new Date().toISOString().slice(0,10);
+  const values =
+    Object.values(
+      modularState.locations
+    );
 
-let calendarMonth=
-  new Date(selectedDate+"T12:00:00");
+  document.getElementById("freeCount").textContent =
+    values.filter(
+      x => x === "free"
+    ).length;
 
-function renderCalendar(){
+  document.getElementById("occCount").textContent =
+    values.filter(
+      x => x === "occupied"
+    ).length;
+}
 
-  const year=calendarMonth.getFullYear();
-  const month=calendarMonth.getMonth();
 
-  const names=[
-    "enero","febrero","marzo","abril","mayo","junio",
-    "julio","agosto","septiembre","octubre","noviembre","diciembre"
+function openModular(){
+
+  showScreen("screenModular");
+
+  document.getElementById("dashboard").style.display =
+    "block";
+
+  document.getElementById("modularView").style.display =
+    "none";
+
+  renderModularStats();
+
+  renderDashboard();
+}
+
+
+function renderDashboard(){
+
+  const dashboard =
+    document.getElementById("dashboard");
+
+  dashboard.innerHTML = "";
+
+  const modules = [
+    ["MÓDULO 1","1A",1,36,"1B",37,72],
+    ["MÓDULO 2","2A",73,108,"2B",109,144],
+    ["MÓDULO 3","3A",145,180,"3B",181,216]
   ];
 
-  document.getElementById("monthName").textContent=
-    names[month]+" "+year;
+  modules.forEach(function(module){
 
-  const days=document.getElementById("calendarDays");
+    const section =
+      document.createElement("section");
 
-  days.innerHTML="";
+    section.className = "module";
 
-  let first=
-    new Date(year,month,1).getDay();
+    section.innerHTML = `
+      <div class="module-head">
+        <div class="module-title">
+          ${module[0]}
+        </div>
 
-  first=first===0?6:first-1;
+        <div class="module-count">
+          72 ubicaciones
+        </div>
+      </div>
 
-  for(let i=0;i<first;i++){
+      <div class="parts">
 
-    const empty=document.createElement("div");
-    days.appendChild(empty);
-  }
+        ${makePart(
+          module[1],
+          module[2],
+          module[3]
+        )}
 
-  const count=
-    new Date(year,month+1,0).getDate();
+        ${makePart(
+          module[4],
+          module[5],
+          module[6]
+        )}
 
-  for(let d=1;d<=count;d++){
+      </div>
+    `;
 
-    const btn=document.createElement("button");
-
-    btn.className="day";
-
-    const iso=
-      year+"-"+
-      String(month+1).padStart(2,"0")+"-"+
-      String(d).padStart(2,"0");
-
-    btn.textContent=d;
-
-    if(iso===selectedDate){
-      btn.classList.add("selected");
-    }
-
-    btn.onclick=()=>{
-
-      selectedDate=iso;
-
-      localStorage.setItem(
-        "apq_modular_date_v1",
-        selectedDate
-      );
-
-      renderCalendar();
-    };
-
-    days.appendChild(btn);
-  }
-
-  document.getElementById("selectedDate").textContent=
-    "Fecha seleccionada: "+
-    new Date(selectedDate+"T12:00:00")
-      .toLocaleDateString("es-ES");
-}
-
-function changeMonth(delta){
-
-  calendarMonth.setMonth(
-    calendarMonth.getMonth()+delta
-  );
-
-  renderCalendar();
-}
-
-
-/* =========================
-   APQ VIEJA · STOCK
-========================= */
-
-const OLD_STOCK_KEY=
-  "apq_vieja_stock_v1";
-
-const OLD_LOCATIONS=[
-  "W02008",
-  "W02009",
-  "W02007",
-  "W02010",
-  "W02006",
-  "W02005",
-  "W02004",
-  "W02003",
-  "W02002"
-];
-
-function getOldStock(){
-
-  try{
-    return JSON.parse(
-      localStorage.getItem(OLD_STOCK_KEY)||"{}"
-    );
-  }catch(e){
-    return {};
-  }
-}
-
-function loadOldStock(){
-
-  const data=getOldStock();
-
-  OLD_LOCATIONS.forEach(w=>{
-
-    const input=
-      document.getElementById("stock-"+w);
-
-    if(input){
-      input.value=
-        Number.isFinite(Number(data[w]))
-        ? Math.max(0,Number(data[w]))
-        : 0;
-    }
+    dashboard.appendChild(section);
   });
 }
 
-function oldChange(w,delta){
 
-  const input=
-    document.getElementById("stock-"+w);
+function makePart(name,start,end){
 
-  if(!input)return;
+  let dots = "";
 
-  let value=
-    parseInt(input.value)||0;
+  for(let i=start;i<=end;i++){
 
-  value+=delta;
+    const id =
+      "A" +
+      String(i).padStart(3,"0");
 
-  if(value<0)value=0;
-  if(value>9999)value=9999;
+    const cls =
+      modularState.locations[id] === "free"
+      ? "f"
+      : "o";
 
-  input.value=value;
-
-  const box=
-    input.closest(".oldLoc,.oldWide");
-
-  if(box){
-    box.classList.add("pending");
+    dots +=
+      `<i class="dot ${cls}"></i>`;
   }
 
-  const msg=
-    document.getElementById("msg-"+w);
+  return `
+    <button
+      class="part"
+      onclick="openBlock('${name}',${start},${end})"
+    >
 
-  if(msg){
-    msg.textContent=
-      "Cambio pendiente · ✓ para confirmar";
+      <b>${name}</b>
+
+      <span>
+        A${String(start).padStart(3,"0")}–
+        A${String(end).padStart(3,"0")}
+      </span>
+
+      <div class="mini">
+        ${dots}
+      </div>
+
+    </button>
+  `;
+}
+
+
+function openBlock(name,start,end){
+
+  document.getElementById("dashboard").style.display =
+    "none";
+
+  document.getElementById("modularView").style.display =
+    "block";
+
+  document.getElementById("viewTitle").textContent =
+    "MÓDULO " +
+    name;
+
+  const grid =
+    document.getElementById("modularGrid");
+
+  grid.innerHTML = "";
+
+  [
+    "ALTURA 1",
+    "ALTURA 2",
+    "ALTURA 3",
+    "ALTURA 4"
+  ].forEach(function(label){
+
+    const h =
+      document.createElement("div");
+
+    h.className = "hlabel";
+    h.textContent = label;
+
+    grid.appendChild(h);
+  });
+
+  for(let i=start;i<=end;i++){
+
+    const id =
+      "A" +
+      String(i).padStart(3,"0");
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "loc " +
+      modularState.locations[id];
+
+    button.dataset.id = id;
+
+    button.innerHTML =
+      `
+      <b>${id}</b>
+      <small>
+        ${
+          modularState.locations[id] === "free"
+          ? "LIBRE"
+          : "OCUPADA"
+        }
+      </small>
+      `;
+
+    button.onclick = function(){
+
+      toggleModularLocation(
+        id,
+        button
+      );
+
+    };
+
+    grid.appendChild(button);
   }
 }
 
-function oldManual(w){
 
-  const input=
-    document.getElementById("stock-"+w);
+function toggleModularLocation(id,element){
 
-  if(!input)return;
+  modularState.locations[id] =
+    modularState.locations[id] === "free"
+    ? "occupied"
+    : "free";
 
-  let value=
-    parseInt(input.value)||0;
+  element.className =
+    "loc " +
+    modularState.locations[id];
 
-  value=Math.max(0,Math.min(9999,value));
+  element.querySelector("small").textContent =
+    modularState.locations[id] === "free"
+    ? "LIBRE"
+    : "OCUPADA";
 
-  input.value=value;
+  saveModular();
 
-  const box=
-    input.closest(".oldLoc,.oldWide");
+  showToast(
+    id +
+    " · " +
+    (
+      modularState.locations[id] === "free"
+      ? "LIBRE"
+      : "OCUPADA"
+    )
+  );
+}
 
-  if(box){
-    box.classList.add("pending");
+
+function backModular(){
+
+  document.getElementById("modularView").style.display =
+    "none";
+
+  document.getElementById("dashboard").style.display =
+    "block";
+
+  renderDashboard();
+}
+
+
+function resetModular(){
+
+  document.getElementById("search").value = "";
+
+  document.getElementById("modularView").style.display =
+    "none";
+
+  document.getElementById("dashboard").style.display =
+    "block";
+
+  renderDashboard();
+}
+
+
+function showFree(){
+
+  const free =
+    Object.keys(
+      modularState.locations
+    ).filter(function(id){
+
+      return modularState.locations[id] === "free";
+
+    });
+
+  const dashboard =
+    document.getElementById("dashboard");
+
+  dashboard.innerHTML = `
+    <section class="module">
+
+      <div class="module-head">
+
+        <div class="module-title">
+          🟢 UBICACIONES LIBRES
+        </div>
+
+        <div class="module-count">
+          ${free.length} disponibles
+        </div>
+
+      </div>
+
+      <div class="parts">
+
+        ${
+          free.map(function(id){
+
+            return `
+              <button
+                class="part"
+                onclick="jumpTo('${id}')"
+              >
+
+                <b>${id}</b>
+
+                <span>
+                  Disponible para colocar material
+                </span>
+
+              </button>
+            `;
+
+          }).join("")
+        }
+
+      </div>
+
+    </section>
+  `;
+
+  showToast(
+    "Mostrando ubicaciones libres"
+  );
+}
+
+
+function jumpTo(id){
+
+  const number =
+    Number(
+      id.substring(1)
+    );
+
+  let block;
+
+  if(number <= 36){
+    block = ["1A",1,36];
+  }
+  else if(number <= 72){
+    block = ["1B",37,72];
+  }
+  else if(number <= 108){
+    block = ["2A",73,108];
+  }
+  else if(number <= 144){
+    block = ["2B",109,144];
+  }
+  else if(number <= 180){
+    block = ["3A",145,180];
+  }
+  else{
+    block = ["3B",181,216];
   }
 
-  const msg=
-    document.getElementById("msg-"+w);
+  openBlock(
+    block[0],
+    block[1],
+    block[2]
+  );
 
-  if(msg){
-    msg.textContent=
-      "Cambio pendiente · ✓ para confirmar";
+  setTimeout(function(){
+
+    const target =
+      document.querySelector(
+        '[data-id="' + id + '"]'
+      );
+
+    if(target){
+
+      target.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+
+    }
+
+  },100);
+}
+
+
+function searchLocation(value){
+
+  const q =
+    value
+      .trim()
+      .toUpperCase();
+
+  if(!q){
+    return;
+  }
+
+  if(
+    /^A?\d{1,3}$/.test(q)
+  ){
+
+    const number =
+      Number(
+        q.replace("A","")
+      );
+
+    if(
+      number >= 1 &&
+      number <= 216
+    ){
+
+      jumpTo(
+        "A" +
+        String(number).padStart(3,"0")
+      );
+
+    }
   }
 }
 
-function oldConfirm(w){
 
-  const input=
-    document.getElementById("stock-"+w);
+/* =====================================================
+   CALENDARIO
+===================================================== */
 
-  if(!input)return;
+function toggleCalendar(){
 
-  let value=
-    parseInt(input.value)||0;
+  const panel =
+    document.getElementById(
+      "calendarPanel"
+    );
 
-  value=Math.max(0,Math.min(9999,value));
+  panel.classList.toggle("show");
+}
 
-  input.value=value;
 
-  const data=getOldStock();
+function changeDate(value){
 
-  data[w]=value;
+  if(!value){
+    return;
+  }
+
+  const date =
+    new Date(
+      value + "T12:00:00"
+    );
+
+  showToast(
+    "Fecha: " +
+    date.toLocaleDateString(
+      "es-ES"
+    )
+  );
+}
+
+
+/* =====================================================
+   APQ VIEJA
+===================================================== */
+
+const OLD_STOCK_KEY =
+  "apq_vieja_stock_v2";
+
+let oldStock =
+  JSON.parse(
+    localStorage.getItem(
+      OLD_STOCK_KEY
+    ) || "null"
+  );
+
+if(!oldStock){
+
+  oldStock = {
+
+    W02008:0,
+    W02009:0,
+    W02007:0,
+    W02010:0,
+    W02006:0,
+    W02005:0,
+    W02004:0,
+    W02003:0,
+    W02002:0
+
+  };
 
   localStorage.setItem(
     OLD_STOCK_KEY,
-    JSON.stringify(data)
+    JSON.stringify(oldStock)
   );
-
-  const box=
-    input.closest(".oldLoc,.oldWide");
-
-  if(box){
-    box.classList.remove("pending");
-  }
-
-  const msg=
-    document.getElementById("msg-"+w);
-
-  if(msg){
-
-    msg.textContent=
-      "✓ Stock confirmado";
-
-    setTimeout(()=>{
-      msg.textContent="";
-    },1400);
-  }
 }
 
 
-/* =========================
-   INICIO
-========================= */
+let oldPending = {};
 
-renderModules();
-renderCalendar();
+
+function openOldApq(){
+
+  showScreen(
+    "screenOldApq"
+  );
+
+  oldPending = {};
+
+  renderOldStock();
+
+}
+
+
+function renderOldStock(){
+
+  Object.keys(oldStock).forEach(function(id){
+
+    const value =
+      document.getElementById(
+        "oldValue" + id
+      );
+
+    if(value){
+
+      value.textContent =
+        oldStock[id];
+
+    }
+
+    const pending =
+      document.getElementById(
+        "oldPending" + id
+      );
+
+    if(pending){
+
+      pending.textContent = "";
+
+    }
+
+    const cell =
+      document.getElementById(
+        "oldCell" + id
+      );
+
+    if(cell){
+
+      cell.classList.remove(
+        "pending"
+      );
+
+    }
+
+  });
+}
+
+
+function oldChange(id,amount){
+
+  if(
+    oldPending[id] === undefined
+  ){
+
+    oldPending[id] =
+      oldStock[id];
+
+  }
+
+  oldPending[id] += amount;
+
+  if(oldPending[id] < 0){
+
+    oldPending[id] = 0;
+
+  }
+
+  const value =
+    document.getElementById(
+      "oldValue" + id
+    );
+
+  if(value){
+
+    value.textContent =
+      oldPending[id];
+
+  }
+
+  const pending =
+    document.getElementById(
+      "oldPending" + id
+    );
+
+  if(pending){
+
+    pending.textContent =
+      "Cambio pendiente · ✓ para confirmar";
+
+  }
+
+  const cell =
+    document.getElementById(
+      "oldCell" + id
+    );
+
+  if(cell){
+
+    cell.classList.add(
+      "pending"
+    );
+
+  }
+
+}
+
+
+function oldConfirm(id){
+
+  if(
+    oldPending[id] === undefined
+  ){
+
+    showToast(
+      "Sin cambios en " + id
+    );
+
+    return;
+
+  }
+
+  oldStock[id] =
+    oldPending[id];
+
+  localStorage.setItem(
+    OLD_STOCK_KEY,
+    JSON.stringify(oldStock)
+  );
+
+  delete oldPending[id];
+
+  const pending =
+    document.getElementById(
+      "oldPending" + id
+    );
+
+  if(pending){
+
+    pending.textContent = "";
+
+  }
+
+  const cell =
+    document.getElementById(
+      "oldCell" + id
+    );
+
+  if(cell){
+
+    cell.classList.remove(
+      "pending"
+    );
+
+  }
+
+  showToast(
+    id +
+    " · stock guardado"
+  );
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(message){
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+  toast.textContent =
+    message;
+
+  toast.style.display =
+    "block";
+
+  clearTimeout(
+    window.toastTimer
+  );
+
+  window.toastTimer =
+    setTimeout(function(){
+
+      toast.style.display =
+        "none";
+
+    },1400);
+}
+
+
+/* =====================================================
+   INICIO
+===================================================== */
+
+document.getElementById(
+  "dateText"
+).textContent =
+  new Date().toLocaleDateString(
+    "es-ES",
+    {
+      day:"2-digit",
+      month:"2-digit"
+    }
+  );
+
+document.getElementById(
+  "datePicker"
+).value =
+  new Date()
+    .toISOString()
+    .slice(0,10);
+
+renderModularStats();
+
+renderDashboard();
+
+renderOldStock();
 
 </script>
 
