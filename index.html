@@ -949,7 +949,7 @@ button{
 
 /* FICHAS BARNICES */
 .varnishClickable{cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;}
-button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transparent;border:0;color:inherit;font:inherit;text-align:left;cursor:pointer;}
+button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transparent;border:0;color:inherit;font:inherit;text-align:center;cursor:pointer;}
 .varnishClickable:active{opacity:.7;}
 .varnishModal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:flex-end;justify-content:center;z-index:9999;padding:0;}
 .varnishModal.show{display:flex;}
@@ -995,6 +995,16 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
       <button onclick="showScreen('screenBarnices')">
         <strong>🎨 BARNICES</strong>
         <span>Consulta de materiales y referencias</span>
+      </button>
+
+      <button onclick="showScreen('screenResiduos')">
+        <strong>♻️ RESIDUOS</strong>
+        <span>Gestión de residuos</span>
+      </button>
+
+      <button onclick="showScreen('screenEtiquetado')">
+        <strong>🏷️ ETIQUETADO</strong>
+        <span>Etiquetas y pictogramas</span>
       </button>
 
     </div>
@@ -1589,6 +1599,58 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
 
   <div class="oldHelp">
     − / + modifica el stock · ✓ confirma y guarda
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     RESIDUOS
+===================================================== -->
+
+<section id="screenResiduos" class="screen">
+
+  <button class="backBtn" onclick="showScreen('screenHome')">
+    ← Volver a Inicio
+  </button>
+
+  <div class="sectionCard">
+    <div class="sectionTitle">♻️ RESIDUOS</div>
+    <div class="homeText">
+      Sección preparada para definir el funcionamiento real del almacén de residuos.
+    </div>
+    <div class="sectionButtons">
+      <button type="button" onclick="showToast('RESIDUOS: pendiente de definir')">
+        <strong>♻️ Zona de residuos</strong>
+        <span>Funcionalidad pendiente de definir con los datos y fotos reales.</span>
+      </button>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     ETIQUETADO
+===================================================== -->
+
+<section id="screenEtiquetado" class="screen">
+
+  <button class="backBtn" onclick="showScreen('screenHome')">
+    ← Volver a Inicio
+  </button>
+
+  <div class="sectionCard">
+    <div class="sectionTitle">🏷️ ETIQUETADO</div>
+    <div class="homeText">
+      Sección preparada para definir etiquetas y pictogramas con las fotos reales.
+    </div>
+    <div class="sectionButtons">
+      <button type="button" onclick="showToast('ETIQUETADO: pendiente de definir')">
+        <strong>🏷️ Etiquetas y pictogramas</strong>
+        <span>Funcionalidad pendiente de definir.</span>
+      </button>
+    </div>
   </div>
 
 </section>
