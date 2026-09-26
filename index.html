@@ -254,7 +254,7 @@ button{
 
 .stats{
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-columns:1fr 1fr;
   gap:9px;
   margin-bottom:11px;
 }
@@ -293,64 +293,6 @@ button{
   padding:11px 13px;
   outline:none;
   margin-bottom:10px;
-}
-
-
-.outSearchBox{
-  background:#0d1e2d;
-  border:1px solid #1d3b52;
-  border-radius:15px;
-  padding:11px;
-  margin-bottom:12px;
-}
-
-.outSearchTitle{
-  font-size:11px;
-  font-weight:800;
-  color:#ff9b4a;
-  margin-bottom:7px;
-}
-
-.outSearch{
-  width:100%;
-  box-sizing:border-box;
-  background:#102335;
-  border:1px solid #29485d;
-  color:white;
-  border-radius:11px;
-  padding:10px 12px;
-  outline:none;
-}
-
-.outSearchResults{
-  margin-top:8px;
-}
-
-.outSearchResult{
-  width:100%;
-  border:1px solid #28465b;
-  background:#132a3d;
-  color:white;
-  border-radius:11px;
-  padding:9px 10px;
-  margin-top:6px;
-  text-align:left;
-}
-
-.outSearchResult b{
-  color:#ff9b4a;
-}
-
-.outSearchResult small{
-  display:block;
-  color:#a9bac6;
-  margin-top:2px;
-}
-
-.outSearchEmpty{
-  color:#91a8b8;
-  font-size:11px;
-  padding:5px 2px 0;
 }
 
 .actions{
@@ -444,10 +386,6 @@ button{
   background:#ff6574;
 }
 
-.dot.x{
-  background:#ffad42;
-}
-
 .modularView{
   display:none;
 }
@@ -497,10 +435,6 @@ button{
 
 .loc.occupied{
   background:#733541;
-}
-
-.loc.out{
-  background:#8a5a20;
 }
 
 /* =========================
@@ -724,132 +658,6 @@ button{
 }
 
 /* =========================
-   MODAL ESTADO MODULAR
-========================= */
-
-.modularModal{
-  position:fixed;
-  inset:0;
-  background:#0009;
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
-  z-index:100;
-  padding:12px;
-}
-
-.modularModal.show{
-  display:flex;
-}
-
-.modularSheet{
-  width:100%;
-  max-width:520px;
-  background:#0d1e2d;
-  border:1px solid #24465d;
-  border-radius:20px 20px 14px 14px;
-  padding:16px;
-  box-shadow:0 -10px 35px #0009;
-}
-
-.modularSheet h3{
-  margin:0 0 4px;
-  font-size:18px;
-}
-
-.modalSub{
-  color:#8fa5b7;
-  font-size:11px;
-  margin-bottom:13px;
-}
-
-.stateButtons{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:7px;
-}
-
-.stateButtons button{
-  border:1px solid #24465d;
-  border-radius:12px;
-  padding:11px 5px;
-  color:white;
-  font-weight:800;
-  background:#132a3d;
-}
-
-.stateButtons .freeState{background:#0f624d}
-.stateButtons .occState{background:#733541}
-.stateButtons .outState{background:#8a5a20}
-
-.outMaterialBox{
-  display:none;
-  margin-top:11px;
-}
-
-.outMaterialBox.show{
-  display:block;
-}
-
-.outMaterialBox label{
-  display:block;
-  color:#b9c9d4;
-  font-size:11px;
-  margin-bottom:5px;
-}
-
-.outMaterialBox select,
-.outMaterialBox input{
-  width:100%;
-  box-sizing:border-box;
-  background:#132a3d;
-  border:1px solid #35556b;
-  border-radius:10px;
-  padding:11px;
-  color:white;
-  outline:none;
-}
-
-.outCustomBox{
-  display:none;
-  margin-top:8px;
-}
-
-.outCustomBox.show{
-  display:block;
-}
-
-.modalActions{
-  display:flex;
-  gap:8px;
-  margin-top:11px;
-}
-
-.modalActions button{
-  flex:1;
-  border:0;
-  border-radius:11px;
-  padding:11px;
-  font-weight:800;
-}
-
-.cancelState{
-  background:#173047;
-  color:#dce8ef;
-}
-
-.saveOut{
-  background:#ffad42;
-  color:#201305;
-}
-
-@media(max-width:390px){
-  .stateButtons button{
-    font-size:11px;
-  }
-}
-
-/* =========================
    TOAST
 ========================= */
 
@@ -946,20 +754,12 @@ button{
   }
 }
 
-
 /* FICHAS BARNICES */
-.varnishClickable{cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;}
-button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transparent;border:0;color:inherit;font:inherit;text-align:center;cursor:pointer;}
-.varnishClickable:active{opacity:.7;}
-.varnishModal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:flex-end;justify-content:center;z-index:9999;padding:0;}
-.varnishModal.show{display:flex;}
-.varnishSheet{width:100%;max-width:560px;background:#0d1b2a;border:1px solid #29415a;border-bottom:0;border-radius:20px 20px 0 0;padding:20px;box-shadow:0 -10px 40px rgba(0,0,0,.4);max-height:88vh;overflow:auto;}
-.varnishSheet h2{margin:0 0 16px;font-size:22px;}
-.fichaRow{padding:12px 0;border-bottom:1px solid #26394d;}
-.fichaLabel{font-size:12px;color:#91a4b8;text-transform:uppercase;margin-bottom:4px;}
-.fichaValue{font-size:16px;color:#fff;white-space:pre-wrap;}
-.fichaClose{width:100%;margin-top:18px;padding:13px;border:0;border-radius:12px;background:#29415a;color:#fff;font-size:16px;font-weight:700;}
+.varnishSearch{width:100%;box-sizing:border-box;margin:12px 0;padding:12px 14px;border-radius:12px;border:1px solid #24384a;background:#0e1b27;color:#fff;font-size:14px;outline:none}.varnishSearch:focus{border-color:#4c8db8}.varnishItem{cursor:pointer}.varnishItem:hover{border-color:#4c8db8}.varnishProvider{font-size:11px;color:#9db0bd;margin-top:4px;line-height:1.35}.fichaCard{background:#101e2b;border:1px solid #294052;border-radius:16px;padding:16px;margin-top:12px}.fichaHead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.fichaCode{font-size:22px;font-weight:800;color:#fff}.fichaBadge{font-size:10px;padding:5px 8px;border-radius:8px;background:#24384a;color:#b9c8d2}.fichaRow{padding:11px 0;border-bottom:1px solid #233543}.fichaRow:last-child{border-bottom:0}.fichaLabel{font-size:10px;text-transform:uppercase;color:#7f95a4;margin-bottom:4px}.fichaValue{font-size:14px;color:#eef4f7;line-height:1.4}.fichaValue.pending{color:#8fa2ad}.fichaBack{margin-top:12px}
+</style>
 
+<style>
+.varnishEditBtn,.varnishSaveBtn,.varnishCancelBtn{border:0;border-radius:10px;padding:11px 14px;font-weight:700;cursor:pointer}.varnishEditBtn{width:100%;margin-top:12px}.varnishActions{display:flex;gap:8px;margin-top:12px}.varnishSaveBtn,.varnishCancelBtn{flex:1}.varnishField{margin:10px 0}.varnishField label{display:block;font-size:12px;font-weight:700;margin-bottom:5px;color:#9db0bd}.varnishField input,.varnishField textarea{width:100%;box-sizing:border-box;border:1px solid #344957;border-radius:9px;background:#101c25;color:#fff;padding:10px;font:inherit}.varnishField textarea{min-height:90px;resize:vertical}.varnishChecks{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0}.varnishChecks label{display:flex;align-items:center;gap:6px;font-size:13px}.varnishStatus{margin-top:9px;font-size:11px;color:#8fa5b4}
 </style>
 </head>
 
@@ -997,16 +797,6 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
         <span>Consulta de materiales y referencias</span>
       </button>
 
-      <button onclick="showScreen('screenResiduos')">
-        <strong>♻️ RESIDUOS</strong>
-        <span>Gestión de residuos</span>
-      </button>
-
-      <button onclick="showScreen('screenEtiquetado')">
-        <strong>🏷️ ETIQUETADO</strong>
-        <span>Etiquetas y pictogramas</span>
-      </button>
-
     </div>
   </div>
 
@@ -1031,7 +821,7 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
 
       <button onclick="openModular()">
         <strong>📦 APQ MODULAR</strong>
-        <span>216 ubicaciones · 3 módulos de 72 · 4 alturas</span>
+        <span>216 ubicaciones · 4 alturas</span>
       </button>
 
       <button onclick="openOldApq()">
@@ -1060,7 +850,7 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
 
     <div>
       <div class="modularBrand">📦 ALMACÉN MODULAR</div>
-      <div class="sub">216 ubicaciones · 3 módulos de 72 · 4 alturas</div>
+      <div class="sub">216 ubicaciones · 4 alturas</div>
     </div>
 
     <button class="calendar" onclick="toggleCalendar()">
@@ -1093,12 +883,7 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
 
     <div class="stat occ">
       <b id="occCount">166</b>
-      <span>🔴 OCUPADAS</span>
-    </div>
-
-    <div class="stat out">
-      <b id="outCount">0</b>
-      <span>🟠 FUERA DE ZONA</span>
+      <span>🔴 UBICACIONES OCUPADAS</span>
     </div>
 
   </div>
@@ -1109,22 +894,6 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
     placeholder="🔎 Buscar ubicación (A001…A216)"
     oninput="searchLocation(this.value)"
   >
-
-
-  <div class="outSearchBox">
-
-    <div class="outSearchTitle">🟠 BUSCAR MATERIAL FUERA DE ZONA</div>
-
-    <input
-      id="outMaterialSearch"
-      class="outSearch"
-      placeholder="🔎 Escribe el nombre del material…"
-      oninput="searchOutMaterial(this.value)"
-    >
-
-    <div id="outSearchResults" class="outSearchResults"></div>
-
-  </div>
 
   <div class="actions">
 
@@ -1158,7 +927,7 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
     >
       <span>🟢 Libre</span>
       <span>🔴 Ocupada</span>
-      <span>🟠 Fuera de zona</span>
+      <span>Toque = cambiar</span>
     </div>
 
     <div class="modularGridWrap">
@@ -1217,7 +986,7 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
       >
 
         <div class="oldCode">W02008</div>
-        <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('814.449')">814.449</button>
+        <div class="oldMaterial" onclick="openVarnishFicha('814.449')" style="cursor:pointer;text-decoration:underline;text-underline-offset:2px">814.449</div>
 
         <div class="oldControls">
 
@@ -1257,7 +1026,7 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
       >
 
         <div class="oldCode">W02009</div>
-        <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('MKB113T')">MKB113T</button>
+        <div class="oldMaterial" onclick="openVarnishFicha('MKB113T')" style="cursor:pointer;text-decoration:underline;text-underline-offset:2px">MKB113T</div>
 
         <div class="oldControls">
 
@@ -1303,7 +1072,7 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
       >
 
         <div class="oldCode">W02007</div>
-        <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('818.083')">818.083</button>
+        <div class="oldMaterial" onclick="openVarnishFicha('818.083')" style="cursor:pointer;text-decoration:underline;text-underline-offset:2px">818.083</div>
 
         <div class="oldControls">
 
@@ -1343,7 +1112,7 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
       >
 
         <div class="oldCode">W02010</div>
-        <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('110.496')">110.496</button>
+        <div class="oldMaterial" onclick="openVarnishFicha('110.496')" style="cursor:pointer;text-decoration:underline;text-underline-offset:2px">110.496</div>
 
         <div class="oldControls">
 
@@ -1387,7 +1156,7 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
     >
 
       <div class="oldCode">W02006</div>
-      <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('DISOLVENTE')">DISOLVENTE</button>
+      <div class="oldMaterial" onclick="openVarnishFicha('DISOLVENTE')" style="cursor:pointer;text-decoration:underline;text-underline-offset:2px">DISOLVENTE</div>
 
       <div class="oldControls">
 
@@ -1429,7 +1198,7 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
     >
 
       <div class="oldCode">W02005</div>
-      <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('MKW1301T')">MKW1301T</button>
+      <div class="oldMaterial" onclick="openVarnishFicha('MKW1301T')" style="cursor:pointer;text-decoration:underline;text-underline-offset:2px">MKW1301T</div>
 
       <div class="oldControls">
 
@@ -1471,7 +1240,7 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
     >
 
       <div class="oldCode">W02004</div>
-      <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('450.148')">450.148</button>
+      <div class="oldMaterial" onclick="openVarnishFicha('450.148')" style="cursor:pointer;text-decoration:underline;text-underline-offset:2px">450.148</div>
 
       <div class="oldControls">
 
@@ -1513,7 +1282,7 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
     >
 
       <div class="oldCode">W02003</div>
-      <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('816.621')">816.621</button>
+      <div class="oldMaterial" onclick="openVarnishFicha('816.621')" style="cursor:pointer;text-decoration:underline;text-underline-offset:2px">816.621</div>
 
       <div class="oldControls">
 
@@ -1555,7 +1324,7 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
     >
 
       <div class="oldCode">W02002</div>
-      <button type="button" class="oldMaterial varnishClickable" onclick="openVarnishFicha('814.509')">814.509</button>
+      <div class="oldMaterial" onclick="openVarnishFicha('814.509')" style="cursor:pointer;text-decoration:underline;text-underline-offset:2px">814.509</div>
 
       <div class="oldControls">
 
@@ -1605,58 +1374,6 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
 
 
 <!-- =====================================================
-     RESIDUOS
-===================================================== -->
-
-<section id="screenResiduos" class="screen">
-
-  <button class="backBtn" onclick="showScreen('screenHome')">
-    ← Volver a Inicio
-  </button>
-
-  <div class="sectionCard">
-    <div class="sectionTitle">♻️ RESIDUOS</div>
-    <div class="homeText">
-      Sección preparada para definir el funcionamiento real del almacén de residuos.
-    </div>
-    <div class="sectionButtons">
-      <button type="button" onclick="showToast('RESIDUOS: pendiente de definir')">
-        <strong>♻️ Zona de residuos</strong>
-        <span>Funcionalidad pendiente de definir con los datos y fotos reales.</span>
-      </button>
-    </div>
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     ETIQUETADO
-===================================================== -->
-
-<section id="screenEtiquetado" class="screen">
-
-  <button class="backBtn" onclick="showScreen('screenHome')">
-    ← Volver a Inicio
-  </button>
-
-  <div class="sectionCard">
-    <div class="sectionTitle">🏷️ ETIQUETADO</div>
-    <div class="homeText">
-      Sección preparada para definir etiquetas y pictogramas con las fotos reales.
-    </div>
-    <div class="sectionButtons">
-      <button type="button" onclick="showToast('ETIQUETADO: pendiente de definir')">
-        <strong>🏷️ Etiquetas y pictogramas</strong>
-        <span>Funcionalidad pendiente de definir.</span>
-      </button>
-    </div>
-  </div>
-
-</section>
-
-
-<!-- =====================================================
      BARNICES
 ===================================================== -->
 
@@ -1671,117 +1388,27 @@ button.oldMaterial{display:block;width:100%;margin:0;padding:0;background:transp
     <div class="sectionTitle">🎨 BARNICES</div>
 
     <div class="homeText">
-      Referencias disponibles para consulta.
+      Barnices y materiales registrados · toca una referencia para abrir su ficha.
     </div>
 
-    <div class="varnishList">
+    <input id="barnizSearch" class="varnishSearch" placeholder="🔎 Buscar barniz o proveedor..." oninput="filterBarnices(this.value)">
 
-      <div class="varnishItem">
-        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('814.509')">814.509</div>
-        <div class="varnishInfo">Referencia de barniz</div>
-      </div>
-
-      <div class="varnishItem">
-        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('816.621')">816.621</div>
-        <div class="varnishInfo">Referencia de barniz</div>
-      </div>
-
-      <div class="varnishItem">
-        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('450.148')">450.148</div>
-        <div class="varnishInfo">Termosellable · Palet de 4 bidones de 200 L</div>
-      </div>
-
-      <div class="varnishItem">
-        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('MKW1301T')">MKW1301T</div>
-        <div class="varnishInfo">Referencia de barniz</div>
-      </div>
-
-      <div class="varnishItem">
-        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('818.083')">818.083</div>
-        <div class="varnishInfo">Referencia de barniz</div>
-      </div>
-
-      <div class="varnishItem">
-        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('814.449')">814.449</div>
-        <div class="varnishInfo">Referencia de barniz</div>
-      </div>
-
-      <div class="varnishItem">
-        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('110.496')">110.496</div>
-        <div class="varnishInfo">Referencia de barniz</div>
-      </div>
-
-      <div class="varnishItem">
-        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('MKB113T')">MKB113T</div>
-        <div class="varnishInfo">Referencia de barniz</div>
-      </div>
-
-      <div class="varnishItem">
-        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('MKW1301T')">MKW1301T</div>
-        <div class="varnishInfo">Referencia de barniz</div>
-      </div>
-
-      <div class="varnishItem">
-        <div class="varnishCode varnishClickable" onclick="openVarnishFicha('Disolvente')">Disolvente</div>
-        <div class="varnishInfo">Material de uso habitual</div>
-      </div>
-
-    </div>
+    <div class="varnishList" id="varnishList"></div>
 
   </div>
 
 </section>
 
-
-
-
-<div id="varnishModal" class="varnishModal" onclick="if(event.target===this) closeVarnishFicha()">
-  <div class="varnishSheet">
-    <h2 id="fichaTitle">Ficha de barniz</h2>
-    <div class="fichaRow"><div class="fichaLabel">Número de barniz</div><div class="fichaValue" id="fichaNumero"></div></div>
-    <div class="fichaRow"><div class="fichaLabel">Nombre</div><div class="fichaValue" id="fichaNombre"></div></div>
-    <div class="fichaRow"><div class="fichaLabel">Cara interior / exterior</div><div class="fichaValue" id="fichaCara"></div></div>
-    <div class="fichaRow"><div class="fichaLabel">Proveedor</div><div class="fichaValue" id="fichaProveedor"></div></div>
-    <div class="fichaRow"><div class="fichaLabel">Aplicación</div><div class="fichaValue" id="fichaAplicacion"></div></div>
-    <div class="fichaRow"><div class="fichaLabel">Observaciones</div><div class="fichaValue" id="fichaObservaciones"></div></div>
-    <button class="fichaClose" onclick="closeVarnishFicha()">Cerrar</button>
+<!-- FICHA DE BARNIZ -->
+<section id="screenVarnishFicha" class="screen">
+  <button class="backBtn" onclick="backFromFicha()">
+    ← Volver a BARNICES
+  </button>
+  <div class="sectionCard">
+    <div class="sectionTitle">📋 FICHA TÉCNICA</div>
+    <div id="varnishFicha"></div>
   </div>
-</div>
-
-<div id="modularModal" class="modularModal" onclick="if(event.target===this) closeModularModal()">
-  <div class="modularSheet">
-    <h3 id="modalLocationTitle">A001</h3>
-    <div class="modalSub">Selecciona el estado de la ubicación</div>
-
-    <div class="stateButtons">
-      <button class="freeState" onclick="setModularState('free')">🟢 LIBRE</button>
-      <button class="occState" onclick="setModularState('occupied')">🔴 OCUPADA</button>
-      <button class="outState" onclick="prepareOutState()">🟠 FUERA DE ZONA</button>
-    </div>
-
-    <div id="outMaterialBox" class="outMaterialBox">
-      <label for="outMaterialType">Tipo de material fuera de zona</label>
-      <select id="outMaterialType" onchange="changeOutMaterialType(this.value)">
-        <option value="">Selecciona una opción…</option>
-        <option value="Lavado parrillas">Lavado parrillas</option>
-        <option value="Disolvente NH">Disolvente NH</option>
-        <option value="Fotomecánica">Fotomecánica</option>
-        <option value="Tinta impresión">Tinta impresión</option>
-        <option value="Otros">Otros</option>
-      </select>
-
-      <div id="outCustomBox" class="outCustomBox">
-        <label for="outMaterial">Material concreto</label>
-        <input id="outMaterial" type="text" placeholder="Escribe el nombre del material">
-      </div>
-    </div>
-
-    <div class="modalActions">
-      <button class="cancelState" onclick="closeModularModal()">Cancelar</button>
-      <button id="saveOutBtn" class="saveOut" onclick="saveOutState()" style="display:none">Guardar FUERA DE ZONA</button>
-    </div>
-  </div>
-</div>
+</section>
 
 <div id="toast" class="toast"></div>
 
@@ -1875,9 +1502,7 @@ let modularState =
 if(!modularState){
 
   modularState = {
-    locations:{},
-    materials:{},
-    outTypes:{}
+    locations:{}
   };
 
   for(let i=1;i<=216;i++){
@@ -1899,14 +1524,6 @@ if(!modularState){
     MODULAR_KEY,
     JSON.stringify(modularState)
   );
-}
-
-if(!modularState.materials){
-  modularState.materials = {};
-}
-
-if(!modularState.outTypes){
-  modularState.outTypes = {};
 }
 
 
@@ -1951,11 +1568,6 @@ function renderModularStats(){
     values.filter(
       x => x === "occupied"
     ).length;
-
-  document.getElementById("outCount").textContent =
-    values.filter(
-      x => x === "out"
-    ).length;
 }
 
 
@@ -1983,9 +1595,9 @@ function renderDashboard(){
   dashboard.innerHTML = "";
 
   const modules = [
-    ["MÓDULO 1",1,72],
-    ["MÓDULO 2",73,144],
-    ["MÓDULO 3",145,216]
+    ["MÓDULO 1","1A",1,36,"1B",37,72],
+    ["MÓDULO 2","2A",73,108,"2B",109,144],
+    ["MÓDULO 3","3A",145,180,"3B",181,216]
   ];
 
   modules.forEach(function(module){
@@ -2007,11 +1619,19 @@ function renderDashboard(){
       </div>
 
       <div class="parts">
+
         ${makePart(
-          module[0],
           module[1],
-          module[2]
+          module[2],
+          module[3]
         )}
+
+        ${makePart(
+          module[4],
+          module[5],
+          module[6]
+        )}
+
       </div>
     `;
 
@@ -2030,14 +1650,9 @@ function makePart(name,start,end){
       "A" +
       String(i).padStart(3,"0");
 
-    const currentState =
-      modularState.locations[id];
-
     const cls =
-      currentState === "free"
+      modularState.locations[id] === "free"
       ? "f"
-      : currentState === "out"
-      ? "x"
       : "o";
 
     dots +=
@@ -2075,6 +1690,7 @@ function openBlock(name,start,end){
     "block";
 
   document.getElementById("viewTitle").textContent =
+    "MÓDULO " +
     name;
 
   const grid =
@@ -2104,41 +1720,33 @@ function openBlock(name,start,end){
       "A" +
       String(i).padStart(3,"0");
 
-    const currentState =
-      modularState.locations[id];
-
     const button =
       document.createElement("button");
 
     button.className =
       "loc " +
-      currentState;
+      modularState.locations[id];
 
     button.dataset.id = id;
-
-    let label = "OCUPADA";
-
-    if(currentState === "free"){
-      label = "LIBRE";
-    }else if(currentState === "out"){
-      const material =
-        modularState.materials[id] || "";
-
-      label =
-        material
-        ? "FUERA DE ZONA · " + material
-        : "FUERA DE ZONA";
-    }
 
     button.innerHTML =
       `
       <b>${id}</b>
-      <small>${label}</small>
+      <small>
+        ${
+          modularState.locations[id] === "free"
+          ? "LIBRE"
+          : "OCUPADA"
+        }
+      </small>
       `;
 
     button.onclick = function(){
 
-      openModularModal(id);
+      toggleModularLocation(
+        id,
+        button
+      );
 
     };
 
@@ -2147,185 +1755,33 @@ function openBlock(name,start,end){
 }
 
 
-let selectedModularId = null;
+function toggleModularLocation(id,element){
 
-function openModularModal(id){
+  modularState.locations[id] =
+    modularState.locations[id] === "free"
+    ? "occupied"
+    : "free";
 
-  selectedModularId = id;
+  element.className =
+    "loc " +
+    modularState.locations[id];
 
-  document.getElementById("modalLocationTitle").textContent =
-    id;
-
-  const savedType = modularState.outTypes[id] || "";
-
-  document.getElementById("outMaterialType").value = savedType;
-  document.getElementById("outMaterial").value =
-    savedType === "Otros" ? (modularState.materials[id] || "") : "";
-
-  document.getElementById("outMaterialBox").classList.remove("show");
-  document.getElementById("outCustomBox").classList.remove("show");
-  document.getElementById("saveOutBtn").style.display = "none";
-
-  document.getElementById("modularModal").classList.add("show");
-}
-
-
-function closeModularModal(){
-
-  selectedModularId = null;
-
-  document.getElementById("modularModal").classList.remove("show");
-}
-
-
-function setModularState(newState){
-
-  if(!selectedModularId){
-    return;
-  }
-
-  const id = selectedModularId;
-
-  modularState.locations[id] = newState;
-
-  if(newState !== "out"){
-    delete modularState.materials[id];
-    delete modularState.outTypes[id];
-  }
-
-  const gridButton =
-    document.querySelector(
-      '#modularGrid [data-id="' + id + '"]'
-    );
-
-  if(gridButton){
-
-    gridButton.className =
-      "loc " + newState;
-
-    let label =
-      newState === "free"
-      ? "LIBRE"
-      : "OCUPADA";
-
-    gridButton.querySelector("small").textContent =
-      label;
-  }
-
-  if(newState === "out"){
-    modularState.locations[id] = "out";
-    prepareOutState();
-    return;
-  }
+  element.querySelector("small").textContent =
+    modularState.locations[id] === "free"
+    ? "LIBRE"
+    : "OCUPADA";
 
   saveModular();
-
-  closeModularModal();
 
   showToast(
     id +
     " · " +
     (
-      newState === "free"
+      modularState.locations[id] === "free"
       ? "LIBRE"
       : "OCUPADA"
     )
   );
-}
-
-
-function prepareOutState(){
-
-  if(!selectedModularId){
-    return;
-  }
-
-  document.getElementById("outMaterialBox").classList.add("show");
-  document.getElementById("saveOutBtn").style.display = "block";
-
-  const savedType = modularState.outTypes[selectedModularId] || "";
-  const select = document.getElementById("outMaterialType");
-
-  if(savedType){
-    select.value = savedType;
-  }else{
-    select.value = "";
-  }
-
-  changeOutMaterialType(select.value);
-
-  setTimeout(function(){
-    select.focus();
-  },50);
-}
-
-
-function changeOutMaterialType(type){
-
-  const customBox = document.getElementById("outCustomBox");
-  const input = document.getElementById("outMaterial");
-
-  if(type === "Otros"){
-    customBox.classList.add("show");
-    setTimeout(function(){ input.focus(); },50);
-  }else{
-    customBox.classList.remove("show");
-    input.value = "";
-  }
-}
-
-
-function saveOutState(){
-
-  if(!selectedModularId){
-    return;
-  }
-
-  const id = selectedModularId;
-  const type = document.getElementById("outMaterialType").value;
-  const custom = document.getElementById("outMaterial").value.trim();
-
-  if(!type){
-    showToast("Selecciona el tipo de material");
-    return;
-  }
-
-  if(type === "Otros" && !custom){
-    showToast("Escribe el nombre del material");
-    return;
-  }
-
-  modularState.locations[id] = "out";
-  modularState.outTypes[id] = type;
-  modularState.materials[id] = type === "Otros" ? custom : type;
-
-  saveModular();
-
-  closeModularModal();
-
-  renderCurrentModularGrid();
-
-  showToast(id + " · FUERA DE ZONA");
-}
-
-
-function renderCurrentModularGrid(){
-
-  const title =
-    document.getElementById("viewTitle").textContent;
-
-  let start = 1;
-  let end = 72;
-
-  if(title === "MÓDULO 2"){
-    start = 73;
-    end = 144;
-  }else if(title === "MÓDULO 3"){
-    start = 145;
-    end = 216;
-  }
-
-  openBlock(title,start,end);
 }
 
 
@@ -2427,14 +1883,23 @@ function jumpTo(id){
 
   let block;
 
-  if(number <= 72){
-    block = ["MÓDULO 1",1,72];
+  if(number <= 36){
+    block = ["1A",1,36];
+  }
+  else if(number <= 72){
+    block = ["1B",37,72];
+  }
+  else if(number <= 108){
+    block = ["2A",73,108];
   }
   else if(number <= 144){
-    block = ["MÓDULO 2",73,144];
+    block = ["2B",109,144];
+  }
+  else if(number <= 180){
+    block = ["3A",145,180];
   }
   else{
-    block = ["MÓDULO 3",145,216];
+    block = ["3B",181,216];
   }
 
   openBlock(
@@ -2462,87 +1927,6 @@ function jumpTo(id){
   },100);
 }
 
-
-
-function normalizeSearchText(value){
-
-  return String(value || "")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toUpperCase()
-    .trim();
-}
-
-
-function searchOutMaterial(value){
-
-  const box =
-    document.getElementById("outSearchResults");
-
-  if(!box){
-    return;
-  }
-
-  const q =
-    normalizeSearchText(value);
-
-  if(!q){
-    box.innerHTML = "";
-    return;
-  }
-
-  const matches =
-    Object.keys(modularState.locations)
-      .filter(function(id){
-
-        if(modularState.locations[id] !== "out"){
-          return false;
-        }
-
-        const material =
-          modularState.materials[id] || "";
-
-        return normalizeSearchText(material).includes(q);
-      })
-      .sort();
-
-  if(!matches.length){
-
-    box.innerHTML =
-      '<div class="outSearchEmpty">No hay ninguna ubicación FUERA DE ZONA con ese material.</div>';
-
-    return;
-  }
-
-  box.innerHTML =
-    matches.map(function(id){
-
-      const material =
-        modularState.materials[id] || "";
-
-      return `
-        <button
-          class="outSearchResult"
-          onclick="jumpTo('${id}')"
-        >
-          <b>${id}</b>
-          <small>🟠 ${escapeHtml(material)}</small>
-        </button>
-      `;
-
-    }).join("");
-}
-
-
-function escapeHtml(value){
-
-  return String(value || "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/\"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-}
 
 function searchLocation(value){
 
@@ -2611,45 +1995,6 @@ function changeDate(value){
       "es-ES"
     )
   );
-}
-
-
-
-
-/* =====================================================
-   FICHAS BARNICES
-===================================================== */
-
-const VARNISH_FICHAS = {
-  "814.509": {numero:"814.509", nombre:"", cara:"", aplicacion:"", observaciones:"", proveedor:""},
-  "816.621": {numero:"816.621", nombre:"", cara:"", aplicacion:"", observaciones:"", proveedor:""},
-  "450.148": {numero:"450.148", nombre:"Termosellable", cara:"", aplicacion:"", observaciones:"Palet de 4 bidones de 200 L", proveedor:""},
-  "MKW1301T": {numero:"MKW1301T", nombre:"", cara:"", aplicacion:"", observaciones:"", proveedor:""},
-  "818.083": {numero:"818.083", nombre:"", cara:"", aplicacion:"", observaciones:"", proveedor:""},
-  "814.449": {numero:"814.449", nombre:"", cara:"", aplicacion:"", observaciones:"", proveedor:""},
-  "110.496": {numero:"110.496", nombre:"", cara:"", aplicacion:"", observaciones:"", proveedor:""},
-  "MKB113T": {numero:"MKB113T", nombre:"", cara:"", aplicacion:"", observaciones:"", proveedor:""},
-  "Disolvente": {numero:"Disolvente", nombre:"Disolvente", cara:"", aplicacion:"", observaciones:"Material de uso habitual", proveedor:""}
-};
-
-function fichaText(value){
-  return value && String(value).trim() ? value : "Pendiente de completar";
-}
-
-function openVarnishFicha(code){
-  const ficha = VARNISH_FICHAS[code] || {numero:code,nombre:"",cara:"",aplicacion:"",observaciones:"", proveedor:""};
-  document.getElementById("fichaTitle").textContent = "Ficha de " + ficha.numero;
-  document.getElementById("fichaNumero").textContent = fichaText(ficha.numero);
-  document.getElementById("fichaNombre").textContent = fichaText(ficha.nombre);
-  document.getElementById("fichaCara").textContent = fichaText(ficha.cara);
-  document.getElementById("fichaProveedor").textContent = fichaText(ficha.proveedor);
-  document.getElementById("fichaAplicacion").textContent = fichaText(ficha.aplicacion);
-  document.getElementById("fichaObservaciones").textContent = fichaText(ficha.observaciones);
-  document.getElementById("varnishModal").classList.add("show");
-}
-
-function closeVarnishFicha(){
-  document.getElementById("varnishModal").classList.remove("show");
 }
 
 
@@ -2924,7 +2269,124 @@ renderDashboard();
 
 renderOldStock();
 
+/* =====================================================
+   BARNICES · FICHAS Y PROVEEDORES
+===================================================== */
+
+const VARNISH_FICHAS = {
+  "815782": {provider:"METLAC S.P.A. / BOSCO MARENGO"},
+  "V61S44EA-2HV (F0424018)": {provider:"SHERWIN-WILLIAMS SPAIN COATINGS S.L. / BENIPARRELL"},
+  "405.970 HB-597": {provider:"AKZO NOBEL COATINGS, S.L.U. / BARCELONA"},
+  "815804": {provider:"METLAC S.P.A. / BOSCO MARENGO"},
+  "815783": {provider:"METLAC S.P.A. / BOSCO MARENGO"},
+  "550.152": {provider:"AKZO NOBEL COATINGS, S.L.U. / BARCELONA"},
+  "410.517": {provider:"AKZO NOBEL COATINGS, S.L.U. / BARCELONA"},
+  "28S32AC": {provider:"SHERWIN-WILLIAMS SPAIN COATINGS S.L. / BENIPARRELL"},
+  "518.040": {provider:"AKZO NOBEL COATINGS, S.L.U. / BARCELONA"},
+  "117.022": {provider:"AKZO NOBEL COATINGS, S.L.U. / BARCELONA"},
+  "818083": {provider:"METLAC S.P.A. / BOSCO MARENGO", alias:"818.083"},
+  "814449": {provider:"METLAC S.P.A. / BOSCO MARENGO", alias:"814.449"},
+  "433.006": {provider:"SONOCO EMBALAJES METÁLICOS ESPAÑA S / TORRES"},
+  "MKB1113T": {provider:"INDUSTRIAS QUÍMICAS KUPSA SL / OION-OYON"},
+  "450.148": {provider:"AKZO NOBEL COATINGS, S.L.U. / BARCELONA", alias:"Termosellable"},
+  "816607": {provider:"METLAC S.P.A. / BOSCO MARENGO"},
+  "117.020": {provider:"AKZO NOBEL COATINGS, S.L.U. / BARCELONA"},
+  "432.037": {provider:"AKZO NOBEL COATINGS, S.L.U. / BARCELONA"},
+  "450.154": {provider:"AKZO NOBEL COATINGS, S.L.U. / BARCELONA"},
+  "117.012": {provider:"AKZO NOBEL COATINGS, S.L.U. / BARCELONA"},
+  "V61S64AB-2 (F0423026)": {provider:"SHERWIN-WILLIAMS SPAIN COATINGS S.L. / BENIPARRELL"},
+  "814526": {provider:"SONOCO EMBALAJES METÁLICOS ESPAÑA S / TORRES"},
+  "PPG6255-401A": {provider:"PPG IBERICA SALES & SERVICES, S.L. / RUBI"},
+  "425.074": {provider:"AKZO NOBEL COATINGS, S.L.U. / BARCELONA"},
+  "815580": {provider:"METLAC S.P.A. / BOSCO MARENGO"},
+  "V61S28AA-N": {provider:"SHERWIN-WILLIAMS SPAIN COATINGS S.L. / BENIPARRELL"},
+  "819039": {provider:"METLAC S.P.A. / BOSCO MARENGO"},
+  "118.003": {provider:"AKZO NOBEL COATINGS, S.L.U. / BARCELONA"},
+  "MKE1050T": {provider:"INDUSTRIAS QUÍMICAS KUPSA SL / OION-OYON"},
+  "815931": {provider:"METLAC S.P.A. / BOSCO MARENGO"},
+  "452.208": {provider:"AKZO NOBEL COATINGS, S.L.U. / BARCELONA"},
+  "419.517": {provider:"AKZO NOBEL COATINGS, S.L.U. / BARCELONA"},
+  "814.509": {provider:"Pendiente de registrar", source:"APQ VIEJA"},
+  "816.621": {provider:"Pendiente de registrar", source:"APQ VIEJA"},
+  "MKW1301T": {provider:"Pendiente de registrar", source:"APQ VIEJA"},
+  "818.083": {provider:"METLAC S.P.A. / BOSCO MARENGO", alias:"818083", source:"APQ VIEJA"},
+  "814.449": {provider:"METLAC S.P.A. / BOSCO MARENGO", alias:"814449", source:"APQ VIEJA"},
+  "110.496": {provider:"Pendiente de registrar", source:"APQ VIEJA"},
+  "MKB113T": {provider:"Pendiente de registrar", source:"APQ VIEJA"},
+  "DISOLVENTE": {provider:"Pendiente de registrar", type:"Material de uso habitual", source:"APQ VIEJA"}
+};
+
+const VARNISH_ORDER = [
+  "815782","V61S44EA-2HV (F0424018)","405.970 HB-597","815804","815783","550.152","410.517","28S32AC","518.040","117.022","818083","814449","433.006","MKB1113T","450.148","816607","117.020","432.037","450.154","117.012","V61S64AB-2 (F0423026)","814526","PPG6255-401A","425.074","815580","V61S28AA-N","819039","118.003","MKE1050T","815931","452.208","419.517","814.509","816.621","MKW1301T","818.083","814.449","110.496","MKB113T","DISOLVENTE"
+];
+
+function varnishDisplayCode(code){
+  const d=VARNISH_FICHAS[code]||{};
+  return d.alias && (code==='818083'||code==='814449') ? d.alias : code;
+}
+
+function renderBarnices(list){
+  const box=document.getElementById('varnishList');
+  if(!box) return;
+  box.innerHTML='';
+  list.forEach(function(code){
+    const d=VARNISH_FICHAS[code]||{};
+    const item=document.createElement('div');
+    item.className='varnishItem';
+    item.onclick=function(){openVarnishFicha(code)};
+    item.innerHTML='<div class="varnishCode">'+varnishDisplayCode(code)+'</div>' +
+      '<div class="varnishInfo">'+(d.type||d.alias||'Referencia de barniz')+'</div>' +
+      '<div class="varnishProvider">Proveedor: '+(d.provider||'Pendiente de registrar')+'</div>';
+    box.appendChild(item);
+  });
+}
+
+function filterBarnices(value){
+  const q=(value||'').trim().toLowerCase();
+  renderBarnices(VARNISH_ORDER.filter(function(code){
+    const d=VARNISH_FICHAS[code]||{};
+    return !q || code.toLowerCase().includes(q) || varnishDisplayCode(code).toLowerCase().includes(q) || (d.provider||'').toLowerCase().includes(q);
+  }));
+}
+
+function openVarnishFicha(code){
+  const d=VARNISH_FICHAS[code]||{};
+  const display=varnishDisplayCode(code);
+  const ficha=document.getElementById('varnishFicha');
+  if(!ficha) return;
+  ficha.innerHTML=
+    '<div class="fichaCard">'+
+      '<div class="fichaHead"><div class="fichaCode">'+display+'</div><div class="fichaBadge">FICHA</div></div>'+
+      (d.alias ? '<div class="fichaRow"><div class="fichaLabel">Referencia</div><div class="fichaValue">'+code+'</div></div>' : '')+
+      '<div class="fichaRow"><div class="fichaLabel">Nombre</div><div class="fichaValue '+(d.alias?'':'pending')+'">'+(d.alias||'Pendiente de registrar')+'</div></div>'+
+      '<div class="fichaRow"><div class="fichaLabel">Cara interior / exterior</div><div class="fichaValue pending">Pendiente de registrar</div></div>'+
+      '<div class="fichaRow"><div class="fichaLabel">Aplicación</div><div class="fichaValue pending">Pendiente de registrar</div></div>'+
+      '<div class="fichaRow"><div class="fichaLabel">Proveedor</div><div class="fichaValue">'+(d.provider||'Pendiente de registrar')+'</div></div>'+
+      '<div class="fichaRow"><div class="fichaLabel">Observaciones</div><div class="fichaValue pending">'+(d.type||'Pendiente de registrar')+'</div></div>'+
+    '</div>';
+  showScreen('screenVarnishFicha');
+}
+
+function backFromFicha(){
+  showScreen('screenBarnices');
+}
+
+renderBarnices(VARNISH_ORDER);
+
 </script>
 
 </body>
 </html>
+
+<script>
+const VARNISH_EDIT_KEY="apq_barnices_fichas_editadas_v1";
+let varnishEditedData=JSON.parse(localStorage.getItem(VARNISH_EDIT_KEY)||"{}");
+let currentVarnishCode=null;
+function esc(v){return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");}
+function getV(code){const b=(typeof VARNISH_FICHAS!=="undefined"&&VARNISH_FICHAS[code])?VARNISH_FICHAS[code]:{};const s=varnishEditedData[code]||{};return{numero:s.numero??b.numero??code,nombre:s.nombre??b.nombre??"",proveedor:s.proveedor??b.proveedor??"",interior:s.interior??!!b.interior,exterior:s.exterior??!!b.exterior,aplicacion:s.aplicacion??b.aplicacion??"",observaciones:s.observaciones??b.observaciones??""};}
+function showVarnishFicha(code){currentVarnishCode=code;const d=getV(code),s=document.getElementById("screenVarnishFicha");if(!s)return;s.innerHTML=`<button class="backBtn" onclick="showScreen('screenBarnices')">← Volver a BARNICES</button><div class="sectionCard"><div class="sectionTitle">🎨 FICHA DEL BARNIZ</div><div class="varnishField"><label>Número de barniz</label><div>${esc(d.numero)}</div></div><div class="varnishField"><label>Nombre</label><div>${esc(d.nombre||"Pendiente de registrar")}</div></div><div class="varnishField"><label>Proveedor</label><div>${esc(d.proveedor||"Pendiente de registrar")}</div></div><div class="varnishField"><label>Cara</label><div>${d.interior?"☑️ Cara interior":"⬜ Cara interior"}&nbsp;&nbsp;${d.exterior?"☑️ Cara exterior":"⬜ Cara exterior"}</div></div><div class="varnishField"><label>Aplicación</label><div>${esc(d.aplicacion||"Pendiente de registrar")}</div></div><div class="varnishField"><label>Observaciones</label><div>${esc(d.observaciones||"Pendiente de registrar")}</div></div><button class="varnishEditBtn" onclick="editVarnishFicha('${String(code).replace(/\\/g,"\\\\").replace(/'/g,"\\'")}')">✏️ EDITAR FICHA</button></div>`;showScreen("screenVarnishFicha");}
+function editVarnishFicha(code){currentVarnishCode=code;const d=getV(code),s=document.getElementById("screenVarnishFicha");if(!s)return;s.innerHTML=`<button class="backBtn" onclick="cancelVarnishEdit()">← Volver a ficha</button><div class="sectionCard"><div class="sectionTitle">✏️ EDITAR FICHA</div><div class="varnishField"><label>Número de barniz</label><input id="vfNumero" value="${esc(d.numero)}"></div><div class="varnishField"><label>Nombre</label><input id="vfNombre" value="${esc(d.nombre)}"></div><div class="varnishField"><label>Proveedor</label><input id="vfProveedor" value="${esc(d.proveedor)}"></div><div class="varnishChecks"><label><input id="vfInterior" type="checkbox" ${d.interior?"checked":""}> Cara interior</label><label><input id="vfExterior" type="checkbox" ${d.exterior?"checked":""}> Cara exterior</label></div><div class="varnishField"><label>Aplicación</label><textarea id="vfAplicacion">${esc(d.aplicacion)}</textarea></div><div class="varnishField"><label>Observaciones</label><textarea id="vfObservaciones">${esc(d.observaciones)}</textarea></div><div class="varnishActions"><button class="varnishCancelBtn" onclick="cancelVarnishEdit()">Cancelar</button><button class="varnishSaveBtn" onclick="saveVarnishData()">💾 Guardar cambios</button></div><div class="varnishStatus">Los cambios se guardan en este dispositivo.</div></div>`;showScreen("screenVarnishFicha");}
+function saveVarnishData(){if(!currentVarnishCode)return;const g=id=>document.getElementById(id);varnishEditedData[currentVarnishCode]={numero:g("vfNumero").value.trim()||currentVarnishCode,nombre:g("vfNombre").value.trim(),proveedor:g("vfProveedor").value.trim(),interior:g("vfInterior").checked,exterior:g("vfExterior").checked,aplicacion:g("vfAplicacion").value.trim(),observaciones:g("vfObservaciones").value.trim()};localStorage.setItem(VARNISH_EDIT_KEY,JSON.stringify(varnishEditedData));showVarnishFicha(currentVarnishCode);if(typeof showToast==="function")showToast("Ficha guardada correctamente");}
+function cancelVarnishEdit(){if(currentVarnishCode)showVarnishFicha(currentVarnishCode);}
+function openVarnishFicha(code){showVarnishFicha(code);}
+</script>
