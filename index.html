@@ -1533,4 +1533,5 @@ function closeFicha(){document.getElementById('fichaModal').classList.remove('sh
 
 function showToast(message){let t=document.getElementById('toast');t.textContent=message;t.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display='none',1600);}
 
-document.getElementById('dateText').textContent=new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit'});document.getElementById('datePicker').value=new Date().toISOString().slice(0,10);document.getElementById('updated').textContent=modularState.updatedAt?new Date(modularState.updatedAt).toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'}):'—';renderModularStats();renderDashboard();renderOldSto
+document.getElementById('dateText').textContent=new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit'});document.getElementById('datePicker').value=new Date().toISOString().slice(0,10);document.getElementById('updated').textContent=modularState.updatedAt?new Date(modularState.updatedAt).toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'}):'—';renderModularStats();renderDashboard();renderOldStock();renderBarnices();
+</script>
