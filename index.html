@@ -779,6 +779,28 @@ button{
 .dot.x{background:#f0a23a}
 .modularLegend{display:flex;gap:10px;flex-wrap:wrap;color:#9db0bd;font-size:10px;margin:8px 0 12px}
 .statusSheet{display:none;position:fixed;inset:0;background:#0009;z-index:90;padding:18px 10px;align-items:flex-end;justify-content:center}.statusSheet.show{display:flex}.statusBox{width:100%;max-width:560px;background:#0d1e2d;border:1px solid #24465d;border-radius:20px 20px 14px 14px;padding:14px}.statusBox h3{margin:0 0 10px;font-size:16px}.statusBtn{width:100%;border:1px solid #24465d;background:#132a3d;color:#fff;border-radius:12px;padding:12px;text-align:left;margin:5px 0}.statusBtn.free{border-color:#20b985}.statusBtn.occ{border-color:#ff6574}.statusBtn.out{border-color:#f0a23a}.outOptions{display:none;margin-top:8px}.outOptions.show{display:block}.outOptions button{width:100%;border:1px solid #24465d;background:#102335;color:#fff;border-radius:10px;padding:10px;margin:4px 0;text-align:left}.outOptions input{width:100%;background:#102335;border:1px solid #24465d;color:#fff;border-radius:10px;padding:10px;margin-top:5px}.statusCancel{width:100%;border:0;background:#173047;color:#fff;border-radius:12px;padding:10px;margin-top:7px}
+
+/* =========================
+   ORDEN MANUAL DE BARNICES
+========================= */
+.barnizTools{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 10px}
+.barnizOrderBtn,.barnizAddBtn{width:100%;border:1px solid #24465d;background:#173047;color:#fff;border-radius:12px;padding:11px;margin:0;font-weight:800}
+.barnizAddBtn{background:#244b38;border-color:#2e6a4e}
+
+.orderModal{display:none;position:fixed;inset:0;background:#000b;z-index:120;padding:14px;align-items:flex-end;justify-content:center}
+.orderModal.show{display:flex}
+.orderBox{width:100%;max-width:560px;max-height:88vh;background:#0d1e2d;border:1px solid #24465d;border-radius:20px 20px 14px 14px;padding:14px;display:flex;flex-direction:column}
+.orderHead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
+.orderHead h3{margin:0;font-size:17px}
+.orderHelp{color:#91a8b8;font-size:10px;margin-bottom:10px}
+.orderList{overflow:auto;padding:2px}
+.orderItem{display:flex;align-items:center;gap:9px;background:#132a3d;border:1px solid #24465d;border-radius:11px;padding:10px;margin:5px 0;cursor:grab;user-select:none;touch-action:none}.orderItem.dragging{border-color:#4aa3df;box-shadow:0 4px 14px #0008}
+.orderItem.dragging{opacity:.45}
+.orderHandle{font-size:18px;color:#91a8b8;width:28px;text-align:center;cursor:grab;flex:0 0 28px}.orderMove{display:flex;flex-direction:column;gap:3px;margin-left:auto}.orderMove button{border:0;background:#21445d;color:#fff;border-radius:6px;width:27px;height:23px;font-size:12px;padding:0}.addBarnizBox{width:100%;max-width:560px;max-height:90vh;overflow:auto;background:#0d1e2d;border:1px solid #24465d;border-radius:20px 20px 14px 14px;padding:14px}.addBarnizForm{display:grid;gap:8px}.addBarnizForm label{font-size:11px;color:#91a8b8;font-weight:700}.addBarnizForm input,.addBarnizForm textarea{width:100%;box-sizing:border-box;background:#102335;border:1px solid #24465d;color:#fff;border-radius:10px;padding:10px}.addBarnizForm textarea{min-height:80px;resize:vertical}.addBarnizFaces{display:flex;gap:12px;flex-wrap:wrap;color:#fff;font-size:12px}.addBarnizActions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:5px}.addBarnizActions button{border:0;border-radius:12px;padding:11px;color:#fff;background:#173047;font-weight:800}.addBarnizActions .saveNew{background:#0f624d}
+.orderText{min-width:0}.orderCode{font-weight:900;font-size:13px}.orderInfo{color:#91a8b8;font-size:9px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.orderActions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.orderActions button{border:0;border-radius:12px;padding:11px;color:#fff;background:#173047;font-weight:800}
+.orderActions .saveOrder{background:#0f624d}
 </style>
 </head>
 
@@ -1420,6 +1442,10 @@ button{
     <div class="sectionTitle">🎨 BARNICES</div>
     <div class="homeText">Referencias disponibles para consulta. Toca una referencia para abrir su ficha técnica.</div>
     <input id="barnizSearch" class="search" placeholder="🔎 Buscar barniz, proveedor o nombre" oninput="renderBarnices(this.value)">
+    <div class="barnizTools">
+      <button class="barnizOrderBtn" onclick="openBarnizOrder()">↕️ ORDENAR BARNICES</button>
+      <button class="barnizAddBtn" onclick="openAddBarniz()">➕ AÑADIR NUEVO BARNIZ</button>
+    </div>
     <div id="barnizList" class="varnishList"></div>
   </div>
 
@@ -1447,6 +1473,34 @@ button{
     <div class="homeText">Apartado preparado para desarrollar posteriormente.</div>
   </div>
 </section>
+
+<div id="barnizOrderModal" class="orderModal">
+  <div class="orderBox">
+    <div class="orderHead"><h3>↕️ ORDENAR BARNICES</h3><button class="statusCancel" style="width:auto;margin:0" onclick="closeBarnizOrder()">✕</button></div>
+    <div class="orderHelp">Arrastra cada barniz con ☰ y colócalo donde quieras. Después pulsa GUARDAR CAMBIOS.</div>
+    <div id="barnizOrderList" class="orderList"></div>
+    <div class="orderActions">
+      <button onclick="resetBarnizOrder()">🔢 ORDEN AUTOMÁTICO</button>
+      <button class="saveOrder" onclick="saveBarnizOrder()">💾 GUARDAR CAMBIOS</button>
+    </div>
+  </div>
+</div>
+
+<div id="addBarnizModal" class="orderModal">
+  <div class="addBarnizBox">
+    <div class="orderHead"><h3>➕ AÑADIR NUEVO BARNIZ</h3><button class="statusCancel" style="width:auto;margin:0" onclick="closeAddBarniz()">✕</button></div>
+    <div class="orderHelp">Añade una referencia que no exista todavía. Quedará guardada en este navegador y aparecerá también en el orden manual.</div>
+    <div class="addBarnizForm">
+      <label>Número / referencia *</label><input id="newBarnizNumero" placeholder="Ej.: 815.900">
+      <label>Nombre</label><input id="newBarnizNombre" placeholder="Nombre o descripción">
+      <label>Caras</label><div class="addBarnizFaces"><label><input type="checkbox" id="newFaceI"> Cara Interior</label><label><input type="checkbox" id="newFaceE"> Cara Exterior</label></div>
+      <label>Aplicación</label><input id="newBarnizAplicacion" placeholder="Aplicación">
+      <label>Proveedor</label><input id="newBarnizProveedor" placeholder="Proveedor">
+      <label>Observaciones</label><textarea id="newBarnizObs" placeholder="Observaciones"></textarea>
+      <div class="addBarnizActions"><button onclick="closeAddBarniz()">Cancelar</button><button class="saveNew" onclick="saveNewBarniz()">💾 GUARDAR BARNIZ</button></div>
+    </div>
+  </div>
+</div>
 
 <div id="statusModal" class="statusSheet">
   <div class="statusBox">
@@ -1520,20 +1574,28 @@ function oldChange(id,amount){if(oldPending[id]===undefined)oldPending[id]=oldSt
 function oldConfirm(id){if(oldPending[id]===undefined){showToast('Sin cambios en '+id);return;}oldStock[id]=oldPending[id];localStorage.setItem(OLD_STOCK_KEY,JSON.stringify(oldStock));delete oldPending[id];let p=document.getElementById('oldPending'+id);if(p)p.textContent='';let c=document.getElementById('oldCell'+id);if(c)c.classList.remove('pending');showToast(id+' · stock guardado');}
 
 const APQ_OLD_CODES={'814.449':'814.449','MKB113T':'MKB113T','818.083':'818.083','110.496':'110.496','DISOLVENTE':'Disolvente','MKW1301T':'MKW1301T','450.148':'450.148','816.621':'816.621','814.509':'814.509'};
-function normalizeBarnizCode(code){
-  const map={
-    '815782':'815.782','815804':'815.804','815783':'815.783',
-    '818083':'818.083','814449':'814.449','814509':'814.509',
-    '816621':'816.621','816607':'816.607','819039':'819.039',
-    '815580':'815.580','815931':'815.931','814526':'814.526'
-  };
-  return map[code]||code;
-}
-const BARNICES_DATA=[['117.020','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['432.037','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['405.970 HB-597','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['815.804','', 'METLAC S.P.A. / BOSCO MARENGO'],['410.517','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['28S32AC','', 'SHERWIN-WILLIAMS SPAIN COATINGS S.L. / BENIPARRELL'],['433.006','', 'SONOCO EMBALAJES METÁLICOS ESPAÑA S / TORRES'],['MKB1113T','', 'INDUSTRIAS QUÍMICAS KUPSA SL / OION-OYON'],['450.148','Termosellable', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['816.607','', 'METLAC S.P.A. / BOSCO MARENGO'],['450.154','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['117.012','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['452.208','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['419.517','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['518.040','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['117.022','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['815.580','', 'METLAC S.P.A. / BOSCO MARENGO'],['V61S28AA-N','', 'SHERWIN-WILLIAMS SPAIN COATINGS S.L. / BENIPARRELL'],['815.782','', 'METLAC S.P.A. / BOSCO MARENGO'],['V61S44EA-2HV (F0424018)','', 'SHERWIN-WILLIAMS SPAIN COATINGS S.L. / BENIPARRELL'],['815.783','', 'METLAC S.P.A. / BOSCO MARENGO'],['550.152','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['818.083','', 'METLAC S.P.A. / BOSCO MARENGO'],['814.449','', 'METLAC S.P.A. / BOSCO MARENGO'],['819.039','', 'METLAC S.P.A. / BOSCO MARENGO'],['118.003','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['MKE1050T','', 'INDUSTRIAS QUÍMICAS KUPSA SL / OION-OYON'],['815.931','', 'METLAC S.P.A. / BOSCO MARENGO'],['PPG6255-401A','', 'PPG IBERICA SALES & SERVICES, S.L. / RUBI'],['425.074','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['V61S64AB-2 (F0423026)','', 'SHERWIN-WILLIAMS SPAIN COATINGS S.L. / BENIPARRELL'],['814.526','', 'SONOCO EMBALAJES METÁLICOS ESPAÑA S / TORRES']];
+const BARNICES_DATA=[
+['815782','', 'METLAC S.P.A. / BOSCO MARENGO'],['V61S44EA-2HV (F0424018)','', 'SHERWIN-WILLIAMS SPAIN COATINGS S.L. / BENIPARRELL'],['405.970 HB-597','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['815804','', 'METLAC S.P.A. / BOSCO MARENGO'],['815783','', 'METLAC S.P.A. / BOSCO MARENGO'],['550.152','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['410.517','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['28S32AC','', 'SHERWIN-WILLIAMS SPAIN COATINGS S.L. / BENIPARRELL'],['518.040','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['117.022','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['818083','', 'METLAC S.P.A. / BOSCO MARENGO'],['814449','', 'METLAC S.P.A. / BOSCO MARENGO'],['433.006','', 'SONOCO EMBALAJES METÁLICOS ESPAÑA S / TORRES'],['MKB1113T','', 'INDUSTRIAS QUÍMICAS KUPSA SL / OION-OYON'],['450.148','Termosellable', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['816607','', 'METLAC S.P.A. / BOSCO MARENGO'],['117.020','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['432.037','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['450.154','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['117.012','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['V61S64AB-2 (F0423026)','', 'SHERWIN-WILLIAMS SPAIN COATINGS S.L. / BENIPARRELL'],['814526','', 'SONOCO EMBALAJES METÁLICOS ESPAÑA S / TORRES'],['PPG6255-401A','', 'PPG IBERICA SALES & SERVICES, S.L. / RUBI'],['425.074','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['815580','', 'METLAC S.P.A. / BOSCO MARENGO'],['V61S28AA-N','', 'SHERWIN-WILLIAMS SPAIN COATINGS S.L. / BENIPARRELL'],['819039','', 'METLAC S.P.A. / BOSCO MARENGO'],['118.003','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['MKE1050T','', 'INDUSTRIAS QUÍMICAS KUPSA SL / OION-OYON'],['815931','', 'METLAC S.P.A. / BOSCO MARENGO'],['452.208','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA'],['419.517','', 'AKZO NOBEL COATINGS, S.L.U. / BARCELONA']];
 const FICHA_KEY='apq_barnices_fichas_v1';let fichas=JSON.parse(localStorage.getItem(FICHA_KEY)||'{}');
+const CUSTOM_BARNIZ_KEY='apq_barnices_personalizados_v1';let customBarnices=JSON.parse(localStorage.getItem(CUSTOM_BARNIZ_KEY)||'[]');
 function seedFicha(code,name='',provider=''){if(!fichas[code])fichas[code]={numero:code,nombre:name,caras:'',aplicacion:'',proveedor:provider,observaciones:''};else if(provider&&!fichas[code].proveedor)fichas[code].proveedor=provider;if(name&&!fichas[code].nombre)fichas[code].nombre=name;}
 BARNICES_DATA.forEach(x=>seedFicha(x[0],x[1],x[2]));Object.keys(APQ_OLD_CODES).forEach(c=>seedFicha(APQ_OLD_CODES[c],c==='450.148'?'Termosellable':''));localStorage.setItem(FICHA_KEY,JSON.stringify(fichas));
-function renderBarnices(filter=''){let q=filter.toLowerCase();let arr=BARNICES_DATA.slice();Object.keys(APQ_OLD_CODES).forEach(c=>{if(!arr.some(x=>x[0].toLowerCase()===c.toLowerCase()))arr.push([c,fichas[c]?.nombre||'',fichas[c]?.proveedor||'']);});arr=arr.filter(x=>{let f=fichas[x[0]]||{};return !q||[x[0],x[1],x[2],f.nombre,f.proveedor].join(' ').toLowerCase().includes(q);});document.getElementById('barnizList').innerHTML=arr.map(x=>{let f=fichas[x[0]]||{};return `<div class="varnishItem" onclick="openFicha('${encodeURIComponent(x[0])}')"><div class="varnishCode">${escapeHtml(x[0])}</div><div class="varnishInfo">${escapeHtml(f.nombre||x[1]||'Referencia de barniz')} · ${escapeHtml(f.proveedor||x[2]||'Proveedor no indicado')}</div></div>`}).join('');}
+const BARNIZ_ORDER_KEY='apq_barnices_orden_v1';
+let barnizOrder=JSON.parse(localStorage.getItem(BARNIZ_ORDER_KEY)||'null');
+function autoBarnizSort(arr){return arr.slice().sort((a,b)=>{let ac=a[0].trim(),bc=b[0].trim();if(ac==='DISOLVENTE')return bc==='DISOLVENTE'?0:1;if(bc==='DISOLVENTE')return -1;let an=/^\d/.test(ac),bn=/^\d/.test(bc);if(an!==bn)return an?-1:1;if(an){let na=parseFloat(ac.replace(/[^0-9.].*$/,''));let nb=parseFloat(bc.replace(/[^0-9.].*$/,''));if(na!==nb)return na-nb;}return ac.localeCompare(bc,'es',{numeric:true,sensitivity:'base'});});}
+function getBarnizArray(){let arr=BARNICES_DATA.slice();customBarnices.forEach(x=>{if(!arr.some(y=>y[0].toLowerCase()===x[0].toLowerCase()))arr.push(x);});Object.keys(APQ_OLD_CODES).forEach(c=>{if(!arr.some(x=>x[0].toLowerCase()===c.toLowerCase()))arr.push([c,fichas[c]?.nombre||'',fichas[c]?.proveedor||'']);});return arr;}
+function getOrderedBarnices(){let arr=getBarnizArray();let byCode=new Map(arr.map(x=>[x[0].toLowerCase(),x]));let ordered=[];if(Array.isArray(barnizOrder)){barnizOrder.forEach(code=>{let x=byCode.get(String(code).toLowerCase());if(x){ordered.push(x);byCode.delete(String(code).toLowerCase());}});}autoBarnizSort(Array.from(byCode.values())).forEach(x=>ordered.push(x));return ordered;}
+function renderBarnices(filter=''){let q=filter.toLowerCase();let arr=getOrderedBarnices();arr=arr.filter(x=>{let f=fichas[x[0]]||{};return !q||[x[0],x[1],x[2],f.nombre,f.proveedor].join(' ').toLowerCase().includes(q);});document.getElementById('barnizList').innerHTML=arr.map(x=>{let f=fichas[x[0]]||{};return `<div class="varnishItem" onclick="openFicha('${encodeURIComponent(x[0])}')"><div class="varnishCode">${escapeHtml(x[0])}</div><div class="varnishInfo">${escapeHtml(f.nombre||x[1]||'Referencia de barniz')} · ${escapeHtml(f.proveedor||x[2]||'Proveedor no indicado')}</div></div>`}).join('');}
+function moveOrderItem(item,direction){let list=document.getElementById('barnizOrderList');if(!item||!list)return;let target=direction==='up'?item.previousElementSibling:item.nextElementSibling;if(!target)return;if(direction==='up')list.insertBefore(item,target);else list.insertBefore(target,item);}
+function openBarnizOrder(){let arr=getOrderedBarnices();let list=document.getElementById('barnizOrderList');list.innerHTML=arr.map(x=>{let f=fichas[x[0]]||{};return `<div class="orderItem" data-code="${encodeURIComponent(x[0])}"><div class="orderHandle" title="Arrastra desde aquí">☰</div><div class="orderText"><div class="orderCode">${escapeHtml(x[0])}</div><div class="orderInfo">${escapeHtml(f.nombre||x[1]||'Referencia de barniz')} · ${escapeHtml(f.proveedor||x[2]||'Proveedor no indicado')}</div></div><div class="orderMove"><button title="Subir" onclick="moveOrderItem(this.closest('.orderItem'),'up')">▲</button><button title="Bajar" onclick="moveOrderItem(this.closest('.orderItem'),'down')">▼</button></div></div>`}).join('');document.getElementById('barnizOrderModal').classList.add('show');enableBarnizDrag();}
+function closeBarnizOrder(){document.getElementById('barnizOrderModal').classList.remove('show');}
+function resetBarnizOrder(){barnizOrder=autoBarnizSort(getBarnizArray()).map(x=>x[0]);openBarnizOrder();showToast('Orden automático aplicado');}
+function saveBarnizOrder(){barnizOrder=[...document.querySelectorAll('#barnizOrderList .orderItem')].map(el=>decodeURIComponent(el.dataset.code));localStorage.setItem(BARNIZ_ORDER_KEY,JSON.stringify(barnizOrder));closeBarnizOrder();renderBarnices(document.getElementById('barnizSearch')?.value||'');showToast('Orden de barnices guardado');}
+function enableBarnizDrag(){let list=document.getElementById('barnizOrderList');let dragEl=null;let moveHandler=null;let endDrag=()=>{if(dragEl){dragEl.classList.remove('dragging');dragEl=null;}if(moveHandler){document.removeEventListener('pointermove',moveHandler);document.removeEventListener('pointerup',endDrag);document.removeEventListener('pointercancel',endDrag);moveHandler=null;}};list.querySelectorAll('.orderItem').forEach(item=>{let handle=item.querySelector('.orderHandle');handle.addEventListener('pointerdown',e=>{e.preventDefault();dragEl=item;item.classList.add('dragging');moveHandler=ev=>{if(!dragEl)return;ev.preventDefault();let els=[...list.querySelectorAll('.orderItem:not(.dragging)')];let before=els.find(el=>{let r=el.getBoundingClientRect();return ev.clientY<r.top+r.height/2;});if(before)list.insertBefore(dragEl,before);else list.appendChild(dragEl);};document.addEventListener('pointermove',moveHandler,{passive:false});document.addEventListener('pointerup',endDrag);document.addEventListener('pointercancel',endDrag);});});}
+function openAddBarniz(){document.getElementById('newBarnizNumero').value='';document.getElementById('newBarnizNombre').value='';document.getElementById('newBarnizAplicacion').value='';document.getElementById('newBarnizProveedor').value='';document.getElementById('newBarnizObs').value='';document.getElementById('newFaceI').checked=false;document.getElementById('newFaceE').checked=false;document.getElementById('addBarnizModal').classList.add('show');setTimeout(()=>document.getElementById('newBarnizNumero').focus(),100);}
+function closeAddBarniz(){document.getElementById('addBarnizModal').classList.remove('show');}
+function saveNewBarniz(){let code=document.getElementById('newBarnizNumero').value.trim();if(!code){showToast('Indica el número del barniz');return;}if(getBarnizArray().some(x=>x[0].toLowerCase()===code.toLowerCase())){showToast('Ese barniz ya existe');return;}let name=document.getElementById('newBarnizNombre').value.trim(),provider=document.getElementById('newBarnizProveedor').value.trim(),faces=[];if(document.getElementById('newFaceI').checked)faces.push('Interior');if(document.getElementById('newFaceE').checked)faces.push('Exterior');let item=[code,name,provider];customBarnices.push(item);localStorage.setItem(CUSTOM_BARNIZ_KEY,JSON.stringify(customBarnices));fichas[code]={numero:code,nombre:name,caras:faces.join(' / '),aplicacion:document.getElementById('newBarnizAplicacion').value.trim(),proveedor:provider,observaciones:document.getElementById('newBarnizObs').value.trim()};localStorage.setItem(FICHA_KEY,JSON.stringify(fichas));if(!Array.isArray(barnizOrder))barnizOrder=[];barnizOrder.push(code);localStorage.setItem(BARNIZ_ORDER_KEY,JSON.stringify(barnizOrder));closeAddBarniz();renderBarnices(document.getElementById('barnizSearch')?.value||'');showToast('Barniz añadido correctamente');}
+
 function escapeHtml(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
 function openFicha(encoded){let code=decodeURIComponent(encoded);seedFicha(code);let f=fichas[code];document.getElementById('fichaTitle').textContent='FICHA TÉCNICA · '+code;document.getElementById('fichaEdit').style.display='none';document.getElementById('fichaView').style.display='block';document.getElementById('fichaView').innerHTML=`<div class="fichaRow"><div class="fichaLabel">Número de barniz</div><div class="fichaValue">${escapeHtml(f.numero)}</div></div><div class="fichaRow"><div class="fichaLabel">Nombre</div><div class="fichaValue">${escapeHtml(f.nombre||'—')}</div></div><div class="fichaRow"><div class="fichaLabel">Cara</div><div class="fichaValue">${escapeHtml(f.caras||'—')}</div></div><div class="fichaRow"><div class="fichaLabel">Aplicación</div><div class="fichaValue">${escapeHtml(f.aplicacion||'—')}</div></div><div class="fichaRow"><div class="fichaLabel">Proveedor</div><div class="fichaValue">${escapeHtml(f.proveedor||'—')}</div></div><div class="fichaRow"><div class="fichaLabel">Observaciones</div><div class="fichaValue">${escapeHtml(f.observaciones||'—')}</div></div><div class="fichaActions"><button onclick="editFicha('${encodeURIComponent(code)}')">✏️ EDITAR FICHA</button><button onclick="closeFicha()">Cerrar</button></div>`;document.getElementById('fichaModal').classList.add('show');}
 function editFicha(encoded){let code=decodeURIComponent(encoded),f=fichas[code]||{};document.getElementById('fichaView').style.display='none';document.getElementById('fichaEdit').style.display='block';document.getElementById('fichaEdit').innerHTML=`<div class="fichaForm"><label>Número de barniz</label><input id="f_num" value="${escapeHtml(f.numero||code)}" readonly><label>Nombre</label><input id="f_nombre" value="${escapeHtml(f.nombre||'')}"><label>Caras</label><div class="faceChecks"><label><input type="checkbox" id="faceI" ${String(f.caras||'').includes('Interior')?'checked':''}> Cara Interior</label><label><input type="checkbox" id="faceE" ${String(f.caras||'').includes('Exterior')?'checked':''}> Cara Exterior</label></div><label>Aplicación</label><input id="f_aplicacion" value="${escapeHtml(f.aplicacion||'')}"><label>Proveedor</label><input id="f_proveedor" value="${escapeHtml(f.proveedor||'')}"><label>Observaciones</label><textarea id="f_obs">${escapeHtml(f.observaciones||'')}</textarea><div class="fichaActions"><button class="saveFicha" onclick="saveFicha('${encodeURIComponent(code)}')">💾 GUARDAR CAMBIOS</button><button onclick="openFicha('${encodeURIComponent(code)}')">Cancelar</button></div></div>`;}
@@ -1543,4 +1605,4 @@ function closeFicha(){document.getElementById('fichaModal').classList.remove('sh
 function showToast(message){let t=document.getElementById('toast');t.textContent=message;t.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display='none',1600);}
 
 document.getElementById('dateText').textContent=new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit'});document.getElementById('datePicker').value=new Date().toISOString().slice(0,10);document.getElementById('updated').textContent=modularState.updatedAt?new Date(modularState.updatedAt).toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'}):'—';renderModularStats();renderDashboard();renderOldStock();renderBarnices();
-  </script>
+</script>
